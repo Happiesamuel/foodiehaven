@@ -1,0 +1,4 @@
+web: node server.js
+    "server": "json-server --watch data/food.json --port 8000",
+    "edus": "concurrently --kill-others  \"vite build\" \"json-server --watch data/food.json --port 8000\"",
+    "edu": "concurrently --kill-others  \"vite --host\" \"json-server --watch data/food.json --port 8000\""

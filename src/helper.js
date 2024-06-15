@@ -1,0 +1,3 @@
+const SLICE_MULTIPLE = 36;
+const SLICE_TO = 12;
+export { SLICE_MULTIPLE, SLICE_TO };
