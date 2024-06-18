@@ -9,6 +9,7 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteBookmark } from "./useDeleteBookmark";
 import toast from "react-hot-toast";
 import Spinner from "../../ui/Spinner";
+import { useNavigate } from "react-router-dom";
 function BookmarkDetails({ bookmark }) {
   const StyledBookmarkDetails = styled.div`
     padding: 10px;
@@ -37,13 +38,12 @@ function BookmarkDetails({ bookmark }) {
     width: 50px;
     border-radius: 8px;
   `;
+  const navigate = useNavigate();
   const quantity = 1;
   const [count, setCount] = useState(quantity);
-  const { image, price, title, bookmarkId } = bookmark;
-  console.log(price);
+  const { image, title, bookmarkId } = bookmark;
   const { deleteBookmark, isDeleting } = useDeleteBookmark();
   function deleteBook(id) {
-    console.log(id, "ajdwu");
     deleteBookmark(id, {
       onSuccess: () => {
         toast.success(
@@ -65,7 +65,9 @@ function BookmarkDetails({ bookmark }) {
           <Menu.Toogle id={bookmarkId} />
           <Menu.List id={bookmarkId}>
             <Menu.Button>Add to cart</Menu.Button>
-            <Menu.Button>View recipe</Menu.Button>
+            <Menu.Button onClick={() => navigate(`/recipe/${bookmarkId}`)}>
+              View recipe
+            </Menu.Button>
 
             <Modal.Open name="delete">
               <Menu.Button>Delete recipe</Menu.Button>

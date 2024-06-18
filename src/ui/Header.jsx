@@ -26,7 +26,6 @@ function Header() {
   return (
     <StyledHeader>
       <Head>Foodie Haven</Head>
-
       <HeaderSearch />
       {width > 768 && <User />}
     </StyledHeader>

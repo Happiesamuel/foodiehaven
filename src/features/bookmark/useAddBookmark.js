@@ -6,7 +6,7 @@ export function useAddBookmark() {
   const queryClient = useQueryClient();
   const { mutate: addBookmark, isLoading: isCreating } = useMutation({
     mutationFn: (bookmark) => addBookmarkApi(bookmark),
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["bookmark"] });
     },
   });

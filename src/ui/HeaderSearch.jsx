@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button } from "./Button";
-import { useState } from "react";
-import { useSearch } from "../context/SearchResultContext";
+import { useSearchParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function HeaderSearch() {
   const StyledForm = styled.form`
@@ -24,22 +24,27 @@ function HeaderSearch() {
       color: #039235;
     }
   `;
-  const [query, setQuery] = useState("");
-  const { setSearchData } = useSearch();
+  const { register, handleSubmit, getValues } = useForm();
 
-  function onSubmit(e) {
-    e.preventDefault();
+  const [searchParams, setSearchParams] = useSearchParams();
+  function onSubmit() {
+    const query = getValues().search;
+    console.log(query);
     if (!query) return;
-    setSearchData(query);
+    searchParams.set("search", query);
+    setSearchParams(searchParams);
   }
+
   return (
-    <StyledForm onSubmit={onSubmit}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="text"
+        autoComplete={false}
+        autoCorrect={false}
         placeholder="Search for food recipies..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        {...register("search")}
       />
+
       <Button type="secondary" size="medium">
         Search
       </Button>

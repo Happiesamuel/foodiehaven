@@ -1,4 +1,664 @@
 function Settings() {
+  const a = JSON.stringify({
+    vegetarian: true,
+    vegan: false,
+    glutenFree: false,
+    dairyFree: false,
+    veryHealthy: false,
+    cheap: false,
+    veryPopular: false,
+    sustainable: false,
+    lowFodmap: false,
+    weightWatcherSmartPoints: 13,
+    gaps: "no",
+    preparationMinutes: null,
+    cookingMinutes: null,
+    aggregateLikes: 1,
+    healthScore: 1,
+    creditsText: "Foodista.com – The Cooking Encyclopedia Everyone Can Edit",
+    license: "CC BY 3.0",
+    sourceName: "Foodista",
+    pricePerServing: 88.96,
+    extendedIngredients: [
+      {
+        id: 19350,
+        aisle: "Baking",
+        image: "corn-syrup.png",
+        consistency: "SOLID",
+        name: "corn syrup",
+        nameClean: "corn syrup",
+        original: "1 1/2 teaspoons light corn syrup",
+        originalName: "light corn syrup",
+        amount: 1.5,
+        unit: "teaspoons",
+        meta: ["light"],
+        measures: {
+          us: {
+            amount: 1.5,
+            unitShort: "tsps",
+            unitLong: "teaspoons",
+          },
+          metric: {
+            amount: 1.5,
+            unitShort: "tsps",
+            unitLong: "teaspoons",
+          },
+        },
+      },
+      {
+        id: 20027,
+        aisle: "Baking",
+        image: "white-powder.jpg",
+        consistency: "SOLID",
+        name: "cornstarch",
+        nameClean: "corn starch",
+        original: "1 teaspoon cornstarch",
+        originalName: "cornstarch",
+        amount: 1,
+        unit: "teaspoon",
+        meta: [],
+        measures: {
+          us: {
+            amount: 1,
+            unitShort: "tsp",
+            unitLong: "teaspoon",
+          },
+          metric: {
+            amount: 1,
+            unitShort: "tsp",
+            unitLong: "teaspoon",
+          },
+        },
+      },
+      {
+        id: 1124,
+        aisle: "Milk, Eggs, Other Dairy",
+        image: "egg-white.jpg",
+        consistency: "SOLID",
+        name: "egg white",
+        nameClean: "egg whites",
+        original: "1 beaten egg white",
+        originalName: "beaten egg white",
+        amount: 1,
+        unit: "",
+        meta: ["beaten"],
+        measures: {
+          us: {
+            amount: 1,
+            unitShort: "",
+            unitLong: "",
+          },
+          metric: {
+            amount: 1,
+            unitShort: "",
+            unitLong: "",
+          },
+        },
+      },
+      {
+        id: 99218,
+        aisle: "Gourmet",
+        image: "sago-pearls.png",
+        consistency: "SOLID",
+        name: "brush pastry rounds",
+        nameClean: "pearl sugar",
+        original:
+          "3Brush pastry rounds with egg white. Stir together pecans and the 1 tablespoon sugar. Sprinkle pecan mixture over pastry shapes. Or, use the pearl sugar instead of nut mixture.",
+        originalName:
+          "3Brush pastry rounds with egg white. Stir together pecans and the 1 tablespoon sugar. Sprinkle pecan mixture over pastry shapes. Or, use the pearl sugar instead of nut mixture",
+        amount: 60,
+        unit: "servings",
+        meta: [
+          "with egg white. stir together pecans and the 1 tablespoon sugar. sprinkle pecan mixture over pastry shapes. or, use the pearl sugar instead of nut mixture.",
+        ],
+        measures: {
+          us: {
+            amount: 60,
+            unitShort: "servings",
+            unitLong: "servings",
+          },
+          metric: {
+            amount: 60,
+            unitShort: "servings",
+            unitLong: "servings",
+          },
+        },
+      },
+      {
+        id: 9431,
+        aisle: "Produce",
+        image: "mixed-fresh-fruit.jpg",
+        consistency: "SOLID",
+        name: "fruit",
+        nameClean: "mixed fruit",
+        original:
+          "2 cups assorted fresh fruit (such as peeled, thinly sliced, and halved",
+        originalName:
+          "assorted fresh fruit (such as peeled, thinly sliced, and halved",
+        amount: 2,
+        unit: "cups",
+        meta: ["fresh", "assorted", "peeled", "halved", "thinly sliced"],
+        measures: {
+          us: {
+            amount: 2,
+            unitShort: "cups",
+            unitLong: "cups",
+          },
+          metric: {
+            amount: 474,
+            unitShort: "g",
+            unitLong: "grams",
+          },
+        },
+      },
+      {
+        id: 9150,
+        aisle: "Produce",
+        image: "lemon.png",
+        consistency: "SOLID",
+        name: "carton lemon yogurt",
+        nameClean: "lemon",
+        original: "1 (8 oz.) carton lemon yogurt",
+        originalName: "carton lemon yogurt",
+        amount: 8,
+        unit: "oz",
+        meta: [],
+        measures: {
+          us: {
+            amount: 8,
+            unitShort: "oz",
+            unitLong: "ounces",
+          },
+          metric: {
+            amount: 226.796,
+            unitShort: "g",
+            unitLong: "grams",
+          },
+        },
+      },
+      {
+        id: 9206,
+        aisle: "Beverages",
+        image: "orange-juice.jpg",
+        consistency: "LIQUID",
+        name: "orange juice",
+        nameClean: "orange juice",
+        original: "cup orange juice",
+        originalName: "orange juice",
+        amount: 1,
+        unit: "cup",
+        meta: [],
+        measures: {
+          us: {
+            amount: 1,
+            unitShort: "cup",
+            unitLong: "cup",
+          },
+          metric: {
+            amount: 248,
+            unitShort: "ml",
+            unitLong: "milliliters",
+          },
+        },
+      },
+      {
+        id: 18337,
+        aisle: "Refrigerated",
+        image: "puff-pastry.png",
+        consistency: "SOLID",
+        name: "on a lightly floured surface roll pastry slightly to flatten creases. cut puff pastry circles and di",
+        nameClean: "puff pastry dough",
+        original:
+          "2On a lightly floured surface roll pastry slightly to flatten creases. Cut puff pastry circles and diamonds using 2-inch cutters. Place on an ungreased baking sheet.",
+        originalName:
+          "2On a lightly floured surface roll pastry slightly to flatten creases. Cut puff pastry circles and diamonds using 2-inch cutters. Place on an ungreased baking",
+        amount: 1,
+        unit: "sheet",
+        meta: [],
+        measures: {
+          us: {
+            amount: 1,
+            unitShort: "sheet",
+            unitLong: "sheet",
+          },
+          metric: {
+            amount: 1,
+            unitShort: "sheet",
+            unitLong: "sheet",
+          },
+        },
+      },
+      {
+        id: 18337,
+        aisle: "Refrigerated",
+        image: "puff-pastry.png",
+        consistency: "SOLID",
+        name: "puff pastry",
+        nameClean: "puff pastry dough",
+        original: "1 (17 ¼ oz.) pkg. (2 sheets) frozen puff pastry, thawed",
+        originalName: "pkg. (2 sheets) frozen puff pastry, thawed",
+        amount: 17.25,
+        unit: "oz",
+        meta: ["frozen", "thawed", "(2 sheets)"],
+        measures: {
+          us: {
+            amount: 17.25,
+            unitShort: "oz",
+            unitLong: "ounces",
+          },
+          metric: {
+            amount: 489.029,
+            unitShort: "g",
+            unitLong: "grams",
+          },
+        },
+      },
+      {
+        id: 1116,
+        aisle: "Milk, Eggs, Other Dairy",
+        image: "plain-yogurt.jpg",
+        consistency: "SOLID",
+        name: "in a mixing bowl stir together yogurt and pudding",
+        nameClean: "yogurt",
+        original: "6In a small mixing bowl stir together yogurt and pudding.",
+        originalName:
+          "6In a small mixing bowl stir together yogurt and pudding",
+        amount: 60,
+        unit: "servings",
+        meta: [],
+        measures: {
+          us: {
+            amount: 60,
+            unitShort: "servings",
+            unitLong: "servings",
+          },
+          metric: {
+            amount: 60,
+            unitShort: "servings",
+            unitLong: "servings",
+          },
+        },
+      },
+      {
+        id: 12420420,
+        aisle: "Pasta and Rice",
+        image: "lasagna-noodles.jpg",
+        consistency: "SOLID",
+        name: "bake in a degree oven",
+        nameClean: "oven ready lasagne noodles",
+        original:
+          "4Bake in a 375 degree oven for 12 to 14 minutes or until puffed and golden. Transfer pastries to a wire rack. Cool.",
+        originalName:
+          "4Bake in a degree oven for 12 to 14 minutes or until puffed and golden. Transfer pastries to a wire rack. Cool",
+        amount: 375,
+        unit: "",
+        meta: [
+          "for 12 to 14 minutes or until puffed and golden. transfer pastries to a wire rack. cool.",
+        ],
+        measures: {
+          us: {
+            amount: 375,
+            unitShort: "",
+            unitLong: "",
+          },
+          metric: {
+            amount: 375,
+            unitShort: "",
+            unitLong: "",
+          },
+        },
+      },
+      {
+        id: -1,
+        aisle: "?",
+        image: null,
+        consistency: "SOLID",
+        name: "servings",
+        nameClean: null,
+        original: "60.0 servings",
+        originalName: "servings",
+        amount: 60,
+        unit: "",
+        meta: [],
+        measures: {
+          us: {
+            amount: 60,
+            unitShort: "",
+            unitLong: "",
+          },
+          metric: {
+            amount: 60,
+            unitShort: "",
+            unitLong: "",
+          },
+        },
+      },
+      {
+        id: -1,
+        aisle: "?",
+        image: null,
+        consistency: "SOLID",
+        name: "servings",
+        nameClean: null,
+        original: "60.0 servings",
+        originalName: "servings",
+        amount: 60,
+        unit: "",
+        meta: [],
+        measures: {
+          us: {
+            amount: 60,
+            unitShort: "",
+            unitLong: "",
+          },
+          metric: {
+            amount: 60,
+            unitShort: "",
+            unitLong: "",
+          },
+        },
+      },
+    ],
+    id: 651994,
+    title: "Miniature Fruit Tarts",
+    readyInMinutes: 45,
+    servings: 60,
+    sourceUrl: "http://www.foodista.com/recipe/BX8S5SPL/miniature-fruit-tarts",
+    image: "https://img.spoonacular.com/recipes/651994-556x370.jpg",
+    imageType: "jpg",
+    summary:
+      'Miniature Fruit Tarts takes approximately \u003Cb\u003E45 minutes\u003C/b\u003E from beginning to end. For \u003Cb\u003E89 cents per serving\u003C/b\u003E, you get a dessert that serves 60. Watching your figure? This lacto ovo vegetarian recipe has \u003Cb\u003E482 calories\u003C/b\u003E, \u003Cb\u003E15g of protein\u003C/b\u003E, and \u003Cb\u003E7g of fat\u003C/b\u003E per serving. 1 person has tried and liked this recipe. A mixture of carton lemon yogurt, on a lightly floured surface roll pastry slightly to flatten creases. cut puff pastry circles and diamonds using 2-inch cutters. place on an ungreased baking, brush pastry rounds, and a handful of other ingredients are all it takes to make this recipe so tasty. It is brought to you by Foodista. All things considered, we decided this recipe \u003Cb\u003Edeserves a spoonacular score of 33%\u003C/b\u003E. This score is not so super. Similar recipes include \u003Ca href="https://spoonacular.com/recipes/miniature-almond-tarts-431017"\u003EMiniature Almond Tarts\u003C/a\u003E, \u003Ca href="https://spoonacular.com/recipes/mini-fruit-tarts-995875"\u003EMini Fruit Tarts\u003C/a\u003E, and \u003Ca href="https://spoonacular.com/recipes/nutella-fruit-tarts-487017"\u003ENutella & Fruit Tarts\u003C/a\u003E.',
+    cuisines: [],
+    dishTypes: ["dessert"],
+    diets: ["lacto ovo vegetarian"],
+    occasions: [],
+    instructions:
+      "\u003Col\u003E\u003Cli\u003ESome pastry shells may bake into uneven shapes. If this happens, split the shells so the top half is even all the way around. Then, trim the bottom half so the sides are even. When you assemble the tart, it will stand upright --\u003C/li\u003E\u003Cli\u003EOn a lightly floured surface roll pastry slightly to flatten creases. Cut puff pastry circles and diamonds using 2-inch cutters. Place on an ungreased baking sheet.\u003C/li\u003E\u003Cli\u003EBrush pastry rounds with egg white. Stir together pecans and the 1 tablespoon sugar. Sprinkle pecan mixture over pastry shapes. Or, use the pearl sugar instead of nut mixture.\u003C/li\u003E\u003Cli\u003EBake in a 375 degree oven for 12 to 14 minutes or until puffed and golden. Transfer pastries to a wire rack. Cool.\u003C/li\u003E\u003Cli\u003EMeanwhile, in a small saucepan mix orange juice, corn syrup, and cornstarch. Cook and stir over medium heat until mixture is thickened and bubbly. Cook and stir for 2 minutes more. Transfer to a small bowl; cover and cool to room temperature.\u003C/li\u003E\u003Cli\u003EIn a small mixing bowl stir together yogurt and pudding.\u003C/li\u003E\u003Cli\u003ESplit pastry rounds horizontally. Spread about 1 teaspoon of the yogurt mixture on the bottom half of each round. Arrange fresh fruit atop pudding. Brush the fruit with orange juice mixture. Replace tops. Cover and chill for 1 to 24 hours.\u003C/li\u003E\u003Cli\u003ETo tote, arrange the tarts in single layers in shallow covered plastic containers or baking pans. Cover the pans with foil. Stack the pans in a cooler. Makes about 45.\u003C/li\u003E\u003C/ol\u003E",
+    analyzedInstructions: [
+      {
+        name: "",
+        steps: [
+          {
+            number: 1,
+            step: "Some pastry shells may bake into uneven shapes. If this happens, split the shells so the top half is even all the way around. Then, trim the bottom half so the sides are even. When you assemble the tart, it will stand upright --On a lightly floured surface roll pastry slightly to flatten creases.",
+            ingredients: [
+              {
+                id: 0,
+                name: "pastry shells",
+                localizedName: "pastry shells",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/tartlet-shells.jpg",
+              },
+              {
+                id: 11020420,
+                name: "pasta shells",
+                localizedName: "pasta shells",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/shell-pasta.jpg",
+              },
+              {
+                id: 0,
+                name: "roll",
+                localizedName: "roll",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/dinner-yeast-rolls.jpg",
+              },
+            ],
+            equipment: [
+              {
+                id: 404784,
+                name: "oven",
+                localizedName: "oven",
+                image: "https://spoonacular.com/cdn/equipment_100x100/oven.jpg",
+              },
+            ],
+          },
+          {
+            number: 2,
+            step: "Cut puff pastry circles and diamonds using 2-inch cutters.",
+            ingredients: [
+              {
+                id: 18337,
+                name: "puff pastry sheets",
+                localizedName: "puff pastry sheets",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/puff-pastry.png",
+              },
+            ],
+            equipment: [],
+          },
+          {
+            number: 3,
+            step: "Place on an ungreased baking sheet.",
+            ingredients: [],
+            equipment: [
+              {
+                id: 404727,
+                name: "baking sheet",
+                localizedName: "baking sheet",
+                image:
+                  "https://spoonacular.com/cdn/equipment_100x100/baking-sheet.jpg",
+              },
+            ],
+          },
+          {
+            number: 4,
+            step: "Brush pastry rounds with egg white. Stir together pecans and the 1 tablespoon sugar.",
+            ingredients: [
+              {
+                id: 1124,
+                name: "egg whites",
+                localizedName: "egg whites",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/egg-white.jpg",
+              },
+              {
+                id: 12142,
+                name: "pecans",
+                localizedName: "pecans",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
+              },
+              {
+                id: 19335,
+                name: "sugar",
+                localizedName: "sugar",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/sugar-in-bowl.png",
+              },
+            ],
+            equipment: [],
+          },
+          {
+            number: 5,
+            step: "Sprinkle pecan mixture over pastry shapes. Or, use the pearl sugar instead of nut mixture.",
+            ingredients: [
+              {
+                id: 99218,
+                name: "pearl sugar",
+                localizedName: "pearl sugar",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/sago-pearls.png",
+              },
+              {
+                id: 12142,
+                name: "pecans",
+                localizedName: "pecans",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
+              },
+            ],
+            equipment: [],
+          },
+          {
+            number: 6,
+            step: "Bake in a 375 degree oven for 12 to 14 minutes or until puffed and golden.",
+            ingredients: [],
+            equipment: [
+              {
+                id: 404784,
+                name: "oven",
+                localizedName: "oven",
+                image: "https://spoonacular.com/cdn/equipment_100x100/oven.jpg",
+              },
+            ],
+            length: {
+              number: 12,
+              unit: "minutes",
+            },
+          },
+          {
+            number: 7,
+            step: "Transfer pastries to a wire rack. Cool.Meanwhile, in a small saucepan mix orange juice, corn syrup, and cornstarch. Cook and stir over medium heat until mixture is thickened and bubbly. Cook and stir for 2 minutes more.",
+            ingredients: [
+              {
+                id: 9206,
+                name: "orange juice",
+                localizedName: "orange juice",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/orange-juice.jpg",
+              },
+              {
+                id: 19350,
+                name: "corn syrup",
+                localizedName: "corn syrup",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/corn-syrup.png",
+              },
+              {
+                id: 20027,
+                name: "corn starch",
+                localizedName: "corn starch",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg",
+              },
+            ],
+            equipment: [
+              {
+                id: 405900,
+                name: "wire rack",
+                localizedName: "wire rack",
+                image:
+                  "https://spoonacular.com/cdn/equipment_100x100/wire-rack.jpg",
+              },
+              {
+                id: 404669,
+                name: "sauce pan",
+                localizedName: "sauce pan",
+                image:
+                  "https://spoonacular.com/cdn/equipment_100x100/sauce-pan.jpg",
+              },
+            ],
+            length: {
+              number: 2,
+              unit: "minutes",
+            },
+          },
+          {
+            number: 8,
+            step: "Transfer to a small bowl; cover and cool to room temperature.In a small mixing bowl stir together yogurt and pudding.Split pastry rounds horizontally.",
+            ingredients: [
+              {
+                id: 1116,
+                name: "yogurt",
+                localizedName: "yogurt",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/plain-yogurt.jpg",
+              },
+            ],
+            equipment: [
+              {
+                id: 405907,
+                name: "mixing bowl",
+                localizedName: "mixing bowl",
+                image:
+                  "https://spoonacular.com/cdn/equipment_100x100/mixing-bowl.jpg",
+              },
+            ],
+          },
+          {
+            number: 9,
+            step: "Spread about 1 teaspoon of the yogurt mixture on the bottom half of each round. Arrange fresh fruit atop pudding.",
+            ingredients: [
+              {
+                id: 9431,
+                name: "fresh fruit",
+                localizedName: "fresh fruit",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/mixed-fresh-fruit.jpg",
+              },
+              {
+                id: 0,
+                name: "spread",
+                localizedName: "spread",
+                image: "",
+              },
+              {
+                id: 1116,
+                name: "yogurt",
+                localizedName: "yogurt",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/plain-yogurt.jpg",
+              },
+            ],
+            equipment: [],
+          },
+          {
+            number: 10,
+            step: "Brush the fruit with orange juice mixture. Replace tops. Cover and chill for 1 to 24 hours.To tote, arrange the tarts in single layers in shallow covered plastic containers or baking pans. Cover the pans with foil. Stack the pans in a cooler. Makes about 45.",
+            ingredients: [
+              {
+                id: 9206,
+                name: "orange juice",
+                localizedName: "orange juice",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/orange-juice.jpg",
+              },
+              {
+                id: 0,
+                name: "cooler",
+                localizedName: "cooler",
+                image: "",
+              },
+              {
+                id: 9431,
+                name: "fruit",
+                localizedName: "fruit",
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/mixed-fresh-fruit.jpg",
+              },
+            ],
+            equipment: [
+              {
+                id: 404646,
+                name: "baking pan",
+                localizedName: "baking pan",
+                image:
+                  "https://spoonacular.com/cdn/equipment_100x100/roasting-pan.jpg",
+              },
+              {
+                id: 404765,
+                name: "aluminum foil",
+                localizedName: "aluminum foil",
+                image:
+                  "https://spoonacular.com/cdn/equipment_100x100/aluminum-foil.png",
+              },
+            ],
+            length: {
+              number: 1440,
+              unit: "minutes",
+            },
+          },
+        ],
+      },
+    ],
+    originalId: null,
+    spoonacularScore: 9.79082202911377,
+    spoonacularSourceUrl:
+      "https://spoonacular.com/miniature-fruit-tarts-651994",
+  });
+
+  console.log(a);
   return <div>settings</div>;
 }
 

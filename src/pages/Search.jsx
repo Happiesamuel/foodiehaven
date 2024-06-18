@@ -1,10 +1,12 @@
 // import { useSearch } from "../context/SearchResultContext";
 import styled from "styled-components";
-import { useSearch } from "../context/SearchResultContext";
+// import { useSearch } from "../context/SearchResultContext";
 import { useSearchQuery } from "../features/hooks/useSearchQuery";
 import ContainerSearch from "../features/search/ContainerSearch";
 import SearchResult from "../features/search/SearchResult";
 import { device } from "../mediaSizes";
+import Spinner from "../ui/Spinner";
+import { useSearchParams } from "react-router-dom";
 
 function Search() {
   const StyledSearch = styled.div`
@@ -26,7 +28,13 @@ function Search() {
       }
     }
   `;
-  const { result } = useSearchQuery();
+
+  // if()
+  const { result, isSearching } = useSearchQuery();
+  const [searchParams] = useSearchParams();
+  const searchData = searchParams.get("search");
+  if (isSearching) return <Spinner />;
+
   const newResult = result.results.map((result) => {
     return {
       id: result.id,
@@ -37,8 +45,6 @@ function Search() {
         " Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus veniam commodi, ab maiores, est maxime dolores repellendus vero beataeis qonsequuntur?",
     };
   });
-  //   console.log(newResult);
-  const { searchData } = useSearch();
   return (
     <StyledSearch>
       <ResultLength>
