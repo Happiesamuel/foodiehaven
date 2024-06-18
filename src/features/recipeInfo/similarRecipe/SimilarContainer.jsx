@@ -7,11 +7,12 @@ function SimilarContainer({ data, render, title }) {
     padding: 30px;
     margin-top: 50px;
 
-    & h1 {
-      font-size: 20px;
+    & p {
+      font-size: 18px;
       font-weight: bold;
       color: #1d1d1d;
       padding-bottom: 20px;
+      line-height: 1;
       & span {
         font-style: italic;
         color: #b70908;
@@ -37,9 +38,9 @@ function SimilarContainer({ data, render, title }) {
   `;
   return (
     <StyledSimilarContainer>
-      <h1>
+      <p>
         Ingredients similar to <span>{title}</span>
-      </h1>
+      </p>
       <div>
         <Render>{data.map(render)}</Render>
       </div>
