@@ -6,6 +6,7 @@ import SidebarMenu from "./SidebarMenu";
 import { useMenu } from "../context/MenuContext";
 
 import Search from "../pages/Search";
+import { device } from "../mediaSizes";
 
 function AppLayout() {
   const StyledAppLayout = styled.div`
@@ -33,7 +34,10 @@ function AppLayout() {
     flex-direction: column;
     overflow: scroll;
     overflow-x: hidden;
-    padding: 20px 30px;
+    padding: 20px 10px;
+    @media (${device.laptop}) {
+      padding: 20px 30px;
+    }
     height: 100%;
   `;
   const { width } = useMenu();

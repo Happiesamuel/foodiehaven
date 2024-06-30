@@ -74,8 +74,10 @@ function RecipeData() {
     font-size: 18px;
     font-style: italic;
     font-family: "Akaya Kanadaka", system-ui;
-    padding: 20px;
-
+    padding: 10px;
+    @media (${device.laptop}) {
+      padding: 20px;
+    }
     color: #1d1c1c;
   `;
   const Details = styled.div`
