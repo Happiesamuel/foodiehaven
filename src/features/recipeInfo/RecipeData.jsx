@@ -1,16 +1,36 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Spinner from "../../ui/Spinner";
 import { useCheckInRecipe } from "../checkInRecipe/useCheckInRecipe";
 import { useCheckInSimilarRecipe } from "../checkInRecipe/useCheckInSimilarRecipe";
 import SimilarDetails from "./similarRecipe/SimilarDetails";
 import SimilarContainer from "./similarRecipe/SimilarContainer";
 import { device } from "../../mediaSizes";
+import ExtendedIngredientsContainer from "./extendedIngredients/ExtendedIngredientsContainer";
+import ExtendedIngredients from "./extendedIngredients/ExtendedIngredients";
+import InstructionsContainer from "./instructions/InstructionsContainer";
+import InstructionDetails from "./instructions/InstructionDetails";
+import { LuUsers2 } from "react-icons/lu";
+import { FaRegClock } from "react-icons/fa";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
     height: 100vh;
     width: 100%;
     position: relative;
+  `;
+  const Servings = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    & svg {
+      color: #008e44;
+    }
+    ${({ type }) =>
+      type === "price" &&
+      css`
+        color: #e31818;
+        font-weight: bold;
+      `}
   `;
   const Image = styled.img`
     width: 100%;
@@ -49,17 +69,41 @@ function RecipeData() {
     text-transform: uppercase;
     padding: 5px;
     background: linear-gradient(to bottom right, #4ade80, #039235);
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  `;
+  const Summary = styled.div`
+    font-size: 18px;
+    font-style: italic;
+    font-family: "Akaya Kanadaka", system-ui;
+    padding: 20px;
+
+    color: #1d1c1c;
+  `;
+  const Details = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    background: #fff;
+    margin: 8px 0;
+    padding: 15px;
+    gap: 10px;
   `;
   const { recipe, isLoading } = useCheckInRecipe();
   const { isLoadingSimilarRecipe, similarRecipe } = useCheckInSimilarRecipe();
-  // const ids = similarRecipe?.map((recipeId) => recipeId.id);
 
   if (isLoading || isLoadingSimilarRecipe) return <Spinner />;
 
-  console.log(recipe);
+  const {
+    image,
+    title,
+    extendedIngredients,
+    analyzedInstructions,
+    pricePerServing,
+    readyInMinutes,
+    sourceName,
+    servings,
+    sourceUrl,
+    summary,
+  } = recipe;
 
-  const { image, title } = recipe;
   const titleSplit = title.split(" ");
   const titleArr = Array.from(
     { length: Math.ceil(titleSplit.length / 4) },
@@ -70,6 +114,8 @@ function RecipeData() {
       .join(" "),
   ]);
 
+  console.log(sourceName, sourceUrl);
+  const summarizedRecipe = summary.replace(/(<([^>]+)>)/gi, "");
   return (
     <StyledRecipeData>
       <Image src={image} />
@@ -78,6 +124,47 @@ function RecipeData() {
           first.map((x, i) => <Title key={i}>{x}</Title>)
         )}
       </TitleContent>
+      <Summary>{summarizedRecipe}</Summary>
+
+      <Details>
+        <Servings>
+          <LuUsers2 />
+
+          <span>{servings + " servings"}</span>
+        </Servings>
+        <Servings type="price">{"$" + pricePerServing}</Servings>
+
+        <Servings>
+          <FaRegClock />
+          <span>{readyInMinutes + "mins"}</span>
+        </Servings>
+      </Details>
+      <div>
+        <ExtendedIngredientsContainer
+          render={(ingredients, i) => (
+            <ExtendedIngredients
+              ingredients={ingredients}
+              i={i}
+              key={ingredients.id}
+            />
+          )}
+          data={extendedIngredients}
+        />
+      </div>
+
+      <div>
+        <InstructionsContainer
+          title={title}
+          render={(instructions) => (
+            <InstructionDetails
+              instructions={instructions}
+              key={instructions.id}
+            />
+          )}
+          data={analyzedInstructions.at(0).steps}
+        />
+      </div>
+
       <div>
         <SimilarContainer
           title={title}

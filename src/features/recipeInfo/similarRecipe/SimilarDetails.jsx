@@ -32,7 +32,6 @@ function SimilarDetails({ result }) {
   `;
   const navigate = useNavigate();
   const { title, sourceUrl, readyInMinutes, servings, id } = result;
-  console.log(title, sourceUrl, readyInMinutes, servings);
 
   return (
     <StyledSimilarDetails>
