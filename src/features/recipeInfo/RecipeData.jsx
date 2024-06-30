@@ -45,8 +45,8 @@ function RecipeData() {
     align-items: center;
     justify-content: center;
     gap: 1px;
-    transform: rotate(-5deg);
-    position: absolute;
+    /* transform: rotate(-5deg); */
+    /* position: absolute; */
     left: 0;
     top: 18%;
     right: 0;
