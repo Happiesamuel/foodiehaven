@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { device } from "../../../mediaSizes";
 function InstructionDetails({ instructions }) {
   const StyledInstructionDetails = styled.div`
     background: #fff;
@@ -31,8 +32,12 @@ function InstructionDetails({ instructions }) {
   const IngredientMixes = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 10px 30px;
-    gap: 60px;
+    padding: 10px 10px;
+    gap: 20px;
+    @media (${device.laptop}) {
+      gap: 60px;
+      padding: 10px 30px;
+    }
     & p {
       font-weight: bold;
       text-transform: capitalize;
