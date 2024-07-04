@@ -10,7 +10,9 @@ import ExtendedIngredients from "./extendedIngredients/ExtendedIngredients";
 import InstructionsContainer from "./instructions/InstructionsContainer";
 import InstructionDetails from "./instructions/InstructionDetails";
 import { LuUsers2 } from "react-icons/lu";
-import { FaRegClock } from "react-icons/fa";
+import { FaHandPointRight, FaRegClock } from "react-icons/fa";
+import { Button } from "../../ui/Button";
+import { Link } from "react-router-dom";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
@@ -45,8 +47,6 @@ function RecipeData() {
     align-items: center;
     justify-content: center;
     gap: 1px;
-    /* transform: rotate(-5deg); */
-    /* position: absolute; */
     left: 0;
     top: 18%;
     right: 0;
@@ -88,6 +88,19 @@ function RecipeData() {
     padding: 15px;
     gap: 10px;
   `;
+  const Footer = styled.footer`
+    background: linear-gradient(to bottom right, #4ade80, #039235);
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    & button {
+      margin: 0 15px;
+      & a {
+        color: #fff;
+      }
+    }
+  `;
   const { recipe, isLoading } = useCheckInRecipe();
   const { isLoadingSimilarRecipe, similarRecipe } = useCheckInSimilarRecipe();
 
@@ -100,7 +113,6 @@ function RecipeData() {
     analyzedInstructions,
     pricePerServing,
     readyInMinutes,
-    sourceName,
     servings,
     sourceUrl,
     summary,
@@ -116,7 +128,6 @@ function RecipeData() {
       .join(" "),
   ]);
 
-  console.log(sourceName, sourceUrl);
   const summarizedRecipe = summary.replace(/(<([^>]+)>)/gi, "");
   return (
     <StyledRecipeData>
@@ -176,6 +187,17 @@ function RecipeData() {
           )}
         />
       </div>
+
+      <Footer>
+        <span>
+          For more infomation on {title} recipe check out our website{"   "}
+        </span>
+        <Button size="medium" type="secondary">
+          <Link to={sourceUrl}>
+            <FaHandPointRight />
+          </Link>
+        </Button>
+      </Footer>
     </StyledRecipeData>
   );
 }

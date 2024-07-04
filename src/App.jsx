@@ -18,6 +18,7 @@ import Bookmarks from "./pages/Bookmarks";
 import { MenuContext } from "./context/MenuContext";
 import { SearchResultContext } from "./context/SearchResultContext";
 import RecipeData from "./features/recipeInfo/RecipeData";
+import Cart from "./pages/Cart";
 
 function App() {
   const queryClient = new QueryClient({
@@ -46,6 +47,8 @@ function App() {
                 <Route element={<AppLayout />}>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/bookmark" element={<Bookmarks />} />
+                  <Route path="/cart" element={<Cart />} />
+
                   <Route element={<Settings />} path="/settings" />
                   <Route element={<RecipeData />} path="/recipe/:id" />
                 </Route>

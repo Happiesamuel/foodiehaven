@@ -10,6 +10,8 @@ import { useDeleteBookmark } from "./useDeleteBookmark";
 import toast from "react-hot-toast";
 import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
+import { useAddToCart } from "../cart/useAddToCart";
+import { useGetCart } from "../cart/useGetCart";
 function BookmarkDetails({ bookmark }) {
   const StyledBookmarkDetails = styled.div`
     padding: 10px;
@@ -39,10 +41,12 @@ function BookmarkDetails({ bookmark }) {
     border-radius: 8px;
   `;
   const navigate = useNavigate();
-  const quantity = 1;
-  const [count, setCount] = useState(quantity);
+  const [quantity, setQuantity] = useState(1);
   const { image, title, bookmarkId } = bookmark;
   const { deleteBookmark, isDeleting } = useDeleteBookmark();
+  const { cart } = useGetCart();
+  const { addToCart } = useAddToCart();
+  const cartArr = cart.map((x) => x.cartId);
   function deleteBook(id) {
     deleteBookmark(id, {
       onSuccess: () => {
@@ -52,6 +56,20 @@ function BookmarkDetails({ bookmark }) {
       },
     });
   }
+  function handleAddToCart(recipe) {
+    console.log(quantity);
+    const newRecipe = { ...recipe, quantity };
+    if (!cartArr.includes(recipe.bookmarkId))
+      addToCart(newRecipe, {
+        onSuccess: () => {
+          toast.success(`You've successfully added ${title} to cart`);
+        },
+        onError: () => {
+          toast.error(`Unable to add item`);
+        },
+      });
+    else return toast.success(`${title} is already in cart`);
+  }
   if (isDeleting) return <Spinner />;
   return (
     <StyledBookmarkDetails>
@@ -59,12 +77,14 @@ function BookmarkDetails({ bookmark }) {
         <Image src={image} />
         <Title>{title}</Title>
       </TitleImage>
-      <Quantity count={count} setCount={setCount} />
+      <Quantity count={quantity} setCount={setQuantity} />
       <Modal>
         <Menu>
           <Menu.Toogle id={bookmarkId} />
           <Menu.List id={bookmarkId}>
-            <Menu.Button>Add to cart</Menu.Button>
+            <Menu.Button onClick={() => handleAddToCart(bookmark)}>
+              Add to cart
+            </Menu.Button>
             <Menu.Button onClick={() => navigate(`/recipe/${bookmarkId}`)}>
               View recipe
             </Menu.Button>
@@ -78,6 +98,7 @@ function BookmarkDetails({ bookmark }) {
             <ConfirmDelete
               onDelete={() => deleteBook(bookmarkId)}
               title={title}
+              type="bookmarks"
             />
           </Modal.Window>
         </Menu>

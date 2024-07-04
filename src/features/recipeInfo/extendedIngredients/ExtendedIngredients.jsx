@@ -8,6 +8,7 @@ function ExtendedIngredients({ ingredients, i }) {
     border-bottom: 1px solid #5b5959;
     padding: 10px 0;
     grid-template-columns: 0.2fr 1.2fr 1.2fr 1fr 1fr 0.5fr;
+    gap: 6px;
     font-size: 14px;
     &:last-child {
       border: 0px solid transparent;
@@ -15,6 +16,8 @@ function ExtendedIngredients({ ingredients, i }) {
     @media (${device.tablet}) {
       grid-template-columns: 0.2fr 1.2fr 1.2fr 1fr 1fr 0.5fr;
       padding: 20px 0;
+      gap: 10px;
+
       font-size: 15px;
     }
   `;

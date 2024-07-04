@@ -15,7 +15,7 @@ function AppLayout() {
     ${({ width }) =>
       width < 768 &&
       css`
-        grid-template-columns: 4rem 1fr;
+        grid-template-columns: 3rem 1fr;
       `}
     ${({ width }) =>
       width > 768 &&

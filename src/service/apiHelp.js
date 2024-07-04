@@ -1,2 +1,2 @@
 export const BASE_URL = "https://api.spoonacular.com/recipes";
-export const API_KEY = "97ab187980de45758c3804ed8a4bd72c";
+export const API_KEY = "8e6b3f28d1e24f7396cbc083dc6ab4e0";

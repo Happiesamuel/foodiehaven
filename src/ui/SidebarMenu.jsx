@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { FaBookmark } from "react-icons/fa";
+import { FaBookmark, FaShoppingCart } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 
@@ -22,7 +22,7 @@ function SidebarMenu() {
   `;
   const Li = styled.li`
     & a {
-      padding: 20px 20px;
+      padding: 15px 15px;
       color: #222121;
       display: flex;
       gap: 10px;
@@ -59,13 +59,13 @@ function SidebarMenu() {
           </NavLink>
         </Li>
         <Li>
-          <NavLink to="/settings">
-            <IoSettings />
+          <NavLink to="cart">
+            <FaShoppingCart />
           </NavLink>
         </Li>
         <Li>
-          <NavLink to="carts">
-            <FaBookmark />
+          <NavLink to="/settings">
+            <IoSettings />
           </NavLink>
         </Li>
       </Ul>

@@ -14,8 +14,7 @@ function Modal({ children }) {
 }
 
 function Open({ name, children }) {
-  const { handleOpen, openModal } = useContext(ModalContext);
-  console.log(openModal);
+  const { handleOpen } = useContext(ModalContext);
   return <div onClick={() => handleOpen(name)}>{children}</div>;
 }
 function Window({ opens, children }) {
