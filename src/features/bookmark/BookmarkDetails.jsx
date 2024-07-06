@@ -12,6 +12,7 @@ import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
 import { useAddToCart } from "../cart/useAddToCart";
 import { useGetCart } from "../cart/useGetCart";
+import { useDeleteCart } from "../cart/useDeleteCart";
 function BookmarkDetails({ bookmark }) {
   const StyledBookmarkDetails = styled.div`
     padding: 10px;
@@ -46,6 +47,7 @@ function BookmarkDetails({ bookmark }) {
   const { deleteBookmark, isDeleting } = useDeleteBookmark();
   const { cart } = useGetCart();
   const { addToCart } = useAddToCart();
+  const { deleteCart } = useDeleteCart();
   const cartArr = cart.map((x) => x.cartId);
   function deleteBook(id) {
     deleteBookmark(id, {
@@ -57,8 +59,13 @@ function BookmarkDetails({ bookmark }) {
     });
   }
   function handleAddToCart(recipe) {
-    console.log(quantity);
-    const newRecipe = { ...recipe, quantity };
+    // console.log(quantity);
+    const newRecipe = {
+      ...recipe,
+      quantity,
+      newPrice: recipe.price,
+      checkedPrice: false,
+    };
     if (!cartArr.includes(recipe.bookmarkId))
       addToCart(newRecipe, {
         onSuccess: () => {
@@ -70,6 +77,7 @@ function BookmarkDetails({ bookmark }) {
       });
     else return toast.success(`${title} is already in cart`);
   }
+  const isInCart = !cartArr.includes(bookmarkId);
   if (isDeleting) return <Spinner />;
   return (
     <StyledBookmarkDetails>
@@ -82,9 +90,25 @@ function BookmarkDetails({ bookmark }) {
         <Menu>
           <Menu.Toogle id={bookmarkId} />
           <Menu.List id={bookmarkId}>
-            <Menu.Button onClick={() => handleAddToCart(bookmark)}>
-              Add to cart
-            </Menu.Button>
+            {isInCart ? (
+              <Menu.Button onClick={() => handleAddToCart(bookmark)}>
+                Add to cart
+              </Menu.Button>
+            ) : (
+              <Menu.Button
+                onClick={() =>
+                  deleteCart(bookmarkId, {
+                    onSuccess: () => {
+                      toast.success(
+                        `You've successfully removed ${title} from your cart`
+                      );
+                    },
+                  })
+                }
+              >
+                Remove from cart
+              </Menu.Button>
+            )}
             <Menu.Button onClick={() => navigate(`/recipe/${bookmarkId}`)}>
               View recipe
             </Menu.Button>

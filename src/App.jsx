@@ -19,6 +19,7 @@ import { MenuContext } from "./context/MenuContext";
 import { SearchResultContext } from "./context/SearchResultContext";
 import RecipeData from "./features/recipeInfo/RecipeData";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
 
 function App() {
   const queryClient = new QueryClient({
@@ -48,6 +49,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/bookmark" element={<Bookmarks />} />
                   <Route path="/cart" element={<Cart />} />
+                  <Route path="/order" element={<Order />} />
 
                   <Route element={<Settings />} path="/settings" />
                   <Route element={<RecipeData />} path="/recipe/:id" />

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiTrash } from "react-icons/bi";
 import styled from "styled-components";
 import Modal from "../../context/Modal";
@@ -7,6 +7,8 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteCart } from "./useDeleteCart";
 import toast from "react-hot-toast";
 import { device } from "../../mediaSizes";
+import { useUpdateCart } from "./useUpdateCart";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CartRow({ cart }) {
   const StyledCartRow = styled.div`
@@ -108,15 +110,29 @@ function CartRow({ cart }) {
       padding-right: 5px;
     }
   `;
-  const { image, title, price, quantity, cartId } = cart;
+  const { image, title, price, quantity, cartId, checkedPrice } = cart;
+  const { updateCart, isLoading, status } = useUpdateCart();
+  const [checked, setChecked] = useState(cart ? checkedPrice : false);
   const { deleteCart } = useDeleteCart();
   const [count, setCount] = useState(quantity);
+  const [id, setId] = useState(null);
+  useEffect(
+    function () {
+      if (cartId === id)
+        updateCart({
+          id: cartId,
+          obj: { ...cart, checkedPrice: checked, quantity: count },
+        });
+    },
+    [checked, cart, cartId, count, updateCart, id]
+  );
 
-  console.log(cart);
   function increaseCount() {
+    setChecked(false);
     setCount((i) => i + 1);
   }
   function decreaseCount() {
+    setChecked(false);
     setCount((i) => (i === 1 ? i : i - 1));
   }
   function deleteCartArr(id) {
@@ -125,12 +141,30 @@ function CartRow({ cart }) {
         toast.success(`You've successfully deleted ${title} from your cart`);
       },
     });
+    updateCart({
+      id: id,
+      obj: { ...cart, checkedPrice: false, quantity: 1 },
+    });
   }
+  function updateCheck(cart) {
+    setChecked((i) => !i);
+    setId(cart.cartId);
+  }
+  console.log(cartId, id);
+
   return (
     <StyledCartRow>
       <CartLabel>
-        <input type="checkbox" />
-
+        {isLoading || status === "pending" ? (
+          <SpinnerMini />
+        ) : (
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={() => updateCheck(cart)}
+            disabled={isLoading}
+          />
+        )}
         <Image src={image} />
         <Title>{title}</Title>
       </CartLabel>

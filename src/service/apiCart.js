@@ -7,9 +7,18 @@ export async function getCart() {
 }
 
 export async function addToCart(recipe) {
-  const { image, title, bookmarkId, price, quantity } = recipe;
-  const newCart = { image, title, price, cartId: bookmarkId, quantity };
-  console.log(quantity);
+  const { image, title, bookmarkId, price, quantity, newPrice, checkedPrice } =
+    recipe;
+  const newCart = {
+    image,
+    title,
+    price,
+    cartId: bookmarkId,
+    quantity,
+    newPrice,
+    checkedPrice,
+  };
+  // console.log(quantity);
   const { data, error } = await supabase
     .from("cart")
     .insert([newCart])
@@ -18,8 +27,19 @@ export async function addToCart(recipe) {
   return data;
 }
 
+export async function updateCart(id, obj) {
+  const { data, error } = await supabase
+    .from("cart")
+    .update(obj)
+    .eq("cartId", id)
+    .select();
+  // .single();
+  if (error) throw new Error("Unable to update price");
+  return data;
+}
+
 export async function deleteCart(id) {
-  console.log(id);
+  // console.log(id);
   const { error, data } = await supabase.from("cart").delete().eq("cartId", id);
   if (error) throw new Error("Unable to delete");
   return data;

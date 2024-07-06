@@ -4,6 +4,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { device } from "../../mediaSizes";
 import { useGetCart } from "./useGetCart";
 import SpinnerMini from "../../ui/SpinnerMini";
+import Spinner from "../../ui/Spinner";
+import { useNavigate } from "react-router-dom";
 
 function CartTotal() {
   const StyledCartTotal = styled.div`
@@ -51,8 +53,16 @@ function CartTotal() {
     }
   `;
   const { cart, isLoading } = useGetCart();
+  const navigate = useNavigate();
+  if (isLoading) return <Spinner />;
+  // console.log(cart);
+  const priceDown = cart
+    .map((cart) =>
+      cart.checkedPrice === true ? cart.price * cart.quantity : 0
+    )
+    .reduce((a, b) => a + b, 0);
   const cartSubTotalPrice = cart?.reduce((a, b) => a + b.price, 0);
-  console.log(cartSubTotalPrice);
+  if (cart.length < 1) return;
   return (
     <StyledCartTotal>
       <CartContainer>
@@ -63,19 +73,25 @@ function CartTotal() {
             {isLoading ? (
               <SpinnerMini />
             ) : (
-              <p>${cartSubTotalPrice.toFixed(2, 0)}</p>
+              <p>${cart.length < 1 ? 0 : cartSubTotalPrice.toFixed(2, 0)}</p>
             )}
           </Sum>
           <Sum>
             <div>Total</div>
-            <p>$32.45</p>
+            {isLoading ? <SpinnerMini /> : <p>${priceDown.toFixed(2, 0)}</p>}
           </Sum>
         </SumContainer>
       </CartContainer>
-      <Button type="secondary" size="medium">
-        <p>Proceed to Checkout</p>
-        <FaArrowRight />
-      </Button>
+      {priceDown > 0 && (
+        <Button
+          type="secondary"
+          size="medium"
+          onClick={() => navigate("/order")}
+        >
+          <p>Proceed to Checkout</p>
+          <FaArrowRight />
+        </Button>
+      )}
     </StyledCartTotal>
   );
 }
