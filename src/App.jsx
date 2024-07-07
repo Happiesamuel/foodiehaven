@@ -20,6 +20,8 @@ import { SearchResultContext } from "./context/SearchResultContext";
 import RecipeData from "./features/recipeInfo/RecipeData";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import { OrderContext } from "./context/OrderContext";
+import FinalOrder from "./pages/FinalOrder";
 
 function App() {
   const queryClient = new QueryClient({
@@ -32,42 +34,45 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <ToogleContext>
-        <MenuContext>
-          <SearchResultContext>
-            <GlobalStyle />
-            <BrowserRouter>
-              <Routes>
-                <Route index path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/customer" element={<Customer />} />
-                <Route element={<Auth />}>
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
-                </Route>
-                <Route element={<AppLayout />}>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/bookmark" element={<Bookmarks />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/order" element={<Order />} />
+      <OrderContext>
+        <ToogleContext>
+          <MenuContext>
+            <SearchResultContext>
+              <GlobalStyle />
+              <BrowserRouter>
+                <Routes>
+                  <Route index path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/customer" element={<Customer />} />
+                  <Route element={<Auth />}>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                  </Route>
+                  <Route element={<AppLayout />}>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/bookmark" element={<Bookmarks />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/order" element={<Order />} />
+                    <Route path="/order/:orderId" element={<FinalOrder />} />
 
-                  <Route element={<Settings />} path="/settings" />
-                  <Route element={<RecipeData />} path="/recipe/:id" />
-                </Route>
-              </Routes>
-            </BrowserRouter>
-            <Toaster
-              toastOptions={{
-                success: {
-                  duration: 1000,
-                },
-              }}
-              position="top-center"
-              reverseOrder={false}
-            />
-          </SearchResultContext>
-        </MenuContext>
-      </ToogleContext>
+                    <Route element={<Settings />} path="/settings" />
+                    <Route element={<RecipeData />} path="/recipe/:id" />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+              <Toaster
+                toastOptions={{
+                  success: {
+                    duration: 1000,
+                  },
+                }}
+                position="top-center"
+                reverseOrder={false}
+              />
+            </SearchResultContext>
+          </MenuContext>
+        </ToogleContext>
+      </OrderContext>
     </QueryClientProvider>
   );
 }

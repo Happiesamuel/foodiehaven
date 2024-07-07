@@ -1,5 +1,20 @@
+// import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import styled from "styled-components";
+import OrderForm from "../features/order/OrderForm";
+
 function Order() {
-  return <div>order</div>;
+  const StyledOrder = styled.div`
+    & p {
+      font-weight: 500;
+    }
+  `;
+
+  return (
+    <StyledOrder>
+      <p>Kindly fill the form to process your order</p>
+      <OrderForm />
+    </StyledOrder>
+  );
 }
 
 export default Order;
