@@ -39,8 +39,12 @@ export async function updateCart(id, obj) {
 }
 
 export async function deleteCart(id) {
-  // console.log(id);
-  const { error, data } = await supabase.from("cart").delete().eq("cartId", id);
+  let query = supabase.from("cart").delete();
+  if (Array.isArray(id)) query = query.in("cartId", id);
+  else query = query.eq("cartId", id);
+
+  const { error, data } = await query;
+
   if (error) throw new Error("Unable to delete");
   return data;
 }

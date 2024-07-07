@@ -3,6 +3,7 @@ import CartDetails from "../features/cart/CartDetails";
 import CartTotal from "../features/cart/CartTotal";
 import CartCoupon from "../features/cart/CartCoupon";
 import { device } from "../mediaSizes";
+import Line from "../ui/Line";
 
 function Cart() {
   const StyledCart = styled.div`
@@ -25,19 +26,7 @@ function Cart() {
       -webkit-text-fill-color: transparent;
     }
   `;
-  const Line = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-    & div {
-      background: #d4d4d4;
-      width: 80%;
-      height: 2px;
-      border-radius: 30px;
-    }
-  `;
+
   const CartPayment = styled.div`
     display: flex;
     flex-direction: column;

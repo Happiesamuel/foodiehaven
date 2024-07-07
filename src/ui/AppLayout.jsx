@@ -44,7 +44,6 @@ function AppLayout() {
   const [searchParams] = useSearchParams();
 
   const searchData = searchParams.get("search");
-
   return (
     <StyledAppLayout width={width}>
       <Header />

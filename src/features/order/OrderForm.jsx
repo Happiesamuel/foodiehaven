@@ -6,6 +6,11 @@ import { useUser } from "../authentication/useUser";
 import { useAdrress } from "../hooks/useGeoLocationApi";
 import { useOrder } from "../../context/OrderContext";
 import { useNavigate } from "react-router-dom";
+import { useGetCart } from "../cart/useGetCart";
+import Spinner from "../../ui/Spinner";
+import { useAddOrder } from "./useAddOrder";
+import toast from "react-hot-toast";
+import { useDeleteCart } from "../cart/useDeleteCart";
 
 function OrderForm() {
   const StyledOrderForm = styled.form`
@@ -17,22 +22,42 @@ function OrderForm() {
   `;
   const { register, formState, handleSubmit, setValue } = useForm();
   const { user, isLoading } = useUser();
+  const { address, isLoading: isGettingAddress } = useAdrress();
+  const { addOrder, isAddingOrder } = useAddOrder();
+  const { cart, isLoading: isLoadingCart } = useGetCart();
+  const { deleteCart } = useDeleteCart();
   const navigate = useNavigate();
   const { orderId } = useOrder();
   const { errors } = formState;
+  if (isLoadingCart) return <Spinner />;
+  const filteredCartId = cart.map((cart) => cart.cartId);
 
   function onSubmit(data) {
-    console.log(orderId, data);
-    navigate(`/order/${orderId}`);
+    if (data.cart.length === 2) {
+      toast.error(`Your cart is Empty...Cannot place an empty order`);
+      return;
+    }
+    const orderObj = { ...data, orderId };
+    addOrder(orderObj, {
+      onSuccess: () => {
+        toast.success(`You've successfully ordered your food recipes`);
+        deleteCart(filteredCartId);
+        navigate(`/order/${orderId}`);
+      },
+      onError: (err) => {
+        toast.error(`${err}`);
+      },
+    });
   }
   const username = isLoading
     ? "Getting username..."
     : user?.identities?.at(0)?.identity_data?.username;
 
-  const { address, isLoading: isGettingAddress } = useAdrress();
   const addressDetail = isGettingAddress
     ? "Getting address..."
     : `${address?.locality}, ${address?.city} ${address?.postcode}, ${address?.countryName}`;
+  const filteredCart = cart.filter((cart) => cart.checkedPrice);
+  const cartInput = JSON.stringify(filteredCart);
 
   return (
     <StyledOrderForm onSubmit={handleSubmit(onSubmit)}>
@@ -71,9 +96,10 @@ function OrderForm() {
           {...setValue("address", addressDetail)}
         />
       </OrderFormInput>
+      <input hidden {...setValue("cart", cartInput)} />
       <div>
         <Button type="secondary" size="medium">
-          Submit
+          {isAddingOrder ? "Placing order..." : "Submit"}
         </Button>
       </div>
     </StyledOrderForm>

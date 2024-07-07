@@ -45,9 +45,11 @@ function BookmarkDetails({ bookmark }) {
   const [quantity, setQuantity] = useState(1);
   const { image, title, bookmarkId } = bookmark;
   const { deleteBookmark, isDeleting } = useDeleteBookmark();
-  const { cart } = useGetCart();
+  const { cart, isLoading } = useGetCart();
   const { addToCart } = useAddToCart();
   const { deleteCart } = useDeleteCart();
+
+  if (isLoading) return null;
   const cartArr = cart.map((x) => x.cartId);
   function deleteBook(id) {
     deleteBookmark(id, {

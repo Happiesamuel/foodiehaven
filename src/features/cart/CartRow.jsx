@@ -150,7 +150,6 @@ function CartRow({ cart }) {
     setChecked((i) => !i);
     setId(cart.cartId);
   }
-  console.log(cartId, id);
 
   return (
     <StyledCartRow>
