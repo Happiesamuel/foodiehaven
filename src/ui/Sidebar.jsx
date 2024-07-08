@@ -10,10 +10,7 @@ function Sidebar() {
   const StyledSidebar = styled.aside`
     grid-area: sidebar;
     text-align: center;
-    padding: 30px 0;
-    /* background-color: #fefce8; */
-    background-color: #f7fee7;
-    /* background-color: #fff7ed; */
+    background: var(--color-sidebar);
   `;
   const Ul = styled.ul`
     display: flex;
@@ -26,24 +23,29 @@ function Sidebar() {
   const Li = styled.li`
     & a {
       padding: 10px 20px;
-      color: #222121;
+      color: var(--color-text);
       display: flex;
       gap: 10px;
       align-items: center;
       transition: all 0.5s;
       font-weight: bold;
       & svg {
-        color: #039235;
+        color: var(--color-svg-link);
       }
       &.active {
-        background: #039235;
+        background: var(--color-svg-link);
         color: #fff;
         & svg {
           color: #fff;
         }
       }
       &:not(.active):hover {
-        background-color: #bbf7d0;
+        background-color: var(--color-link-hover);
+        color: var(--color-hover-text);
+        transition: none;
+        & svg {
+          color: var(--color-hover-text);
+        }
       }
     }
   `;
@@ -53,12 +55,11 @@ function Sidebar() {
     font-style: normal;
     text-align: center;
     color: #fff;
-    /* color: #cc971b; */
     font-size: 20px;
   `;
   const HeadWrap = styled.div`
     border-radius: 100%;
-    background: #cc971b;
+    background: var(--color-foodie-logo);
     width: 120px;
     scale: 0.7;
     padding: 0 5px;

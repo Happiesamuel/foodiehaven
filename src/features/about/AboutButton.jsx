@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { device } from "../../mediaSizes";
+import { useDarkmode } from "../../context/DarkmodeContext";
 
 function AboutButton({ button, onClick, getId }) {
   const StyledAboutButton = styled.div`
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background: ${({ active }) => (active ? "#049035" : "white")};
-    color: ${({ active }) => (active ? "white" : "")};
+    background: ${({ active }) =>
+      active ? "#049035" : "var(--color-sidebar)"};
+    color: ${({ active, darkmode }) =>
+      active && darkmode
+        ? "white"
+        : active && !darkmode
+        ? "white"
+        : "var(--color-deep-text)"};
     border-radius: 5px;
     cursor: pointer;
     padding: 10px;
@@ -23,8 +30,13 @@ function AboutButton({ button, onClick, getId }) {
       color: ${({ active }) => (active ? "white" : "#049035")};
     }
   `;
+  const { isDarkmode } = useDarkmode();
   return (
-    <StyledAboutButton active={getId === button.id} onClick={onClick}>
+    <StyledAboutButton
+      darkmode={isDarkmode}
+      active={getId === button.id}
+      onClick={onClick}
+    >
       {button.svg}
       <span> {button.name}</span>
     </StyledAboutButton>

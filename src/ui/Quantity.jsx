@@ -11,7 +11,7 @@ function Quantity({ count, setCount }) {
   `;
   const P = styled.p`
     font-size: 15px;
-    background: #a8a29e;
+    background: var(--color-input-book);
     padding: 5px 10px;
     color: #fff;
   `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "./Button";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDarkmode } from "../context/DarkmodeContext";
 
 function HeaderSearch() {
   const StyledForm = styled.form`
@@ -13,18 +14,19 @@ function HeaderSearch() {
     padding: 5px 10px;
     border-radius: 10px;
     border: none;
-    background-color: #dcfce7;
-    color: #039235;
+    background-color: var(--color-background-input);
+    color: var(--color-svg-link);
     transition: all 0.5s;
     width: 180px;
     &:focus {
       width: 200px;
     }
     &::placeholder {
-      color: #039235;
+      color: var(--color-svg-link);
     }
   `;
   const { register, handleSubmit, getValues } = useForm();
+  const { isDarkmode } = useDarkmode();
 
   const [searchParams, setSearchParams] = useSearchParams();
   function onSubmit() {
@@ -45,7 +47,7 @@ function HeaderSearch() {
         {...register("search")}
       />
 
-      <Button type="secondary" size="medium">
+      <Button type={isDarkmode ? "secondary" : "secondary"} size="medium">
         Search
       </Button>
     </StyledForm>

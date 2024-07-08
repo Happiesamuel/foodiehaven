@@ -38,18 +38,19 @@ function RecipeRow({ recipe }) {
     justify-content: space-between;
     align-items: center;
     & svg {
-      color: #b70908;
+      color: #e31818;
     }
   `;
   const Name = styled.h3`
     font-size: 18px;
     font-weight: bold;
+    color: var(--color-deep-text);
   `;
 
   const Ingredients = styled.div`
     display: inline;
     font-style: italic;
-    color: #242323;
+    color: var(--color-ash-text);
   `;
   const Servings = styled.div`
     display: flex;

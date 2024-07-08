@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { device } from "../../../mediaSizes";
 function SimilarContainer({ data, render, title }) {
   const StyledSimilarContainer = styled.div`
-    background-color: #fff;
+    background-color: var(--color-sidebar);
     padding: 30px;
     margin-top: 50px;
 
     & p {
       font-size: 18px;
       font-weight: bold;
-      color: #1d1d1d;
+      color: var(--color-deep-text);
       padding-bottom: 20px;
       line-height: 1;
       & span {
         font-style: italic;
-        color: #b70908;
+        color: #e31818;
       }
     }
     & div {

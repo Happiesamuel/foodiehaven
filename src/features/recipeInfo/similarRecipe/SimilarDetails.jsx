@@ -21,14 +21,16 @@ function SimilarDetails({ result }) {
     }
     & span {
       font-size: 12px;
+      color: var(--color-ash-text);
     }
     & a {
-      color: #fff;
+      color: var(--color-deep-text);
     }
   `;
   const Title = styled.div`
     font-weight: bold;
     font-size: 12px;
+    color: var(--color-ash-text);
   `;
   const navigate = useNavigate();
   const { title, sourceUrl, readyInMinutes, servings, id } = result;

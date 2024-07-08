@@ -6,7 +6,8 @@ function Comment({ comment }) {
   const Description = styled.div`
     font-size: 13px;
     font-style: italic;
-    color: #242323;
+    color: var(--color-deep-text);
+
     text-align: left;
   `;
   const User = styled.div`
@@ -30,10 +31,11 @@ function Comment({ comment }) {
   `;
   const Username = styled.h4`
     font-size: bold;
+    color: var(--color-deep-text);
   `;
   const City = styled.p`
     font-size: 10px;
-    color: #242323;
+    color: var(--color-deep-text);
   `;
   const Image = styled.img`
     width: 100px;

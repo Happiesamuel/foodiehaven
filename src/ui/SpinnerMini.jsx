@@ -11,7 +11,7 @@ const SpinnerMini = styled(BiLoaderAlt)`
   width: 2rem;
   height: 2rem;
   animation: ${rotate} 1.5s infinite linear;
-  color: #04b75b;
+  color: var(--color-spinner-mini);
 `;
 
 export default SpinnerMini;

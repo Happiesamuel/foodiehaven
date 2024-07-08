@@ -30,9 +30,10 @@ function SearchResult({ result }) {
   const Title = styled.h6`
     font-weight: bold;
     font-size: 12px;
+    color: var(--color-deep-text);
   `;
   const Price = styled.p`
-    color: #b70908;
+    color: #e31818;
     font-weight: 900;
     font-size: 15px;
   `;
@@ -44,7 +45,7 @@ function SearchResult({ result }) {
   const Description = styled.div`
     font-size: 13px;
     font-style: italic;
-    color: #242323;
+    color: var(--color-ash-text);
     text-align: left;
   `;
   const { image, title, price, description, id } = result;

@@ -10,7 +10,7 @@ import Toogle from "../ui/Toogle";
 
 function Customer() {
   const StyledCustomer = styled.div`
-    background: #f2efe8;
+    background: var(--color-applayout);
     height: 100%;
   `;
   const Custom = styled.div`

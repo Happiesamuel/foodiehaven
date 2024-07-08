@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { device } from "../../../mediaSizes";
 function InstructionDetails({ instructions }) {
   const StyledInstructionDetails = styled.div`
-    background: #fff;
+    background: var(--color-sidebar);
     border-radius: 20px;
     padding: 20px;
     width: 100%;
@@ -26,6 +26,7 @@ function InstructionDetails({ instructions }) {
     & p {
       font-weight: bold;
       text-transform: capitalize;
+      color: var(--color-ash-text);
     }
   `;
 
@@ -41,17 +42,20 @@ function InstructionDetails({ instructions }) {
     & p {
       font-weight: bold;
       text-transform: capitalize;
+      color: var(--color-ash-text);
     }
   `;
   const Title = styled.div`
     font-weight: bold;
     padding-bottom: 8px;
+    color: var(--color-deep-text);
   `;
 
   const InstructionStep = styled.div`
     padding: 5px 15px;
     font-size: 15px;
     font-style: italic;
+    color: var(--color-ash-text);
   `;
   return (
     <StyledInstructionDetails>

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { device } from "../mediaSizes";
 
 const StyledRecipeLayout = styled.div`
-  background: #fff;
+  background: var(--color-sidebar);
   width: 100%;
   height: max-content;
   border-top-right-radius: 30px;

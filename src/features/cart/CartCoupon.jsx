@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../ui/Button";
 import { FaArrowRight } from "react-icons/fa";
 import { device } from "../../mediaSizes";
+import { useDarkmode } from "../../context/DarkmodeContext";
 
 function CartCoupon() {
   const StyledCartCoupon = styled.div`
@@ -30,10 +31,12 @@ function CartCoupon() {
       border: 1px solid #d3d0d0;
     }
   `;
+  const { isDarkmode } = useDarkmode();
+
   return (
     <StyledCartCoupon>
       <input type="text" placeholder="Coupon Code" />
-      <Button type="secondary" size="medium">
+      <Button type={isDarkmode ? "primary" : "secondary"} size="medium">
         <p>Apply Coupon</p>
         <FaArrowRight />
       </Button>

@@ -31,14 +31,20 @@ function Toogle({ id }) {
     });
     handleOpen(() => (id === openMenu || openMenu === "" ? close() : id));
   }
-  return <BsThreeDotsVertical onClick={handleClick} />;
+  return (
+    <BsThreeDotsVertical
+      style={{ color: "var(--color-deep-text)" }}
+      onClick={handleClick}
+    />
+  );
 }
 function Button({ children, onClick }) {
   const StyledButton = styled.button`
     border: none;
     padding: 10px;
     font-weight: bold;
-    background-color: #fff;
+    background-color: var(--color-sidebar);
+    color: var(--color-deep-text);
     transform: all 0.5s;
     cursor: pointer;
   `;

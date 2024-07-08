@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import { device } from "../mediaSizes";
 function ConfirmDelete({ title, close, onDelete, type }) {
   const StyledConfirmDelete = styled.div`
-    background-color: #fff;
+    background-color: var(--color-sidebar);
     width: 300px;
     height: 100%;
     display: flex;
@@ -23,6 +23,7 @@ function ConfirmDelete({ title, close, onDelete, type }) {
       font-size: 15px;
       font-weight: bold;
       line-height: 1.5;
+      color: var(--color-deep-text);
     }
   `;
   const Buts = styled.div`

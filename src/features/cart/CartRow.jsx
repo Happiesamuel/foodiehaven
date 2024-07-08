@@ -12,7 +12,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 
 function CartRow({ cart }) {
   const StyledCartRow = styled.div`
-    background: #fff;
+    background: var(--color-sidebar);
 
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     position: relative;
@@ -41,6 +41,7 @@ function CartRow({ cart }) {
     font-weight: bold;
     font-size: 10px;
     line-height: 1.1;
+    color: var(--color-deep-text);
     @media (${device.laptop}) {
       font-size: 15px;
     }
@@ -54,7 +55,7 @@ function CartRow({ cart }) {
       outline: none;
       cursor: pointer;
       color: #fff;
-      accent-color: #04b75b;
+      accent-color: var(--color-spinner-mini);
       offset: 1;
       scale: 1;
       @media (${device.laptop}) {
@@ -74,7 +75,7 @@ function CartRow({ cart }) {
   `;
   const CartButtons = styled.div`
     display: flex;
-    background: #cc971b;
+    background: var(--color-foodie-logo);
     width: max-content;
     gap: 6px;
     padding: 3px 8px;
@@ -104,7 +105,7 @@ function CartRow({ cart }) {
   const Delete = styled.div`
     & svg {
       cursor: pointer;
-      color: #04b75b;
+      color: var(--color-spinner-mini);
       font-size: 20px;
       font-weight: bold;
       padding-right: 5px;

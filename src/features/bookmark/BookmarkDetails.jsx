@@ -16,7 +16,7 @@ import { useDeleteCart } from "../cart/useDeleteCart";
 function BookmarkDetails({ bookmark }) {
   const StyledBookmarkDetails = styled.div`
     padding: 10px;
-    border-bottom: 1px solid #78716c;
+    border-bottom: 1px solid var(--color-input-book);
     /* display: flex; */
     display: grid;
     @media ${device.laptop} {
@@ -36,6 +36,7 @@ function BookmarkDetails({ bookmark }) {
   `;
   const Title = styled.h5`
     font-weight: bold;
+    color: var(--color-deep-text);
   `;
   const Image = styled.img`
     width: 50px;

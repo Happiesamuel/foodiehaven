@@ -3,9 +3,10 @@ import styled, { css } from "styled-components";
 import Logo from "./Logo";
 import LogoImg from "../assets/images/logos.png";
 import { Button } from "./Button";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { device } from "../mediaSizes";
 import { useToogle } from "../context/ToogleContext";
+import { useDarkmode } from "../context/DarkmodeContext";
 
 function Navbar() {
   const bcg = window.location.pathname;
@@ -41,8 +42,11 @@ function Navbar() {
   `;
   const PageNav = styled.ul`
     height: 100vh;
-    background: #cc971b;
-    line-height: 30px;
+    ${({ show }) =>
+      show &&
+      css`
+        background: #cc971b;
+      `}
 
     display: flex;
     flex-direction: column;
@@ -85,7 +89,18 @@ function Navbar() {
     &:hover,
     &:active:link,
     &.active {
-      color: #039235;
+      ${({ darkmode, show }) =>
+        darkmode && !show
+          ? css`
+              color: #d1a84a;
+            `
+          : darkmode && show
+          ? css`
+              color: #039235;
+            `
+          : css`
+              color: #039235;
+            `}
     }
   `;
   const NavButtons = styled.div`
@@ -97,38 +112,74 @@ function Navbar() {
     }
   `;
   const { isShowToogle, show } = useToogle();
+  const { setDarkmode, isDarkmode } = useDarkmode();
   const navigate = useNavigate();
   return (
-    <StyledNav fixed={bcg} bcg={bcg.length > 1 ? "#cc971b" : "transparent"}>
+    <StyledNav
+      fixed={bcg}
+      bcg={
+        bcg.length > 1 && isDarkmode
+          ? "var(--color-header)"
+          : bcg.length > 1 && !isDarkmode
+          ? "#cc971b;"
+          : "transparent"
+      }
+    >
       <PageNav show={isShowToogle}>
         <li>
-          <Link onClick={() => show()} to="/">
+          <Link
+            show={isShowToogle}
+            darkmode={isDarkmode}
+            onClick={() => show()}
+            to="/"
+          >
             Home
           </Link>
         </li>
         <li>
-          <Link onClick={() => show()} to="/about">
+          <Link
+            show={isShowToogle}
+            darkmode={isDarkmode}
+            onClick={() => show()}
+            to="/about"
+          >
             About
           </Link>
         </li>
         <li>
-          <Link onClick={() => show()} to="/customer">
+          <Link
+            show={isShowToogle}
+            darkmode={isDarkmode}
+            onClick={() => show()}
+            to="/customer"
+          >
             Customer
           </Link>
         </li>
         <li>
-          <Link onClick={() => show()} to="/contact">
+          <Link
+            show={isShowToogle}
+            darkmode={isDarkmode}
+            onClick={() => show()}
+            to="/contact"
+          >
             Contact
           </Link>
         </li>
         <li>
-          <Link to="/events">Events</Link>
+          <Link show={isShowToogle} darkmode={isDarkmode} to="/events">
+            Events
+          </Link>
         </li>
       </PageNav>
       <Logo img={LogoImg} />
       <NavButtons>
-        <Button type="primary" size="small">
-          <FaShoppingCart />
+        <Button
+          type={!isDarkmode ? "primary" : "secondary"}
+          size="small"
+          onClick={() => setDarkmode()}
+        >
+          {isDarkmode ? <FaSun /> : <FaMoon />}
         </Button>
         <Button onClick={() => navigate("/login")} type="danger" size="medium">
           Log in

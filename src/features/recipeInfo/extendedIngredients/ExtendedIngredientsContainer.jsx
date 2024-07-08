@@ -9,7 +9,7 @@ function ExtendedIngredientsContainer({ data, render }) {
     & p {
       font-size: 18px;
       font-weight: bold;
-      color: #1d1d1d;
+      color: var(--color-deep-text);
       padding-bottom: 20px;
       line-height: 1;
       & span {
@@ -26,8 +26,10 @@ function ExtendedIngredientsContainer({ data, render }) {
     grid-template-columns: 0.2fr 1.2fr 1.2fr 1fr 1fr 0.5fr;
     padding-bottom: 20px;
     font-weight: bold;
-
-    border-bottom: 1px solid #5b5959;
+    & div {
+      color: var(--color-deep-text);
+    }
+    border-bottom: 1px solid var(--color-line);
   `;
   const Render = styled.div`
     @media (${device.tablet}) {

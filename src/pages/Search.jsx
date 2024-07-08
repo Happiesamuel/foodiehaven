@@ -20,11 +20,11 @@ function Search() {
     }
     & p {
       font-style: italic;
-      color: #000;
+      color: var(--color-deep-text);
       & span {
         font-style: normal;
         font-weight: bold;
-        color: #b70908;
+        color: #cc971b;
       }
     }
   `;

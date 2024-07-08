@@ -10,7 +10,7 @@ import Toogle from "../ui/Toogle";
 
 function About() {
   const StyledAbout = styled.section`
-    background: #f2efe8;
+    background: var(--color-applayout);
     height: 100%;
   `;
 

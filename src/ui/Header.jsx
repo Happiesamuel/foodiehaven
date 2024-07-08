@@ -2,10 +2,11 @@ import styled from "styled-components";
 import HeaderSearch from "./HeaderSearch";
 import User from "./User";
 import { useMenu } from "../context/MenuContext";
+// import { useDarkmode } from "../context/DarkmodeContext";
 
 function Header() {
   const StyledHeader = styled.header`
-    background: linear-gradient(to bottom right, #4ade80, #039235);
+    background: var(--color-header);
     color: #fff;
     grid-area: header;
     height: 80px;
@@ -23,8 +24,10 @@ function Header() {
     font-size: 20px;
   `;
   const { width } = useMenu();
+  // const { setDarkmode } = useDarkmode();
   return (
     <StyledHeader>
+      {/* <div onClick={() => setDarkmode()}>samuel</div> */}
       <Head>Foodie Haven</Head>
       <HeaderSearch />
       {width > 768 && <User />}

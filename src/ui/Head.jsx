@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Head = styled.h1`
-  color: #020202;
+  color: var(--color-deep-text);
   text-transform: uppercase;
   font-size: 40px;
   font-family: "Mulish", sans-serif;

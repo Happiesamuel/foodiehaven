@@ -11,7 +11,7 @@ function SidebarMenu() {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #f7fee7;
+    background: var(--color-sidebar);
   `;
   const Ul = styled.ul`
     display: flex;
@@ -23,24 +23,24 @@ function SidebarMenu() {
   const Li = styled.li`
     & a {
       padding: 15px 15px;
-      color: #222121;
+      color: var(--color-text);
       display: flex;
       gap: 10px;
       align-items: center;
       transition: all 0.5s;
       font-weight: bold;
       & svg {
-        color: #039235;
+        color: var(--color-svg-link);
       }
       &.active {
-        background: #039235;
-        color: #fff;
+        background: var(--color-svg-link);
+
         & svg {
           color: #fff;
         }
       }
       &:not(.active):hover {
-        background-color: #bbf7d0;
+        background-color: var(--color-link-hover);
       }
     }
   `;

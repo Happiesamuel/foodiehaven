@@ -6,6 +6,7 @@ import { useGetCart } from "./useGetCart";
 import SpinnerMini from "../../ui/SpinnerMini";
 import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
+import { useDarkmode } from "../../context/DarkmodeContext";
 
 function CartTotal() {
   const StyledCartTotal = styled.div`
@@ -25,13 +26,14 @@ function CartTotal() {
     }
   `;
   const CartContainer = styled.div`
-    background: #fff;
+    background: var(--color-sidebar);
     padding: 15px 15px;
     border-radius: 10px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     & h1 {
       font-size: 18px;
       padding-bottom: 10px;
+      color: var(--color-deep-text);
     }
   `;
   const SumContainer = styled.div`
@@ -46,13 +48,16 @@ function CartTotal() {
     & div,
     p {
       font-size: 13px;
+      color: var(--color-ash-text);
     }
     & p {
-      color: #e31818;
+      color: e31818;
       font-weight: bold;
     }
   `;
   const { cart, isLoading } = useGetCart();
+  const { isDarkmode } = useDarkmode();
+
   const navigate = useNavigate();
   if (isLoading) return <Spinner />;
   // console.log(cart);
@@ -84,7 +89,7 @@ function CartTotal() {
       </CartContainer>
       {priceDown > 0 && (
         <Button
-          type="secondary"
+          type={isDarkmode ? "primary" : "secondary"}
           size="medium"
           onClick={() => navigate("/order")}
         >

@@ -11,7 +11,7 @@ function Empty({ title, svg, message }) {
     padding: 15px 0;
     & h1,
     p {
-      color: #252525;
+      color: var(--color-ash-text);
     }
     & svg {
       font-size: 60px;

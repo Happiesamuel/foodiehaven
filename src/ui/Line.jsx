@@ -7,7 +7,7 @@ const Line = styled.div`
   justify-content: center;
   margin: 15px 0;
   & div {
-    background: #d4d4d4;
+    background: var(--color-line);
     width: 80%;
     height: 2px;
     border-radius: 30px;

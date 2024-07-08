@@ -24,6 +24,8 @@ function RecipeData() {
     display: flex;
     align-items: center;
     gap: 5px;
+    color: var(--color-deep-text);
+
     & svg {
       color: #008e44;
     }
@@ -78,12 +80,12 @@ function RecipeData() {
     @media (${device.laptop}) {
       padding: 20px;
     }
-    color: #1d1c1c;
+    color: var(--color-ash-text);
   `;
   const Details = styled.div`
     display: flex;
     justify-content: space-evenly;
-    background: #fff;
+    background: var(--color-sidebar);
     margin: 8px 0;
     padding: 15px;
     gap: 10px;

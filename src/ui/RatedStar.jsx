@@ -8,7 +8,8 @@ function RatedStar({ rating }) {
     color: #cc971b;
     padding: 5px;
     & span {
-      color: #000;
+      color: var(--color-ash-text);
+
       padding-left: 5px;
       font-weight: 500;
     }

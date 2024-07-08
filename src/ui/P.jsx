@@ -11,7 +11,7 @@ const P = styled.p`
     css`
       font-family: "Outfit", sans-serif;
       font-weight: 500;
-      color: #151515;
+      color: var(--color-ash-text);
       text-transform: lowercase;
     `}
 `;

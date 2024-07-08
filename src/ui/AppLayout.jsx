@@ -29,7 +29,7 @@ function AppLayout() {
     height: 100vh;
   `;
   const Body = styled.div`
-    background: #f2efe8;
+    background: var(--color-applayout);
     display: flex;
     flex-direction: column;
     overflow: scroll;

@@ -16,6 +16,7 @@ function Cart() {
     font-weight: bold;
     text-align: center;
     font-size: 25px;
+    color: var(--color-deep-text);
     @media (${device.laptop}) {
       font-size: 30px;
     }
