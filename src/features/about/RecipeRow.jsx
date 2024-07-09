@@ -4,6 +4,9 @@ import { FaHeart, FaRegClock } from "react-icons/fa";
 import { LuUsers2 } from "react-icons/lu";
 import RatedStar from "../../ui/RatedStar";
 import StyledRecipeLayout from "../../ui/StyledRecipeLayout";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function RecipeRow({ recipe }) {
   const {
@@ -68,9 +71,12 @@ function RecipeRow({ recipe }) {
     font-size: 15px;
     color: #008e44;
   `;
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
-    <StyledRecipeLayout>
+    <StyledRecipeLayout data-aos="fade-up">
       <Image src={image} />
 
       <Context>

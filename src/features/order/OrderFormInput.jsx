@@ -15,6 +15,7 @@ function OrderFormInput({ children, label, error }) {
     & label {
       font-weight: 400;
       font-size: 16px;
+      color: var(--color-ash-text);
       @media (${device.laptop}) {
         font-size: 20px;
       }
@@ -26,7 +27,7 @@ function OrderFormInput({ children, label, error }) {
       box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
       border-radius: 10px;
       padding: 8px 14px;
-      color: #262626;
+      color: var(--color-deep-text);
       font-size: 15px;
       font-weight: 400;
       border: 1px solid #d3d0d0;

@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
 :root{
-    --color-foodie-logo:#039235;
+   
         
         --color-svg-link: #039235;
         --color-link-hover:#bbf7d0;
@@ -11,10 +11,12 @@ export const GlobalStyle = createGlobalStyle`
         --color-header: linear-gradient(to bottom right, #4ade80, #039235);
         --color-background-input:#dcfce7;
         --color-spinner-mini: #04b75b;
+        --color-foodie-logo:#cc971b;
+
 
     & ,&.lightmode{
         --color-applayout: #f2efe8; 
-        --color-sidebar:#f7fee7;
+        --color-sidebar:#fff;
         --color-header: linear-gradient(to bottom right, #4ade80, #039235);
         --color-deep-text: #000;
          --color-ash-text: #252525;
@@ -24,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
 
     }
     &.darkmode{
-
+        --color-foodie-logo:#039235;
         --color-applayout: #0f172a;
         --color-sidebar:#1e293b;
         --color-text: #e2e8f0;

@@ -4,7 +4,7 @@ const Order = createContext();
 function OrderContext({ children }) {
   const [orderId, setOrderId] = useState(Math.floor(Math.random() * 1000000));
   useEffect(function () {
-    setOrderId(Math.floor(Math.random() * 1000000));
+    setOrderId(Math.floor(Math.random() * 100000));
   }, []);
   return (
     <Order.Provider value={{ orderId, setOrderId }}>{children}</Order.Provider>

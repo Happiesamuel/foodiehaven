@@ -23,6 +23,7 @@ import Order from "./pages/Order";
 import { OrderContext } from "./context/OrderContext";
 import FinalOrder from "./pages/FinalOrder";
 import { DarkmodeContext } from "./context/DarkmodeContext";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const queryClient = new QueryClient({
@@ -46,6 +47,8 @@ function App() {
                     <Route index path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/customer" element={<Customer />} />
+                    <Route index path="*" element={<PageNotFound />} />
+
                     <Route element={<Auth />}>
                       <Route path="/login" element={<Login />} />
                       <Route path="/signup" element={<Signup />} />

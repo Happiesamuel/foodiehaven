@@ -10,6 +10,7 @@ import Line from "../ui/Line";
 import OrderDetail from "../features/order/OrderDetail";
 import OrderPayments from "../features/order/OrderPayments";
 import { device } from "../mediaSizes";
+import { useDarkmode } from "../context/DarkmodeContext";
 
 function FinalOrder() {
   const OrderNav = styled.div`
@@ -19,12 +20,14 @@ function FinalOrder() {
     padding-bottom: 20px;
     & div {
       font-weight: 400;
+      color: var(--color-ash-text);
+
       font-size: 14px;
     }
     & a {
       font-size: 15px;
       font-weight: bold;
-      color: #303030;
+      color: var(--color-ash-text);
     }
   `;
   const OrderIdContainer = styled.div`
@@ -35,6 +38,8 @@ function FinalOrder() {
     & p {
       font-weight: bold;
       font-size: 15px;
+      color: var(--color-deep-text);
+
       @media (${device.tablet}) {
         font-size: 22px;
       }
@@ -68,6 +73,8 @@ function FinalOrder() {
     display: flex;
     align-items: center;
     gap: 3px;
+    color: var(--color-ash-text);
+
     @media (${device.tablet}) {
       gap: 8px;
     }
@@ -80,6 +87,8 @@ function FinalOrder() {
     & p {
       font-weight: 600;
       font-size: 10px;
+      color: var(--color-deep-text);
+
       @media (${device.tablet}) {
         font-size: 15px;
       }
@@ -99,6 +108,7 @@ function FinalOrder() {
   `;
 
   const { isLoading, order } = useGetOrder();
+  const { isDarkmode } = useDarkmode();
   if (isLoading) return <Spinner />;
   const { orderId, created_at, cart, address, phone } = order.at(0);
   const date = new Date(created_at);
@@ -120,10 +130,10 @@ function FinalOrder() {
   const day = date.getDate();
   const year = date.getFullYear();
 
-  console.log(order);
   return (
     <div>
       <OrderNav>
+        <Link to="/">Home</Link>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="orders">Orders</Link>
         <div>ID {orderId}</div>
@@ -131,11 +141,11 @@ function FinalOrder() {
       <OrderIdContainer>
         <p>Order ID: #{orderId}</p>
         <div>
-          <Button type="primary" size="medium">
+          <Button type={isDarkmode ? "primary" : "secondary"} size="medium">
             <FaFileWord />
             <div>Invoice </div>
           </Button>
-          <Button type="secondary" size="medium">
+          <Button type={!isDarkmode ? "primary" : "secondary"} size="medium">
             <div>Track order </div>
             <MdOutlineMyLocation />
           </Button>

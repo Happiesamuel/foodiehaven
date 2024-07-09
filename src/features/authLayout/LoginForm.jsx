@@ -5,6 +5,10 @@ import { useState } from "react";
 import useLogin from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 function LoginForm() {
   const StyledForm = styled.form`
     display: flex;
@@ -29,9 +33,11 @@ function LoginForm() {
     const data = { password, email };
     login(data);
   }
-
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit} data-aos="zoom-in">
       <div>
         <Input
           label="Email"

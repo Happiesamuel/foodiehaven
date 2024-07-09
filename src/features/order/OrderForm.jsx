@@ -11,6 +11,7 @@ import Spinner from "../../ui/Spinner";
 import { useAddOrder } from "./useAddOrder";
 import toast from "react-hot-toast";
 import { useDeleteCart } from "../cart/useDeleteCart";
+import { useDarkmode } from "../../context/DarkmodeContext";
 
 function OrderForm() {
   const StyledOrderForm = styled.form`
@@ -29,6 +30,8 @@ function OrderForm() {
   const navigate = useNavigate();
   const { orderId } = useOrder();
   const { errors } = formState;
+  const { isDarkmode } = useDarkmode();
+  const { setOrderId } = useOrder();
   if (isLoadingCart) return <Spinner />;
   const filteredCartId = cart.map((cart) => cart.cartId);
 
@@ -43,6 +46,7 @@ function OrderForm() {
         toast.success(`You've successfully ordered your food recipes`);
         deleteCart(filteredCartId);
         navigate(`/order/${orderId}`);
+        setOrderId(Math.floor(Math.random() * 100000));
       },
       onError: (err) => {
         toast.error(`${err}`);
@@ -98,7 +102,7 @@ function OrderForm() {
       </OrderFormInput>
       <input hidden {...setValue("cart", cartInput)} />
       <div>
-        <Button type="secondary" size="medium">
+        <Button type={isDarkmode ? "primary" : "secondary"} size="medium">
           {isAddingOrder ? "Placing order..." : "Submit"}
         </Button>
       </div>

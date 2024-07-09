@@ -5,6 +5,10 @@ import { Button } from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import useSignup from "./useSignup";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 function SignupForm() {
   const StyledForm = styled.form`
     display: flex;
@@ -19,10 +23,12 @@ function SignupForm() {
     signup(data);
   }
   const { username, email, password, confirmPassword } = errors;
-  // toast.success("sucesss");
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)} data-aos="zoom-in">
       <div>
         <Input
           label="Username"

@@ -7,12 +7,14 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { device } from "../mediaSizes";
 import { useToogle } from "../context/ToogleContext";
 import { useDarkmode } from "../context/DarkmodeContext";
+import { useUser } from "../features/authentication/useUser";
+import SpinnerMini from "./SpinnerMini";
 
 function Navbar() {
   const bcg = window.location.pathname;
   const StyledNav = styled.nav`
     display: grid;
-    grid-template-columns: 0.8fr 0.55fr;
+    grid-template-columns: 0.2fr 0.8fr;
     align-items: center;
     width: 100%;
     font-family: "Outfit", sans-serif;
@@ -23,11 +25,11 @@ function Navbar() {
       padding: 15px 50px;
     }
     @media ${device.laptop} {
-      grid-template-columns: 1.3fr 0.8fr 0.4fr;
+      grid-template-columns: 1.6fr 0.8fr 0.7fr;
       padding: 15px 50px;
     }
     @media ${device.desktop} {
-      grid-template-columns: 1fr 0.8fr 0.3fr;
+      grid-template-columns: 1.5fr 1fr 0.6fr;
       padding: 15px 100px;
     }
 
@@ -113,6 +115,7 @@ function Navbar() {
   `;
   const { isShowToogle, show } = useToogle();
   const { setDarkmode, isDarkmode } = useDarkmode();
+  const { user, isLoading } = useUser();
   const navigate = useNavigate();
   return (
     <StyledNav
@@ -181,9 +184,23 @@ function Navbar() {
         >
           {isDarkmode ? <FaSun /> : <FaMoon />}
         </Button>
-        <Button onClick={() => navigate("/login")} type="danger" size="medium">
-          Log in
-        </Button>
+        {
+          <Button
+            onClick={() =>
+              navigate(user?.role === "authenticated" ? "/dashboard" : "/login")
+            }
+            type="danger"
+            size="medium"
+          >
+            {isLoading ? (
+              <SpinnerMini />
+            ) : user?.role === "authenticated" ? (
+              "Continue ordering"
+            ) : (
+              "Log in"
+            )}
+          </Button>
+        }
       </NavButtons>
     </StyledNav>
   );

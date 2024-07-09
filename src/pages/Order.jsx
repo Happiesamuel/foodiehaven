@@ -6,6 +6,7 @@ function Order() {
   const StyledOrder = styled.div`
     & p {
       font-weight: 500;
+      color: var(--color-ash-text);
     }
   `;
 

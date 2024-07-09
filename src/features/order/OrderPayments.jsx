@@ -10,6 +10,8 @@ function OrderPayments({ cart, address, phone }) {
   `;
   const Head = styled.h1`
     font-size: 16px;
+    color: var(--color-deep-text);
+
     font-weight: 600;
     @media (${device.tablet}) {
       font-size: 20px;
@@ -29,7 +31,8 @@ function OrderPayments({ cart, address, phone }) {
     & p {
       font-weight: 400;
       font-size: 12px;
-      color: #616161;
+      color: var(--color-ash-text);
+
       @media (${device.tablet}) {
         font-size: 15px;
       }
@@ -37,6 +40,8 @@ function OrderPayments({ cart, address, phone }) {
     & h6 {
       font-weight: 600;
       font-size: 12px;
+      color: var(--color-deep-text);
+
       @media (${device.tablet}) {
         font-size: 16px;
       }
@@ -44,6 +49,8 @@ function OrderPayments({ cart, address, phone }) {
     & h5 {
       font-weight: 500;
       font-size: 12px;
+      color: var(--color-ash-text);
+
       @media (${device.tablet}) {
         font-size: 15px;
       }
@@ -63,7 +70,8 @@ function OrderPayments({ cart, address, phone }) {
     & p {
       font-weight: 400;
       font-size: 12px;
-      color: #616161;
+      color: var(--color-ash-text);
+
       @media (${device.tablet}) {
         font-size: 15px;
       }

@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import StyledRecipeLayout from "../../ui/StyledRecipeLayout";
 import RatedStar from "../../ui/RatedStar";
 import styled from "styled-components";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 function Comment({ comment }) {
   const Description = styled.div`
     font-size: 13px;
@@ -48,9 +51,11 @@ function Comment({ comment }) {
   `;
   const { city, description, firstName, lastName, image, photo, rating } =
     comment;
-  // console.log(comment);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <StyledRecipeLayout overflow="hidden">
+    <StyledRecipeLayout overflow="hidden" data-aos="fade-up">
       <RatedStar rating={rating} />
       <Description>{description}</Description>
       <User>

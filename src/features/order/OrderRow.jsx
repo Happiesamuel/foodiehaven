@@ -9,7 +9,7 @@ function OrderRow({ cart }) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #d4d4d4;
+    border-bottom: 1px solid var(--color-line);
     width: 80%;
     &:last-child {
       border-bottom: none;
@@ -29,6 +29,8 @@ function OrderRow({ cart }) {
     & p {
       font-weight: bold;
       font-size: 15px;
+      color: var(--color-deep-text);
+
       @media (${device.tablet}) {
         font-size: 20px;
       }
@@ -55,6 +57,8 @@ function OrderRow({ cart }) {
         font-weight: 700;
         font-size: 12px;
         line-height: 1.1;
+        color: var(--color-deep-text);
+
         @media (${device.tablet}) {
           font-size: 15px;
         }
@@ -62,7 +66,8 @@ function OrderRow({ cart }) {
       & p {
         font-weight: 400;
         font-size: 10px;
-        color: #616161;
+        color: var(--color-ash-text);
+
         @media (${device.tablet}) {
           font-size: 15px;
         }

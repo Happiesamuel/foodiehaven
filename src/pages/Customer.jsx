@@ -7,6 +7,9 @@ import Head from "../ui/Head";
 import CustomerDetails from "../features/customer/CustomerDetails";
 import Footer from "../ui/footer/Footer";
 import Toogle from "../ui/Toogle";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function Customer() {
   const StyledCustomer = styled.div`
@@ -16,9 +19,12 @@ function Customer() {
   const Custom = styled.div`
     padding: 50px 0;
   `;
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
-    <StyledCustomer>
+    <StyledCustomer data-aos="fade-up">
       <Navbar />
       <Container>
         <P>our customer says</P>
