@@ -1,6 +1,7 @@
 import img from "../../assets/images/spice.png";
 import { Button } from "../../ui/Button";
 import { FaShoppingCart } from "react-icons/fa";
+import { useUser } from "../authentication/useUser";
 
 import {
   Container,
@@ -10,8 +11,12 @@ import {
   Spice,
   StyledHomeContent,
 } from "./HomeContentStyle";
+import { useNavigate } from "react-router-dom";
 
 function HomeContent1() {
+  const { user } = useUser();
+  const navigate = useNavigate();
+
   return (
     <StyledHomeContent>
       <ImageWrap>
@@ -24,7 +29,13 @@ function HomeContent1() {
           Delight your taste buds with our zesty <br /> lemon infused chicken
         </P>
         <div>
-          <Button type="primary" size="medium">
+          <Button
+            onClick={() =>
+              navigate(user?.role === "authenticated" ? "/cart" : "/login")
+            }
+            type="primary"
+            size="medium"
+          >
             <FaShoppingCart />
             <span> ORDER NOW</span>
           </Button>

@@ -8,6 +8,7 @@ import useSignup from "./useSignup";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function SignupForm() {
   const StyledForm = styled.form`
@@ -18,7 +19,7 @@ function SignupForm() {
 
   const { register, getValues, formState, handleSubmit } = useForm();
   const { errors } = formState;
-  const { signup, isSignup } = useSignup();
+  const { signup, status } = useSignup();
   function onSubmit(data) {
     signup(data);
   }
@@ -26,7 +27,7 @@ function SignupForm() {
   useEffect(() => {
     AOS.init();
   }, []);
-
+  const isSignup = status === "pending";
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} data-aos="zoom-in">
       <div>
@@ -102,7 +103,7 @@ function SignupForm() {
       </div>
 
       <Button disabled={isSignup} type="primary" size="medium">
-        Sign up
+        {status === "pending" ? <SpinnerMini /> : "Sign up"}
       </Button>
     </StyledForm>
   );

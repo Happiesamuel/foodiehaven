@@ -2,6 +2,11 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import img from "../assets/images/def.png";
 import styled from "styled-components";
+import { useUser } from "../features/authentication/useUser";
+import SpinnerMini from "./SpinnerMini";
+import Modal from "../context/Modal";
+import ConfirmDelete from "./ConfirmDelete";
+import { useLogout } from "../features/authentication/useLogout";
 function User() {
   const StyledUser = styled.div`
     display: flex;
@@ -9,7 +14,7 @@ function User() {
     gap: 20px;
     cursor: pointer;
     & h1 {
-      font-size: 20px;
+      font-size: 12px;
     }
     & img {
       width: 30px;
@@ -17,12 +22,26 @@ function User() {
     & svg {
     }
   `;
+  const { user, isLoading } = useUser();
+  const { logout } = useLogout();
+  if (isLoading) return <SpinnerMini />;
+  const { username } = user.user_metadata || user.user.user_metadata;
   return (
     <StyledUser>
+      <h1>{username}</h1>
       <img src={img} />
       <FaRegUser />
-      <h1>Hs</h1>
-      <IoLogOutOutline />
+      <Modal>
+        <Modal.Open name="logout">
+          <IoLogOutOutline />
+        </Modal.Open>
+        <Modal.Window opens="logout">
+          <ConfirmDelete
+            onDelete={() => logout()}
+            subject="Are you sure you want to logout?"
+          />
+        </Modal.Window>
+      </Modal>
     </StyledUser>
   );
 }

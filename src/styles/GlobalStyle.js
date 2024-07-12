@@ -11,7 +11,6 @@ export const GlobalStyle = createGlobalStyle`
         --color-header: linear-gradient(to bottom right, #4ade80, #039235);
         --color-background-input:#dcfce7;
         --color-spinner-mini: #04b75b;
-        --color-foodie-logo:#cc971b;
 
 
     & ,&.lightmode{
@@ -23,10 +22,15 @@ export const GlobalStyle = createGlobalStyle`
          --color-line:#d4d4d4;
          --color-text: #000;
         --color-input-book: #78716c;
+        --color-foodie-logo:#cc971b;
+        --color-foodie-border:#039235;
+
 
     }
     &.darkmode{
         --color-foodie-logo:#039235;
+        --color-foodie-border:#cc971b;
+
         --color-applayout: #0f172a;
         --color-sidebar:#1e293b;
         --color-text: #e2e8f0;

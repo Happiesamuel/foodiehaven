@@ -25,8 +25,8 @@ function LoginForm() {
     }
   `;
   const [email, setEmail] = useState("sam@test.com");
-  const [password, setPassword] = useState("12345678");
-  const { isLoading, login } = useLogin();
+  const [password, setPassword] = useState("123456789");
+  const { status, login } = useLogin();
   function handleSubmit(e) {
     e.preventDefault();
     if (!password || !email) return;
@@ -43,7 +43,7 @@ function LoginForm() {
           label="Email"
           type="email"
           value={email}
-          disabled={isLoading}
+          disabled={status === "pending"}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
@@ -53,7 +53,7 @@ function LoginForm() {
           label="Password"
           type="password"
           value={password}
-          disabled={isLoading}
+          disabled={status === "pending"}
         />
       </div>
       <PasswordCheck>
@@ -61,8 +61,8 @@ function LoginForm() {
         <p>Forgotten password?</p>
       </PasswordCheck>
 
-      <Button disabled={isLoading} type="primary" size="medium">
-        {isLoading ? <SpinnerMini /> : "Login"}
+      <Button disabled={status === "pending"} type="primary" size="medium">
+        {status === "pending" ? <SpinnerMini /> : "Login"}
       </Button>
     </StyledForm>
   );

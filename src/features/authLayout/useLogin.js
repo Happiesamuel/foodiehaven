@@ -6,17 +6,17 @@ import toast from "react-hot-toast";
 function useLogin() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { mutate: login, isLoading } = useMutation({
+  const { mutate: login, status } = useMutation({
     mutationFn: (data) => LoginApi(data),
     onSuccess: (user) => {
       queryClient.setQueryData(["user"], user?.user);
       toast.success("You have logged in successfully!");
       navigate("/dashboard", { replace: true });
     },
-    onError: () => {
-      toast.error("Provide a valid email and password");
+    onError: (err) => {
+      toast.error(err.message);
     },
   });
-  return { login, isLoading };
+  return { login, status };
 }
 export default useLogin;

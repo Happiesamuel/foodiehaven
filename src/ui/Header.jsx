@@ -2,7 +2,7 @@ import styled from "styled-components";
 import HeaderSearch from "./HeaderSearch";
 import User from "./User";
 import { useMenu } from "../context/MenuContext";
-import { useDarkmode } from "../context/DarkmodeContext";
+import Modal from "../context/Modal";
 
 function Header() {
   const StyledHeader = styled.header`
@@ -24,13 +24,13 @@ function Header() {
     font-size: 20px;
   `;
   const { width } = useMenu();
-  const { setDarkmode } = useDarkmode();
   return (
     <StyledHeader>
-      <div onClick={() => setDarkmode()}>samuel</div>
-      <Head>Foodie Haven</Head>
-      <HeaderSearch />
-      {width > 768 && <User />}
+      <Modal>
+        <Head>Foodie Haven</Head>
+        <HeaderSearch />
+        {width > 768 && <User />}
+      </Modal>
     </StyledHeader>
   );
 }

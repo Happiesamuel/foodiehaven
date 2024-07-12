@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { device } from "../mediaSizes";
-function ConfirmDelete({ title, close, onDelete, type }) {
+function ConfirmDelete({ title, close, onDelete, type, subject }) {
   const StyledConfirmDelete = styled.div`
     background-color: var(--color-sidebar);
     width: 300px;
@@ -33,9 +33,13 @@ function ConfirmDelete({ title, close, onDelete, type }) {
   `;
   return (
     <StyledConfirmDelete>
-      <p>
-        Are you sure you want to delete {title} from your {type} ?
-      </p>
+      {subject ? (
+        <p>{subject}</p>
+      ) : (
+        <p>
+          Are you sure you want to delete {title} from your {type} ?
+        </p>
+      )}
       <Buts>
         <Button type="danger" size="medium" onClick={close}>
           Cancel
@@ -52,6 +56,7 @@ ConfirmDelete.propTypes = {
   close: PropTypes,
   onDelete: PropTypes,
   type: PropTypes,
+  subject: PropTypes,
 };
 
 export default ConfirmDelete;

@@ -25,8 +25,9 @@ function Home() {
     flex-direction: column;
     justify-content: center;
   `;
-  const { isLoading } = useUser();
+  const { isLoading, user } = useUser();
   if (isLoading) return <Spinner />;
+  console.log(user);
   return (
     <StyledHome>
       <Navbar />

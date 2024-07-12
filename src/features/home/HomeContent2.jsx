@@ -9,8 +9,12 @@ import {
   Spice,
   StyledHomeContent,
 } from "./HomeContentStyle";
+import { useUser } from "../authentication/useUser";
+import { useNavigate } from "react-router-dom";
 
 function HomeContent2() {
+  const { user } = useUser();
+  const navigate = useNavigate();
   return (
     <StyledHomeContent>
       <ImageWrap>
@@ -24,7 +28,13 @@ function HomeContent2() {
           rice with chicken served with soft chilled drink
         </P>
         <div>
-          <Button type="primary" size="medium">
+          <Button
+            onClick={() =>
+              navigate(user?.role === "authenticated" ? "/cart" : "/login")
+            }
+            type="primary"
+            size="medium"
+          >
             <FaShoppingCart />
             <span> ORDER NOW</span>
           </Button>
