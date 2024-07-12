@@ -38,7 +38,7 @@ function Toogle({ id }) {
     />
   );
 }
-function Button({ children, onClick }) {
+function Button({ children, onClick, disabled }) {
   const StyledButton = styled.button`
     border: none;
     padding: 10px;
@@ -51,7 +51,11 @@ function Button({ children, onClick }) {
   function click() {
     onClick?.();
   }
-  return <StyledButton onClick={click}>{children}</StyledButton>;
+  return (
+    <StyledButton disabled={disabled} onClick={click}>
+      {children}
+    </StyledButton>
+  );
 }
 function List({ children, id }) {
   const { position } = useContext(MenuContext);
@@ -103,5 +107,6 @@ Button.propTypes = {
   children: PropTypes,
   id: PropTypes,
   onClick: PropTypes,
+  disabled: PropTypes,
 };
 export default Menu;

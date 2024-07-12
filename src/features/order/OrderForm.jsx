@@ -21,9 +21,14 @@ function OrderForm() {
     flex-direction: column;
     gap: 30px;
   `;
-  const { register, formState, handleSubmit, setValue } = useForm();
-  const { user, isLoading } = useUser();
   const { address, isLoading: isGettingAddress } = useAdrress();
+
+  const { register, formState, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      address: `${address?.locality}, ${address?.city} ${address?.postcode}, ${address?.countryName}`,
+    },
+  });
+  const { user, isLoading } = useUser();
   const { addOrder, isAddingOrder } = useAddOrder();
   const { cart, isLoading: isLoadingCart } = useGetCart();
   const { deleteCart } = useDeleteCart();
@@ -32,7 +37,7 @@ function OrderForm() {
   const { errors } = formState;
   const { isDarkmode } = useDarkmode();
   const { setOrderId } = useOrder();
-  if (isLoadingCart) return <Spinner />;
+  if (isLoadingCart || isGettingAddress || isLoading) return <Spinner />;
   const filteredCartId = cart.map((cart) => cart.cartId);
 
   function onSubmit(data) {
@@ -53,13 +58,9 @@ function OrderForm() {
       },
     });
   }
-  const username = isLoading
-    ? "Getting username..."
-    : user?.identities?.at(0)?.identity_data?.username;
+  const { username: userBio } = user.user_metadata || user.user.user_metadata;
+  const username = isLoading ? "Getting username..." : userBio;
 
-  const addressDetail = isGettingAddress
-    ? "Getting address..."
-    : `${address?.locality}, ${address?.city} ${address?.postcode}, ${address?.countryName}`;
   const filteredCart = cart.filter((cart) => cart.checkedPrice);
   const cartInput = JSON.stringify(filteredCart);
 
@@ -95,9 +96,9 @@ function OrderForm() {
       <OrderFormInput label="Address:" error={errors?.address?.message || ""}>
         <input
           type="text"
-          disabled
-          value={addressDetail}
-          {...setValue("address", addressDetail)}
+          {...register("address", {
+            required: "You have not entered your address",
+          })}
         />
       </OrderFormInput>
       <input hidden {...setValue("cart", cartInput)} />

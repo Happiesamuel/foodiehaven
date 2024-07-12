@@ -47,7 +47,7 @@ function BookmarkDetails({ bookmark }) {
   const { image, title, bookmarkId } = bookmark;
   const { deleteBookmark, isDeleting } = useDeleteBookmark();
   const { cart, isLoading } = useGetCart();
-  const { addToCart } = useAddToCart();
+  const { addToCart, status } = useAddToCart();
   const { deleteCart } = useDeleteCart();
 
   if (isLoading) return null;
@@ -94,7 +94,10 @@ function BookmarkDetails({ bookmark }) {
           <Menu.Toogle id={bookmarkId} />
           <Menu.List id={bookmarkId}>
             {isInCart ? (
-              <Menu.Button onClick={() => handleAddToCart(bookmark)}>
+              <Menu.Button
+                disabled={status === "pending"}
+                onClick={() => handleAddToCart(bookmark)}
+              >
                 Add to cart
               </Menu.Button>
             ) : (

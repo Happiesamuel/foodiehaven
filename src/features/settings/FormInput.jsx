@@ -13,13 +13,13 @@ function FormInput({ children, label, error }) {
 
     & div {
       display: flex;
-      background: #fff;
       justify-content: space-between;
       padding: 0 20px;
       border-radius: 10px;
       box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
       border: 1px solid #d3d0d0;
       margin-bottom: 5px;
+      background-color: var(--color-input);
 
       & input {
         outline: none;
@@ -27,6 +27,7 @@ function FormInput({ children, label, error }) {
         font-size: 15px;
         font-weight: 500;
         width: 80%;
+        background-color: var(--color-input);
       }
       &input,
       p {

@@ -38,7 +38,7 @@ function Settings() {
               top: 100%;
               width: 50px;
               height: 1px;
-              margin: 0 18px;
+              margin: 0px;
               background: var(--color-foodie-border);
               border-radius: 100%;
             }

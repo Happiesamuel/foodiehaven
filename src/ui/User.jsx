@@ -1,5 +1,4 @@
 import { IoLogOutOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
 import img from "../assets/images/def.png";
 import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
@@ -18,6 +17,8 @@ function User() {
     }
     & img {
       width: 30px;
+      height: 30px;
+      border-radius: 100%;
     }
     & svg {
     }
@@ -25,12 +26,12 @@ function User() {
   const { user, isLoading } = useUser();
   const { logout } = useLogout();
   if (isLoading) return <SpinnerMini />;
-  const { username } = user.user_metadata || user.user.user_metadata;
+  const { username, avatar } = user.user_metadata || user.user.user_metadata;
   return (
     <StyledUser>
+      <img src={!avatar ? img : avatar} />
       <h1>{username}</h1>
-      <img src={img} />
-      <FaRegUser />
+
       <Modal>
         <Modal.Open name="logout">
           <IoLogOutOutline />

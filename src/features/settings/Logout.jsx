@@ -2,17 +2,10 @@ import styled from "styled-components";
 import Modal from "../../context/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useLogout } from "../authentication/useLogout";
+import HeadSettings from "./HeadSettings";
 
 function Logout() {
   const StyledLogout = styled.div`
-    & h1 {
-      background-color: var(--color-sidebar);
-      font-size: 25px;
-      color: var(--color-ash-text);
-      padding: 3px 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
     & p {
       color: var(--color-ash-text);
       margin-left: 20px;
@@ -23,7 +16,7 @@ function Logout() {
 
   return (
     <StyledLogout>
-      <h1>Session</h1>
+      <HeadSettings>Session</HeadSettings>
       <Modal>
         <Modal.Open name="logout">
           <p>Log out foodie haven?</p>

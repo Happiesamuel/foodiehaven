@@ -1,17 +1,9 @@
 import styled from "styled-components";
 import { useDarkmode } from "../../context/DarkmodeContext";
-import { useLocalId } from "../hooks/useLocalId";
+import HeadSettings from "./HeadSettings";
 
 function Theme() {
   const StyledTheme = styled.div`
-    & h1 {
-      background-color: var(--color-sidebar);
-      font-size: 25px;
-      color: var(--color-ash-text);
-      padding: 3px 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
     & form {
       display: flex;
       flex-direction: column;
@@ -33,30 +25,35 @@ function Theme() {
       }
     }
   `;
-  const [value, setValue] = useLocalId(0, "id");
-  const { setId } = useDarkmode();
-  const inputs = ["System default", "Light mode", "Dark mode"];
-  function getId(val) {
-    setValue(val);
-    setId(val);
-  }
+  const { setIsDarkmode, isDarkmode } = useDarkmode();
+  // const inputs = ["Light mode", "Dark mode"];
+  // function getId(val) {
+  //   setId(val);
+  // }
 
   return (
     <StyledTheme>
-      <h1>Theme</h1>
+      <HeadSettings>Theme</HeadSettings>
       <form>
-        {inputs.map((input, i) => (
-          <div key={i}>
-            <input
-              checked={i === value}
-              value={value}
-              type="radio"
-              name="mode"
-              onChange={() => getId(i)}
-            />
-            <label>{input}</label>
-          </div>
-        ))}
+        <div>
+          <input
+            checked={!isDarkmode}
+            type="radio"
+            name="mode"
+            onChange={() => setIsDarkmode(false)}
+          />
+          <label>Light mode</label>
+        </div>
+        <div>
+          <input
+            checked={isDarkmode}
+            // value={id}
+            type="radio"
+            name="mode"
+            onChange={() => setIsDarkmode(true)}
+          />
+          <label>Dark mode</label>
+        </div>
       </form>
     </StyledTheme>
   );

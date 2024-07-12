@@ -27,10 +27,12 @@ function OrderFormInput({ children, label, error }) {
       box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
       border-radius: 10px;
       padding: 8px 14px;
-      color: var(--color-deep-text);
       font-size: 15px;
+      background-color: var(--color-input);
+      /* color: var(--color-ash-text); */
       font-weight: 400;
       border: 1px solid #d3d0d0;
+
       transition: all 0.5s;
       &:focus {
         border: 2px solid #d1a84a;

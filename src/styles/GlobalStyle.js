@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
         --color-input-book: #78716c;
         --color-foodie-logo:#cc971b;
         --color-foodie-border:#039235;
+        --color-input: #fff;
 
 
     }
@@ -35,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
         --color-sidebar:#1e293b;
         --color-text: #e2e8f0;
         --color-input-book: #94a3b8;
+        --color-input: #e2e8f0;
 
 
         /* --color-text: #e2e8f0;
