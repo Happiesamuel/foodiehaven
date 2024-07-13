@@ -25,7 +25,9 @@ export const GlobalStyle = createGlobalStyle`
         --color-foodie-logo:#cc971b;
         --color-foodie-border:#039235;
         --color-input: #fff;
-
+        --color-dashboard-header: #fffbeb;
+        --color-background-svg: #cc971b;
+        --color-icon-svg: #fff;
 
     }
     &.darkmode{
@@ -37,6 +39,11 @@ export const GlobalStyle = createGlobalStyle`
         --color-text: #e2e8f0;
         --color-input-book: #94a3b8;
         --color-input: #e2e8f0;
+        --color-dashboard-header: #94a3b8;
+        --color-background-svg: #039235;
+        --color-icon-svg: #f0fdf4;
+
+
 
 
         /* --color-text: #e2e8f0;

@@ -50,6 +50,8 @@ function Info() {
     margin-top: 20px;
     & form {
       margin: 0 30px;
+      display: flex;
+      justify-content: space-evenly;
     }
   `;
   const FileInput = styled.input.attrs({ type: "file" })`
