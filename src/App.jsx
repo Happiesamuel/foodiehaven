@@ -44,24 +44,24 @@ function App() {
                 <GlobalStyle />
                 <BrowserRouter>
                   <Routes>
-                    <Route index path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/customer" element={<Customer />} />
+                    <Route index element={<Home />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="customer" element={<Customer />} />
                     <Route index path="*" element={<PageNotFound />} />
 
                     <Route element={<Auth />}>
-                      <Route path="/login" element={<Login />} />
-                      <Route path="/signup" element={<Signup />} />
+                      <Route path="login" element={<Login />} />
+                      <Route path="signup" element={<Signup />} />
                     </Route>
                     <Route element={<AppLayout />}>
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route path="/bookmark" element={<Bookmarks />} />
-                      <Route path="/cart" element={<Cart />} />
-                      <Route path="/order" element={<Order />} />
-                      <Route path="/order/:orderId" element={<FinalOrder />} />
+                      <Route path="dashboard" element={<Dashboard />} />
+                      <Route path="bookmark" element={<Bookmarks />} />
+                      <Route path="cart" element={<Cart />} />
+                      <Route path="order" element={<Order />} />
+                      <Route path="order/:orderId" element={<FinalOrder />} />
 
-                      <Route element={<Settings />} path="/settings" />
-                      <Route element={<RecipeData />} path="/recipe/:id" />
+                      <Route element={<Settings />} path="settings" />
+                      <Route element={<RecipeData />} path="recipe/:id" />
                     </Route>
                   </Routes>
                 </BrowserRouter>
