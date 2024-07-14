@@ -1,14 +1,27 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import styled from "styled-components";
 import PropTypes from "prop-types";
-import HomeContent1 from "./HomeContent1";
-import HomeContent2 from "./HomeContent2";
-import HomeContent3 from "./HomeContent3";
+import { device } from "../../mediaSizes";
+import DashboardHeaderOne from "./DashboardHeaderOne";
+import DashboardHeaderTwo from "./DashboardHeaderTwo";
+import DashboardHeaderThree from "./DashboardHeaderThree";
 
-function HomeSwipe() {
+function DashboardSlide() {
+  const StyledDashboardSlide = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    justify-content: space-between;
+    width: 100%;
+
+    @media ${device.laptop} {
+      width: 65%;
+    }
+  `;
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -17,39 +30,18 @@ function HomeSwipe() {
     rtl: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    appendDots: (dots) => (
-      <div
-        style={{
-          backgroundColor: "transparent",
-          padding: "0px",
-        }}
-      >
-        <ul style={{ margin: "0px" }}> {dots} </ul>
-      </div>
-    ),
-    customPaging: () => (
-      <div
-        style={{
-          width: "30px",
-          color: "white",
-        }}
-      >
-        .
-      </div>
-    ),
   };
 
   return (
-    <div className="slider-container">
+    <StyledDashboardSlide className="slider-container">
       <Slider {...settings}>
-        <HomeContent1 />
-        <HomeContent2 />
-        <HomeContent3 />
+        <DashboardHeaderOne />
+        <DashboardHeaderTwo />
+        <DashboardHeaderThree />
       </Slider>
-    </div>
+    </StyledDashboardSlide>
   );
 }
-
 function SampleNextArrow({ className, style, onClick }) {
   return (
     <div
@@ -85,4 +77,4 @@ SampleNextArrow.propTypes = {
   style: PropTypes,
   onClick: PropTypes,
 };
-export default HomeSwipe;
+export default DashboardSlide;

@@ -1,20 +1,23 @@
 import styled from "styled-components";
-import Img from "../../assets/images/dashboard_1.png";
+import Img from "../../assets/images/spice2.png";
 import { Button } from "../../ui/Button";
 import { FaShoppingCart } from "react-icons/fa";
 import { device } from "../../mediaSizes";
 
-function DashboardHeader() {
-  const StyledDashboardHeader = styled.div`
+function DashboardHeaderTwo() {
+  const StyledDashboardHeaderTwo = styled.div`
     display: flex;
     align-items: center;
     background: var(--color-dashboard-header);
     border-radius: 15px;
-    padding: 15px 20px;
+    padding: 0px 20px;
+    /* height: 180px; */
+
     width: 100%;
     @media ${device.laptop} {
-      width: 65%;
+      width: 100%;
       padding: 0 20px;
+      height: 250px;
     }
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   `;
@@ -29,19 +32,20 @@ function DashboardHeader() {
     }
     & h1 {
       font-size: 20px;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
+
       @media ${device.laptop} {
         font-size: 30px;
-        padding-bottom: 10px;
+        padding-bottom: 15px;
       }
     }
     & p {
       font-weight: 400;
       font-size: 12px;
-      padding-bottom: 8px;
+      padding-bottom: 14px;
       @media ${device.laptop} {
         font-size: 15px;
-        padding-bottom: 7px;
+        padding-bottom: 12px;
       }
     }
   `;
@@ -50,16 +54,22 @@ function DashboardHeader() {
     justify-content: end;
     align-items: center;
     width: 50%;
-    /* width: 100%; */
+    height: 180px;
+    @media ${device.laptop} {
+      height: 250px;
+    }
+
     & img {
-      width: 150px;
+      width: 200px;
+      height: 100%;
+
       @media ${device.laptop} {
-        width: 250px;
+        width: 350px;
       }
     }
   `;
   return (
-    <StyledDashboardHeader>
+    <StyledDashboardHeaderTwo>
       <Text>
         <h1>All Best recipies in one place</h1>
         <p>
@@ -77,8 +87,8 @@ function DashboardHeader() {
       <ImageContainer>
         <img src={Img} />
       </ImageContainer>
-    </StyledDashboardHeader>
+    </StyledDashboardHeaderTwo>
   );
 }
 
-export default DashboardHeader;
+export default DashboardHeaderTwo;

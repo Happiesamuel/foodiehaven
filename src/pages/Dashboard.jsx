@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import DashboardHeader from "../features/dashboard/DashboardHeader";
 import DashboardOverall from "../features/dashboard/DashboardOverall";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { PiVanDuotone } from "react-icons/pi";
@@ -10,6 +9,8 @@ import DashboardAreaChart from "../features/dashboard/DashboardAreaChart";
 import { device } from "../mediaSizes";
 import DashboardTrendingRecipe from "../features/dashboard/trendrecipies/DashboardTrendingRecipe";
 
+import DashboardSlide from "../features/dashboard/DashboardSlide";
+
 function Dashboard() {
   const StyledDashboard = styled.div``;
   const Header = styled.header`
@@ -19,6 +20,9 @@ function Dashboard() {
     padding: 0 0px 0 0;
     gap: 20px;
     width: 100%;
+    /* & div {
+      width: 10%;
+    } */
     @media ${device.laptop} {
       flex-direction: row;
       justify-content: space-evenly;
@@ -40,7 +44,7 @@ function Dashboard() {
   return (
     <StyledDashboard>
       <Header>
-        <DashboardHeader />
+        <DashboardSlide />
         <DashboardPieChart />
       </Header>
       <Overall>
