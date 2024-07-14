@@ -8,6 +8,7 @@ import { FaUsers } from "react-icons/fa";
 import DashboardPieChart from "../features/dashboard/DashboardPieChart";
 import DashboardAreaChart from "../features/dashboard/DashboardAreaChart";
 import { device } from "../mediaSizes";
+import DashboardTrendingRecipe from "../features/dashboard/trendrecipies/DashboardTrendingRecipe";
 
 function Dashboard() {
   const StyledDashboard = styled.div``;
@@ -65,6 +66,7 @@ function Dashboard() {
         />
       </Overall>
       <DashboardAreaChart />
+      <DashboardTrendingRecipe />
     </StyledDashboard>
   );
 }

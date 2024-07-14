@@ -26,13 +26,13 @@ function DashboardPieChart() {
   `;
 
   const Colors = [
+    "#a21caf",
     "#0088FE",
     "#00C49F",
-    "#FFBB28",
-    "#FF8042",
-    "#a21caf",
     "#be123c",
+    "#FFBB28",
     "#1e3a8a",
+    "#FF8042",
   ];
 
   const renderColorfulLegendText = (value, entry) => {

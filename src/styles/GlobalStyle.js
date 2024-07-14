@@ -28,11 +28,12 @@ export const GlobalStyle = createGlobalStyle`
         --color-dashboard-header: #fffbeb;
         --color-background-svg: #cc971b;
         --color-icon-svg: #fff;
-
+        --color-image : linear-gradient(to bottom right, #d1a84a, #cc971b);
     }
     &.darkmode{
         --color-foodie-logo:#039235;
         --color-foodie-border:#cc971b;
+        --color-image :linear-gradient(to bottom right, #4ade80, #039235);
 
         --color-applayout: #0f172a;
         --color-sidebar:#1e293b;

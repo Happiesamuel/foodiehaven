@@ -23,7 +23,6 @@ function DashboardAreaChart() {
   const { isDarkmode } = useDarkmode();
   if (IsLoadingPieChart) return <Spinner />;
   const c = piecChartData.map((x) => x.cuisine);
-  console.log(piecChartData);
 
   const categories = [
     "Italian",
