@@ -3,6 +3,7 @@ import useAboutFood from "../../about/useAboutFood";
 import PropTypes from "prop-types";
 import ContainerTrend from "./ContainerTrend";
 import TrendRow from "./TrendRow";
+import { SLICE_MULTIPLE, SLICE_TO } from "../../../helper";
 
 function TrendContainer({ show }) {
   const { aboutData: TrendData, isLoadingAbout: isLoadingTrend } =
@@ -16,9 +17,11 @@ function TrendContainer({ show }) {
       id: data.id,
     };
   });
+  const sliceComments = Math.floor(Math.random() * SLICE_MULTIPLE) + 1;
+
   const filteredRecipies = show
-    ? recipies.slice(10, 30)
-    : recipies.slice(10, 20);
+    ? recipies.slice(sliceComments, sliceComments + SLICE_TO)
+    : recipies.slice(sliceComments, sliceComments + SLICE_TO - 4);
   // console.log(filteredRecipies);
   return (
     <ContainerTrend
