@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import log from "../assets/images/log.png";
+import log from "../assets/images/log.jpg";
 function Auth() {
   const StyledAuth = styled.div`
     display: grid;
