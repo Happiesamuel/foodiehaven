@@ -33,7 +33,7 @@ function Toogle({ id }) {
   }
   return (
     <BsThreeDotsVertical
-      style={{ color: "var(--color-deep-text)" }}
+      style={{ color: "var(--color-deep-text)", cursor: "pointer" }}
       onClick={handleClick}
     />
   );

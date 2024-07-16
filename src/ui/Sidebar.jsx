@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { FaBookmark, FaShoppingCart } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdLibraryBooks } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { useSearch } from "../context/SearchResultContext";
 
@@ -93,10 +93,17 @@ function Sidebar() {
           </NavLink>
         </Li>
         <Li onClick={() => setSearchData("")}>
-          <NavLink to="cart">
+          <NavLink to="/cart">
             <FaShoppingCart />
 
             <div>Cart</div>
+          </NavLink>
+        </Li>
+        <Li onClick={() => setSearchData("")}>
+          <NavLink to="/orders">
+            <MdLibraryBooks />
+
+            <div>Orders</div>
           </NavLink>
         </Li>
         <Li onClick={() => setSearchData("")}>

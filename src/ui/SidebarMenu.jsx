@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { FaBookmark, FaShoppingCart } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdLibraryBooks } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 
 function SidebarMenu() {
@@ -61,6 +61,11 @@ function SidebarMenu() {
         <Li>
           <NavLink to="cart">
             <FaShoppingCart />
+          </NavLink>
+        </Li>
+        <Li>
+          <NavLink to="/orders">
+            <MdLibraryBooks />
           </NavLink>
         </Li>
         <Li>

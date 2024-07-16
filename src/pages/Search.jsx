@@ -40,7 +40,7 @@ function Search() {
       id: result.id,
       image: result.image,
       title: result.title,
-      price: Math.floor(Math.random() * 75) + 1,
+      price: Math.random() * 75 + 1,
       description:
         " Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus veniam commodi, ab maiores, est maxime dolores repellendus vero beataeis qonsequuntur?",
     };

@@ -24,6 +24,7 @@ import { OrderContext } from "./context/OrderContext";
 import FinalOrder from "./pages/FinalOrder";
 import { DarkmodeContext } from "./context/DarkmodeContext";
 import PageNotFound from "./pages/PageNotFound";
+import Orders from "./pages/Orders";
 
 function App() {
   const queryClient = new QueryClient({
@@ -57,6 +58,7 @@ function App() {
                       <Route path="dashboard" element={<Dashboard />} />
                       <Route path="bookmark" element={<Bookmarks />} />
                       <Route path="cart" element={<Cart />} />
+                      <Route path="orders" element={<Orders />} />
                       <Route path="order" element={<Order />} />
                       <Route path="order/:orderId" element={<FinalOrder />} />
 
