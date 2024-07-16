@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import GridDashboardLayout from "../GridDashboardLayout";
-function ContainerTrend({ data, render }) {
+
+function DiscountContainer({ data, render }) {
   return <GridDashboardLayout>{data.map(render)}</GridDashboardLayout>;
 }
-ContainerTrend.propTypes = {
+DiscountContainer.propTypes = {
   data: PropTypes,
   render: PropTypes,
 };
-export default ContainerTrend;
+export default DiscountContainer;

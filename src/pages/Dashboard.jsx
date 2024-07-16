@@ -10,6 +10,7 @@ import { device } from "../mediaSizes";
 import DashboardTrendingRecipe from "../features/dashboard/trendrecipies/DashboardTrendingRecipe";
 
 import DashboardSlide from "../features/dashboard/DashboardSlide";
+import Discount from "../features/dashboard/discount/Discount";
 
 function Dashboard() {
   const StyledDashboard = styled.div``;
@@ -70,6 +71,8 @@ function Dashboard() {
         />
       </Overall>
       <DashboardAreaChart />
+      <Discount />
+
       <DashboardTrendingRecipe />
     </StyledDashboard>
   );

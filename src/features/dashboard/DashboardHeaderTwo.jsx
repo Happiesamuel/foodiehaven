@@ -12,6 +12,7 @@ function DashboardHeaderTwo() {
     border-radius: 15px;
     padding: 0px 20px;
     /* height: 180px; */
+    gap: 15px;
 
     width: 100%;
     @media ${device.laptop} {
