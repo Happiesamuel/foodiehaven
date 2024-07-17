@@ -66,6 +66,7 @@ function BookmarkDetails({ bookmark }) {
     const newRecipe = {
       ...recipe,
       quantity,
+      price: Math.random() * 75 + 1,
       newPrice: recipe.price,
       checkedPrice: false,
     };

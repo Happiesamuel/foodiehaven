@@ -169,7 +169,7 @@ function CartRow({ cart }) {
         <Image src={image} />
         <Title>{title}</Title>
       </CartLabel>
-      <Price>{"$" + price.toFixed(2)}</Price>
+      <Price>{"$" + price.toFixed(2, 0)}</Price>
       <div>
         <CartButtons>
           <button onClick={decreaseCount}>-</button>
