@@ -40,11 +40,8 @@ function DashboardPieChart() {
 
     return <span style={{ color, fontSize: "12px" }}>{value}</span>;
   };
-  const {
-    aboutData: piecChartData,
-    isLoadingAbout: IsLoadingPieChart,
-    error,
-  } = useAboutFood();
+  const { aboutData: piecChartData, isLoadingAbout: IsLoadingPieChart } =
+    useAboutFood();
   if (IsLoadingPieChart) return <Spinner />;
   const piecChart = piecChartData.map((data) => data.mealType).flat();
 
@@ -63,7 +60,6 @@ function DashboardPieChart() {
     .map((data) => {
       return { name: data.at(0), value: data.length * 100 };
     });
-  console.log(error);
   return (
     <StyledDashboardPieChart>
       <ResponsiveContainer width="100%">

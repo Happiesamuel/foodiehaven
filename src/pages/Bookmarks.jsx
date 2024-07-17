@@ -10,7 +10,6 @@ import Undefined from "../ui/Undefined";
 
 function Bookmarks() {
   const { bookmark, error, isLoading } = useBookmark();
-  console.log(error, bookmark);
   if (isLoading) return <Spinner />;
   if (error) return <Error error={error} />;
   if (bookmark === undefined) return <Undefined />;
