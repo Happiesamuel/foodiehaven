@@ -25,8 +25,9 @@ function Home() {
     flex-direction: column;
     justify-content: center;
   `;
-  const { isLoading } = useUser();
-  if (isLoading) return <Preloader />;
+  const { isLoading, user } = useUser();
+  if (isLoading && user !== undefined) return <Preloader />;
+  console.log(user);
   return (
     <StyledHome>
       <Navbar />

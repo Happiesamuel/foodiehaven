@@ -117,6 +117,7 @@ function Navbar() {
   const { setDarkmode, isDarkmode } = useDarkmode();
   const { user, isLoading } = useUser();
   const navigate = useNavigate();
+  console.log(user);
   return (
     <StyledNav
       fixed={bcg}
@@ -192,10 +193,12 @@ function Navbar() {
             type="danger"
             size="medium"
           >
-            {isLoading ? (
+            {isLoading && user !== undefined ? (
               <SpinnerMini />
             ) : user?.role === "authenticated" ? (
               "Continue ordering"
+            ) : user === undefined ? (
+              "Log in"
             ) : (
               "Log in"
             )}
