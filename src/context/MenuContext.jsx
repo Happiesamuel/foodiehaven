@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const Menu = createContext();
 function MenuContext({ children }) {
   const [width, setWidth] = useState(window.innerWidth);
+  console.log(width);
   useEffect(function () {
     function handleWidth() {
       setWidth(window.innerWidth);
