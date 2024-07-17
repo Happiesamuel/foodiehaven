@@ -7,6 +7,7 @@ import Comment from "./Comment";
 import CommentLayout from "./CommentLayout";
 import useCustomers from "./useCustomers";
 import Error from "../../ui/Error";
+import Undefined from "../../ui/Undefined";
 
 function CustomerDetails() {
   const SpinnerContainer = styled.div`
@@ -23,6 +24,7 @@ function CustomerDetails() {
         <Spinner />
       </SpinnerContainer>
     );
+  if (customers === undefined) return <Undefined />;
   if (error) return <Error error={error} />;
 
   const users = customers.map((data) => {

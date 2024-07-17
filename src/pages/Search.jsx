@@ -8,6 +8,7 @@ import { device } from "../mediaSizes";
 import Spinner from "../ui/Spinner";
 import { useSearchParams } from "react-router-dom";
 import EmptyResult from "../features/search/EmptyResult";
+import Undefined from "../ui/Undefined";
 
 function Search() {
   const StyledSearch = styled.div``;
@@ -35,6 +36,7 @@ function Search() {
   const [searchParams] = useSearchParams();
   const searchData = searchParams.get("search");
   if (isSearching) return <Spinner />;
+  if (result === undefined) return <Undefined />;
 
   const newResult = result.results.map((result) => {
     return {

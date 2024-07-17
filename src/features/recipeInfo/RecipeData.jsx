@@ -22,6 +22,7 @@ import { useBookmark } from "../bookmark/useBookmark";
 import { useDeleteBookmark } from "../bookmark/useDeleteBookmark";
 import toast from "react-hot-toast";
 import { useAddBookmark } from "../bookmark/useAddBookmark";
+import Undefined from "../../ui/Undefined";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
@@ -123,6 +124,7 @@ function RecipeData() {
 
   if (isLoading || isLoadingSimilarRecipe || isLoadingBookmark)
     return <Spinner />;
+  if (recipe === undefined) return <Undefined />;
 
   const {
     image,
@@ -150,7 +152,12 @@ function RecipeData() {
   const isBookmarked = bookmark.some((book) => book.bookmarkId === id);
   const summarizedRecipe = summary.replace(/(<([^>]+)>)/gi, "");
   function handleAddBookmark(recipe) {
-    addBookmark(recipe, {
+    const newRecipe = {
+      ...recipe,
+      price: Math.random() * 75 + 1,
+    };
+
+    addBookmark(newRecipe, {
       onSuccess: () => {
         toast.success(`${title} is added to your bookmarks`);
       },

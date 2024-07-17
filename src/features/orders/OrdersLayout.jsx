@@ -4,10 +4,12 @@ import OrdersContainer from "./OrdersContainer";
 import OrdersRow from "./OrdersRow";
 import useGetOrders from "./useGetOrders";
 import Empty from "../../ui/Empty";
+import Undefined from "../../ui/Undefined";
 
 function OrdersLayout() {
   const { isLoading, orders } = useGetOrders();
   if (isLoading) return <Spinner />;
+  if (orders === undefined) return <Undefined />;
   if (orders.length < 1)
     return (
       <Empty

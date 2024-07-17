@@ -4,7 +4,7 @@ import Navbar from "../ui/Navbar";
 import HomeSwipe from "../features/home/HomeSwipe";
 import Toogle from "../ui/Toogle";
 import { useUser } from "../features/authentication/useUser";
-import Spinner from "../ui/Spinner";
+import Preloader from "../ui/Preloader";
 
 function Home() {
   const StyledHome = styled.header`
@@ -26,7 +26,7 @@ function Home() {
     justify-content: center;
   `;
   const { isLoading } = useUser();
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Preloader />;
   return (
     <StyledHome>
       <Navbar />

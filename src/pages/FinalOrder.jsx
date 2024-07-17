@@ -11,6 +11,7 @@ import OrderDetail from "../features/order/OrderDetail";
 import OrderPayments from "../features/order/OrderPayments";
 import { device } from "../mediaSizes";
 import { useDarkmode } from "../context/DarkmodeContext";
+import Undefined from "../ui/Undefined";
 
 function FinalOrder() {
   const OrderNav = styled.div`
@@ -110,6 +111,7 @@ function FinalOrder() {
 
   const { isLoading, order } = useGetOrder();
   const { isDarkmode } = useDarkmode();
+  if (order === undefined) return <Undefined />;
   if (isLoading) return <Spinner />;
   const { orderId, created_at, cart, address, phone } = order.at(0);
   const date = new Date(created_at);

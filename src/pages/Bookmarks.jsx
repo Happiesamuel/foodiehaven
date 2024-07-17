@@ -6,11 +6,14 @@ import Error from "../ui/Error";
 import Spinner from "../ui/Spinner";
 import { GoBookmarkSlash } from "react-icons/go";
 import Empty from "../ui/Empty";
+import Undefined from "../ui/Undefined";
 
 function Bookmarks() {
   const { bookmark, error, isLoading } = useBookmark();
+  console.log(error, bookmark);
   if (isLoading) return <Spinner />;
   if (error) return <Error error={error} />;
+  if (bookmark === undefined) return <Undefined />;
   if (bookmark.length < 1)
     return (
       <Empty

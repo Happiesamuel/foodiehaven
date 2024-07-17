@@ -18,6 +18,7 @@ import { useState } from "react";
 import Spinner from "../../ui/Spinner";
 import styled from "styled-components";
 import Error from "../../ui/Error";
+import Undefined from "../../ui/Undefined";
 
 function AboutDetails() {
   const SpinnerContainer = styled.div`
@@ -36,6 +37,7 @@ function AboutDetails() {
         <Spinner />
       </SpinnerContainer>
     );
+  if (aboutData === undefined) return <Undefined />;
   if (error) return <Error error={error} />;
   const recipies = aboutData.map((data) => {
     return {

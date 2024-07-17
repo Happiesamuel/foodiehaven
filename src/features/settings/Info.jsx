@@ -11,6 +11,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 import HeadSettings from "./HeadSettings";
 import { useDarkmode } from "../../context/DarkmodeContext";
 import { device } from "../../mediaSizes";
+import Undefined from "../../ui/Undefined";
 
 function Info() {
   const StyledInfo = styled.div``;
@@ -102,6 +103,7 @@ function Info() {
   const { updateUser } = useUpdateUser();
   const { isDarkmode } = useDarkmode();
   if (isLoading) return <Spinner />;
+  if (user === undefined) return <Undefined />;
   const { username, email, avatar } =
     user.user_metadata || user.user.user_metadata;
 

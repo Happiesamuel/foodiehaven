@@ -7,10 +7,12 @@ import Empty from "../../ui/Empty";
 import CartContainer from "./CartContainer";
 import CartRow from "./CartRow";
 import { useGetCart } from "./useGetCart";
+import Undefined from "../../ui/Undefined";
 
 function CartDetails() {
   const { cart, isLoading } = useGetCart();
   if (isLoading) return <Spinner />;
+  if (cart === undefined) return <Undefined />;
   if (cart.length < 1)
     return (
       <Empty
