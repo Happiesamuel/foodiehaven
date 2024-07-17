@@ -6,7 +6,7 @@ export function useAddOrder() {
   const { mutate: addOrder, isLoading: isAddingOrder } = useMutation({
     mutationFn: (order) => addOrderApi(order),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["order"] });
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
   });
   return { addOrder, isAddingOrder };

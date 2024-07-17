@@ -59,7 +59,6 @@ function SearchResult({ result }) {
   function handleBookmark({ image, title, description, price, id }) {
     const createBookmark = { image, title, description, price, id };
     const booked = bookmark.map((x) => x.bookmarkId);
-
     if (!booked.includes(id)) {
       setBookmarking(true);
 

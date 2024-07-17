@@ -14,7 +14,8 @@ function CartRow({ cart }) {
   const StyledCartRow = styled.div`
     background: var(--color-sidebar);
 
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
     position: relative;
     width: 100%;
     display: grid;

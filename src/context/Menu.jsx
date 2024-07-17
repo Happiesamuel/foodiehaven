@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import styled, { css } from "styled-components";
+import useClick from "../features/hooks/useClick";
 const MenuContext = createContext();
 function Menu({ children }) {
   const [openMenu, setOpenMenu] = useState(null);
   const [position, setPosition] = useState(null);
-  // console.log(position);
   const handleOpen = setOpenMenu;
   const close = () => setOpenMenu(null);
   return (
@@ -20,15 +20,16 @@ function Menu({ children }) {
 }
 
 function Toogle({ id }) {
-  const { handleOpen, openMenu, setPosition, close } = useContext(MenuContext);
+  const { handleOpen, openMenu, setPosition } = useContext(MenuContext);
   function handleClick(e) {
     e.stopPropagation();
-    // console.log(e);
+    handleOpen(id);
     const rect = e.target.closest("div").getBoundingClientRect();
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
-      y: rect.height + rect.y + 8,
+      y: rect.height + rect.y - 15,
     });
+
     handleOpen(() => (id === openMenu || openMenu === "" ? close() : id));
   }
   return (
@@ -50,7 +51,10 @@ function Button({ children, onClick, disabled }) {
   `;
   function click() {
     onClick?.();
+    close();
   }
+  const { close } = useContext(MenuContext);
+
   return (
     <StyledButton disabled={disabled} onClick={click}>
       {children}
@@ -59,7 +63,6 @@ function Button({ children, onClick, disabled }) {
 }
 function List({ children, id }) {
   const { position } = useContext(MenuContext);
-  // console.log(position);
   const StyledList = styled.div`
     display: flex;
     flex-direction: column;
@@ -78,11 +81,11 @@ function List({ children, id }) {
       `}
   `;
 
-  const { openMenu } = useContext(MenuContext);
-
+  const { openMenu, close } = useContext(MenuContext);
+  const ref = useClick(close);
   if (openMenu !== id) return;
   return createPortal(
-    <StyledList right={position.x} top={position.y}>
+    <StyledList ref={ref} right={position.x} top={position.y}>
       {children}
     </StyledList>,
     document.body

@@ -2,7 +2,6 @@ import supabase from "./supabase";
 
 export async function getOrder(id) {
   const orderId = +id;
-  console.log(orderId);
   const { data, error } = await supabase
     .from("orders")
     .select("*")

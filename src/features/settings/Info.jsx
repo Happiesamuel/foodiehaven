@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import SpinnerMini from "../../ui/SpinnerMini";
 import HeadSettings from "./HeadSettings";
 import { useDarkmode } from "../../context/DarkmodeContext";
+import { device } from "../../mediaSizes";
 
 function Info() {
   const StyledInfo = styled.div``;
@@ -41,7 +42,7 @@ function Info() {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 0 30px;
+    margin: 0 20px;
   `;
   const Avatar = styled.div`
     display: flex;
@@ -52,6 +53,8 @@ function Info() {
       margin: 0 30px;
       display: flex;
       justify-content: space-evenly;
+      align-items: center;
+      gap: 20px;
     }
   `;
   const FileInput = styled.input.attrs({ type: "file" })`
@@ -61,7 +64,7 @@ function Info() {
     &::file-selector-button {
       font: inherit;
       font-weight: 500;
-      padding: 0.8rem 1.2rem;
+      padding: 0.4rem 1rem;
       margin-right: 1.2rem;
       border-radius: 30px;
       border: none;
@@ -83,10 +86,15 @@ function Info() {
     margin-top: 20px;
     & h1 {
       background-color: var(--color-sidebar);
-      font-size: 25px;
+
       color: var(--color-ash-text);
-      padding: 3px 20px;
       border-radius: 10px;
+      padding: 5px 15px;
+      font-size: 18px;
+      @media ${device.tablet} {
+        font-size: 25px;
+        padding: 3px 20px;
+      }
     }
   `;
   const { user, isLoading, status } = useUser();
@@ -131,9 +139,11 @@ function Info() {
             accept="image/*"
             onChange={(e) => setFile(e.target.files[0])}
           />
-          <Button type={!isDarkmode ? "primary" : "secondary"} size="medium">
-            {status === "pending" ? <SpinnerMini /> : "Submit"}
-          </Button>
+          <div>
+            <Button type={!isDarkmode ? "primary" : "secondary"} size="medium">
+              {status === "pending" ? <SpinnerMini /> : "Submit"}
+            </Button>
+          </div>
         </form>
       </Avatar>
     </StyledInfo>

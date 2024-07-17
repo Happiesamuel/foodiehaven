@@ -5,7 +5,7 @@ import Appearance from "../features/settings/Appearance";
 
 function Settings() {
   const StyledSettings = styled.div`
-    padding: 20px 30px;
+    padding: 20px 20px;
   `;
   const Head = styled.h3`
     color: var(--color-deep-text);
@@ -20,10 +20,6 @@ function Settings() {
     padding: 12px 0;
     border-bottom: 1px solid var(--color-line);
     position: relative;
-
-    /* & div {
-      width: 10px;
-    } */
   `;
   const TabButton = styled.div`
     ${({ active }) =>

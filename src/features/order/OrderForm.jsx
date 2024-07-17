@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import OrderFormInput from "./OrderFormInput";
 import { Button } from "../../ui/Button";
 import { useUser } from "../authentication/useUser";
-import { useAdrress } from "../hooks/useGeoLocationApi";
 import { useOrder } from "../../context/OrderContext";
 import { useNavigate } from "react-router-dom";
 import { useGetCart } from "../cart/useGetCart";
@@ -13,7 +14,7 @@ import toast from "react-hot-toast";
 import { useDeleteCart } from "../cart/useDeleteCart";
 import { useDarkmode } from "../../context/DarkmodeContext";
 
-function OrderForm() {
+function OrderForm({ address }) {
   const StyledOrderForm = styled.form`
     margin: 30px 20px;
     justify-content: center;
@@ -21,8 +22,6 @@ function OrderForm() {
     flex-direction: column;
     gap: 30px;
   `;
-  const { address, isLoading: isGettingAddress } = useAdrress();
-
   const { register, formState, handleSubmit, setValue } = useForm({
     defaultValues: {
       address: `${address?.locality}, ${address?.city} ${address?.postcode}, ${address?.countryName}`,
@@ -37,7 +36,7 @@ function OrderForm() {
   const { errors } = formState;
   const { isDarkmode } = useDarkmode();
   const { setOrderId } = useOrder();
-  if (isLoadingCart || isGettingAddress || isLoading) return <Spinner />;
+  if (isLoadingCart || isLoading) return <Spinner />;
   const filteredCartId = cart.map((cart) => cart.cartId);
 
   function onSubmit(data) {
@@ -110,5 +109,7 @@ function OrderForm() {
     </StyledOrderForm>
   );
 }
-
+OrderForm.propTypes = {
+  address: PropTypes,
+};
 export default OrderForm;

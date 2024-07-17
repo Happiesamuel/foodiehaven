@@ -67,19 +67,18 @@ function OrdersRow({ order }) {
           {day < 10 ? `0${day}` : `${day}`} {months.at(month)} {year}{" "}
         </p>
         <Modal>
-          <Menu>
-            <Menu.Toogle id={orderId} />
-            <Menu.List id={orderId}>
-              <Menu.Button onClick={() => navigate(`/order/${orderId}`)}>
-                View order
+          <Menu.Toogle id={orderId} />
+          <Menu.List id={orderId}>
+            <Menu.Button onClick={() => navigate(`/order/${orderId}`)}>
+              View order
+            </Menu.Button>
+            <Modal.Open name="delete order">
+              <Menu.Button disabled={status === "pending"}>
+                Delete order
               </Menu.Button>
-              <Modal.Open name="delete order">
-                <Menu.Button disabled={status === "pending"}>
-                  Delete order
-                </Menu.Button>
-              </Modal.Open>
-            </Menu.List>
-          </Menu>
+            </Modal.Open>
+          </Menu.List>
+
           <Modal.Window opens="delete order">
             <ConfirmDelete
               onDelete={() => deleteOrders(orderId)}

@@ -60,7 +60,6 @@ function CartTotal() {
 
   const navigate = useNavigate();
   if (isLoading) return <Spinner />;
-  console.log(isDarkmode);
   const priceDown = cart
     .map((cart) =>
       cart.checkedPrice === true ? cart.price * cart.quantity : 0

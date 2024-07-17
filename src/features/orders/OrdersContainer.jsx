@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { device } from "../../mediaSizes";
 import styled from "styled-components";
+import Menu from "../../context/Menu";
 
 function OrdersContainer({ data, render }) {
   const StyledOrdersContainer = styled.div`
@@ -14,7 +15,11 @@ function OrdersContainer({ data, render }) {
       margin: 15px 0;
     }
   `;
-  return <StyledOrdersContainer>{data.map(render)}</StyledOrdersContainer>;
+  return (
+    <Menu>
+      <StyledOrdersContainer>{data.map(render)}</StyledOrdersContainer>;
+    </Menu>
+  );
 }
 OrdersContainer.propTypes = {
   data: PropTypes,

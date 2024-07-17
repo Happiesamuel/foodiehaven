@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 import Spinner from "../ui/Spinner";
 import { MdOutlineMyLocation } from "react-icons/md";
 import { FaFileWord } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdAirplane } from "react-icons/io";
 import Line from "../ui/Line";
 import OrderDetail from "../features/order/OrderDetail";
@@ -106,6 +106,7 @@ function FinalOrder() {
       }
     }
   `;
+  const navigate = useNavigate();
 
   const { isLoading, order } = useGetOrder();
   const { isDarkmode } = useDarkmode();
@@ -145,7 +146,11 @@ function FinalOrder() {
             <FaFileWord />
             <div>Invoice </div>
           </Button>
-          <Button type={!isDarkmode ? "primary" : "secondary"} size="medium">
+          <Button
+            type={!isDarkmode ? "primary" : "secondary"}
+            size="medium"
+            onClick={() => navigate("/orders")}
+          >
             <div>Track order </div>
             <MdOutlineMyLocation />
           </Button>

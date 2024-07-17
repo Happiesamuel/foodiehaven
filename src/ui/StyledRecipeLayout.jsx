@@ -24,7 +24,7 @@ const StyledRecipeLayout = styled.div`
       overflow: hidden;
     `};
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.01);
   }
 `;
 export default StyledRecipeLayout;

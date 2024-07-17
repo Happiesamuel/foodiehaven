@@ -90,48 +90,46 @@ function BookmarkDetails({ bookmark }) {
       </TitleImage>
       <Quantity count={quantity} setCount={setQuantity} />
       <Modal>
-        <Menu>
-          <Menu.Toogle id={bookmarkId} />
-          <Menu.List id={bookmarkId}>
-            {isInCart ? (
-              <Menu.Button
-                disabled={status === "pending"}
-                onClick={() => handleAddToCart(bookmark)}
-              >
-                Add to cart
-              </Menu.Button>
-            ) : (
-              <Menu.Button
-                onClick={() =>
-                  deleteCart(bookmarkId, {
-                    onSuccess: () => {
-                      toast.success(
-                        `You've successfully removed ${title} from your cart`
-                      );
-                    },
-                  })
-                }
-              >
-                Remove from cart
-              </Menu.Button>
-            )}
-            <Menu.Button onClick={() => navigate(`/recipe/${bookmarkId}`)}>
-              View recipe
+        <Menu.Toogle id={bookmarkId} />
+        <Menu.List id={bookmarkId}>
+          {isInCart ? (
+            <Menu.Button
+              disabled={status === "pending"}
+              onClick={() => handleAddToCart(bookmark)}
+            >
+              Add to cart
             </Menu.Button>
+          ) : (
+            <Menu.Button
+              onClick={() =>
+                deleteCart(bookmarkId, {
+                  onSuccess: () => {
+                    toast.success(
+                      `You've successfully removed ${title} from your cart`
+                    );
+                  },
+                })
+              }
+            >
+              Remove from cart
+            </Menu.Button>
+          )}
+          <Menu.Button onClick={() => navigate(`/recipe/${bookmarkId}`)}>
+            View recipe
+          </Menu.Button>
 
-            <Modal.Open name="delete">
-              <Menu.Button>Delete recipe</Menu.Button>
-            </Modal.Open>
-          </Menu.List>
+          <Modal.Open name="delete">
+            <Menu.Button>Delete recipe</Menu.Button>
+          </Modal.Open>
+        </Menu.List>
 
-          <Modal.Window opens="delete">
-            <ConfirmDelete
-              onDelete={() => deleteBook(bookmarkId)}
-              title={title}
-              type="bookmarks"
-            />
-          </Modal.Window>
-        </Menu>
+        <Modal.Window opens="delete">
+          <ConfirmDelete
+            onDelete={() => deleteBook(bookmarkId)}
+            title={title}
+            type="bookmarks"
+          />
+        </Modal.Window>
       </Modal>
     </StyledBookmarkDetails>
   );

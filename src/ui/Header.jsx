@@ -3,6 +3,7 @@ import HeaderSearch from "./HeaderSearch";
 import User from "./User";
 import { useMenu } from "../context/MenuContext";
 import Modal from "../context/Modal";
+import { device } from "../mediaSizes";
 
 function Header() {
   const StyledHeader = styled.header`
@@ -12,8 +13,12 @@ function Header() {
     height: 80px;
     display: flex;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 0 10px;
     align-items: center;
+    gap: 10px;
+    @media ${device.tablet} {
+      padding: 0 30px;
+    }
   `;
   const Head = styled.h3`
     font-family: "Akaya Kanadaka", system-ui;

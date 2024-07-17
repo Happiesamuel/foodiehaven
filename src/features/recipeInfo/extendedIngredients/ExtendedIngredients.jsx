@@ -9,7 +9,7 @@ function ExtendedIngredients({ ingredients, i }) {
     padding: 10px 0;
     grid-template-columns: 0.2fr 1.2fr 1.2fr 1fr 1fr 0.5fr;
     gap: 6px;
-    font-size: 14px;
+    font-size: 12px;
     & div {
       color: var(--color-ash-text);
     }

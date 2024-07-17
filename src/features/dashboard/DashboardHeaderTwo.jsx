@@ -10,8 +10,7 @@ function DashboardHeaderTwo() {
     align-items: center;
     background: var(--color-dashboard-header);
     border-radius: 15px;
-    padding: 0px 20px;
-    /* height: 180px; */
+    padding: 10px 20px;
     gap: 15px;
 
     width: 100%;
@@ -34,6 +33,7 @@ function DashboardHeaderTwo() {
     & h1 {
       font-size: 20px;
       padding-bottom: 10px;
+      line-height: 1;
 
       @media ${device.laptop} {
         font-size: 30px;
@@ -52,8 +52,9 @@ function DashboardHeaderTwo() {
   `;
   const ImageContainer = styled.div`
     display: flex;
-    justify-content: end;
-    align-items: center;
+    justify-content: left;
+    /* align-items: center; */
+    margin-right: 10px;
     width: 50%;
     height: 180px;
     @media ${device.laptop} {
@@ -63,6 +64,7 @@ function DashboardHeaderTwo() {
     & img {
       width: 200px;
       height: 100%;
+      scale: 0.8;
 
       @media ${device.laptop} {
         width: 350px;

@@ -10,9 +10,18 @@ import ExtendedIngredients from "./extendedIngredients/ExtendedIngredients";
 import InstructionsContainer from "./instructions/InstructionsContainer";
 import InstructionDetails from "./instructions/InstructionDetails";
 import { LuUsers2 } from "react-icons/lu";
-import { FaHandPointRight, FaRegClock } from "react-icons/fa";
+import {
+  FaBookmark,
+  FaHandPointRight,
+  FaRegBookmark,
+  FaRegClock,
+} from "react-icons/fa";
 import { Button } from "../../ui/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useBookmark } from "../bookmark/useBookmark";
+import { useDeleteBookmark } from "../bookmark/useDeleteBookmark";
+import toast from "react-hot-toast";
+import { useAddBookmark } from "../bookmark/useAddBookmark";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
@@ -73,11 +82,12 @@ function RecipeData() {
     background: linear-gradient(to bottom right, #4ade80, #039235);
   `;
   const Summary = styled.div`
-    font-size: 18px;
+    font-size: 15px;
     font-style: italic;
     font-family: "Akaya Kanadaka", system-ui;
     padding: 10px;
     @media (${device.laptop}) {
+      font-size: 18px;
       padding: 20px;
     }
     color: var(--color-ash-text);
@@ -93,6 +103,7 @@ function RecipeData() {
   const Footer = styled.footer`
     background: linear-gradient(to bottom right, #4ade80, #039235);
     padding: 15px;
+    margin-top: 15px;
     text-align: center;
     color: #fff;
     font-weight: bold;
@@ -103,10 +114,15 @@ function RecipeData() {
       }
     }
   `;
+  const navigate = useNavigate();
   const { recipe, isLoading } = useCheckInRecipe();
   const { isLoadingSimilarRecipe, similarRecipe } = useCheckInSimilarRecipe();
+  const { bookmark, isLoading: isLoadingBookmark } = useBookmark();
+  const { deleteBookmark } = useDeleteBookmark();
+  const { addBookmark } = useAddBookmark();
 
-  if (isLoading || isLoadingSimilarRecipe) return <Spinner />;
+  if (isLoading || isLoadingSimilarRecipe || isLoadingBookmark)
+    return <Spinner />;
 
   const {
     image,
@@ -118,6 +134,7 @@ function RecipeData() {
     servings,
     sourceUrl,
     summary,
+    id,
   } = recipe;
 
   const titleSplit = title.split(" ");
@@ -130,7 +147,27 @@ function RecipeData() {
       .join(" "),
   ]);
 
+  const isBookmarked = bookmark.some((book) => book.bookmarkId === id);
   const summarizedRecipe = summary.replace(/(<([^>]+)>)/gi, "");
+  function handleAddBookmark(recipe) {
+    addBookmark(recipe, {
+      onSuccess: () => {
+        toast.success(`${title} is added to your bookmarks`);
+      },
+      onError: (err) => {
+        toast.error(err.message);
+      },
+    });
+  }
+
+  function handleDeleteBookmark(id) {
+    deleteBookmark(id, {
+      onSuccess: () => {
+        toast.success(`${title} is removed from your bookmarks`);
+        navigate(-1, { replace: true });
+      },
+    });
+  }
   return (
     <StyledRecipeData>
       <Image src={image} />
@@ -152,6 +189,20 @@ function RecipeData() {
         <Servings>
           <FaRegClock />
           <span>{readyInMinutes + "mins"}</span>
+        </Servings>
+
+        <Servings>
+          {isBookmarked ? (
+            <FaBookmark
+              style={{ cursor: "pointer" }}
+              onClick={() => handleDeleteBookmark(id)}
+            />
+          ) : (
+            <FaRegBookmark
+              style={{ cursor: "pointer" }}
+              onClick={() => handleAddBookmark(recipe)}
+            />
+          )}
         </Servings>
       </Details>
       <div>
@@ -180,15 +231,17 @@ function RecipeData() {
         />
       </div>
 
-      <div>
-        <SimilarContainer
-          title={title}
-          data={similarRecipe}
-          render={(result) => (
-            <SimilarDetails result={result} key={result.id} />
-          )}
-        />
-      </div>
+      {similarRecipe.length !== 0 && (
+        <div>
+          <SimilarContainer
+            title={title}
+            data={similarRecipe}
+            render={(result) => (
+              <SimilarDetails result={result} key={result.id} />
+            )}
+          />
+        </div>
+      )}
 
       <Footer>
         <span>

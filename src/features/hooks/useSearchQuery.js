@@ -5,7 +5,6 @@ import { useSearchParams } from "react-router-dom";
 // import { useSearchParams } from "react-router-dom";
 
 export function useSearchQuery() {
-  // const { searchData } = useSearch();
   const [searchParams] = useSearchParams();
   const searchData = searchParams.get("search");
   const {
@@ -16,6 +15,5 @@ export function useSearchQuery() {
     queryKey: ["search", searchData],
     queryFn: () => getSearchRecipe(searchData),
   });
-  console.log(result);
   return { isSearching, result, error };
 }

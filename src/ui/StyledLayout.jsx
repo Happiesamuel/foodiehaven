@@ -5,14 +5,19 @@ const StyledLayout = styled.div`
   display: grid;
   grid-template-columns: auto;
   justify-content: space-evenly;
-  row-gap: 80px;
-  column-gap: 80px;
+  row-gap: 15px;
+  column-gap: 20px;
   margin-top: 80px;
   ${({ type }) =>
-    type === "customer" &&
-    css`
-      margin-top: 0;
-    `}
+    type === "customer"
+      ? css`
+          margin-top: 0;
+        `
+      : css`
+          row-gap: 50px;
+          column-gap: 20px;
+          margin-top: 50px;
+        `}
 
   @media ${device.tablet} {
     grid-template-columns: auto auto;
@@ -20,6 +25,7 @@ const StyledLayout = styled.div`
   @media ${device.laptop} {
     margin-top: 0px;
     column-gap: 100px;
+    row-gap: 50px;
     grid-template-columns: auto auto auto;
   }
 `;

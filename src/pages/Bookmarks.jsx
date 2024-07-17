@@ -19,7 +19,7 @@ function Bookmarks() {
         message="You can start by searching a recipie :)"
       />
     );
-  // console.log(bookmark);
+
   return (
     <div>
       <Modal>

@@ -7,16 +7,17 @@ import SearchResult from "../features/search/SearchResult";
 import { device } from "../mediaSizes";
 import Spinner from "../ui/Spinner";
 import { useSearchParams } from "react-router-dom";
+import EmptyResult from "../features/search/EmptyResult";
 
 function Search() {
-  const StyledSearch = styled.div`
-    /* padding: 0 50px; */
-  `;
+  const StyledSearch = styled.div``;
   const ResultLength = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-bottom: 80px;
+
     @media ${device.laptop} {
-      padding-bottom: 100px;
+      margin-bottom: 100px;
     }
     & p {
       font-style: italic;
@@ -55,13 +56,17 @@ function Search() {
           <span>{newResult.length}</span> results
         </p>
       </ResultLength>
-      <ContainerSearch
-        data={newResult}
-        render={(result) => <SearchResult result={result} key={result.id} />}
-      >
-        seasch
-        {result.results.map((x) => x.title)}
-      </ContainerSearch>
+      {result.results.length === 0 ? (
+        <EmptyResult query={searchData} />
+      ) : (
+        <ContainerSearch
+          data={newResult}
+          render={(result) => <SearchResult result={result} key={result.id} />}
+        >
+          seasch
+          {result.results.map((x) => x.title)}
+        </ContainerSearch>
+      )}
     </StyledSearch>
   );
 }
