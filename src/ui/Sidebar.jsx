@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LogoImg from "../assets/images/food2.png";
 import { FaBookmark, FaShoppingCart } from "react-icons/fa";
@@ -71,11 +71,12 @@ function Sidebar() {
     }
   `;
   const { setSearchData } = useSearch();
+  const navigate = useNavigate();
   return (
     <StyledSidebar>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <HeadWrap>
-          <img src={LogoImg} />
+        <HeadWrap onClick={() => navigate("/dashboard")}>
+          <img src={LogoImg} onClick={() => navigate("/dashboard")} />
         </HeadWrap>
       </div>
       <Ul>

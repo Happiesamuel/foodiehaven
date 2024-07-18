@@ -162,17 +162,22 @@ function Navbar() {
         </li>
         <li>
           <Link
+            onClick={() => show()}
+            show={isShowToogle}
+            darkmode={isDarkmode}
+            to="/events"
+          >
+            Events
+          </Link>
+        </li>
+        <li>
+          <Link
             show={isShowToogle}
             darkmode={isDarkmode}
             onClick={() => show()}
             to="/contact"
           >
             Contact
-          </Link>
-        </li>
-        <li>
-          <Link show={isShowToogle} darkmode={isDarkmode} to="/events">
-            Events
           </Link>
         </li>
       </PageNav>

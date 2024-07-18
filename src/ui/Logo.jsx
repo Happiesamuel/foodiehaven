@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { device } from "../mediaSizes";
+import { useNavigate } from "react-router-dom";
 function Logo({ img }) {
   const StyledImg = styled.img`
     width: 40px;
@@ -9,7 +10,8 @@ function Logo({ img }) {
     }
     cursor: pointer;
   `;
-  return <StyledImg src={img} />;
+  const navigate = useNavigate();
+  return <StyledImg onClick={() => navigate("/")} src={img} />;
 }
 
 Logo.propTypes = {

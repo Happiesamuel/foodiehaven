@@ -14,6 +14,7 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Customer = lazy(() => import("./pages/Customer"));
+const Event = lazy(() => import("./pages/Event"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Login = lazy(() => import("./features/authLayout/Login"));
 const Signup = lazy(() => import("./features/authLayout/Signup"));
@@ -53,6 +54,7 @@ function App() {
                       <Route path="about" element={<About />} />
                       <Route path="customer" element={<Customer />} />
                       <Route path="contact" element={<Contact />} />
+                      <Route path="events" element={<Event />} />
 
                       <Route index path="*" element={<PageNotFound />} />
 
