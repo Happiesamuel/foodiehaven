@@ -9,6 +9,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
   const StyledForm = styled.form`
@@ -16,6 +17,12 @@ function SignupForm() {
     flex-direction: column;
     gap: 30px;
   `;
+  const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  `;
+  const navigate = useNavigate();
 
   const { register, getValues, formState, handleSubmit } = useForm();
   const { errors } = formState;
@@ -24,6 +31,10 @@ function SignupForm() {
     signup(data);
   }
   const { username, email, password, confirmPassword } = errors;
+  useEffect(function () {
+    document.title = "Sign up";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   useEffect(() => {
     AOS.init();
   }, []);
@@ -101,10 +112,19 @@ function SignupForm() {
           disabled={isSignup}
         />
       </div>
-
-      <Button disabled={isSignup} type="primary" size="medium">
-        {status === "pending" ? <SpinnerMini /> : "Sign up"}
-      </Button>
+      <ButtonContainer>
+        <Button
+          disabled={status === "pending"}
+          onClick={() => navigate("/login")}
+          type="danger"
+          size="medium"
+        >
+          Back
+        </Button>
+        <Button disabled={isSignup} type="primary" size="medium">
+          {status === "pending" ? <SpinnerMini /> : "Sign up"}
+        </Button>
+      </ButtonContainer>
     </StyledForm>
   );
 }

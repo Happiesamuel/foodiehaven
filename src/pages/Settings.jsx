@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Info from "../features/settings/Info";
 import Appearance from "../features/settings/Appearance";
@@ -51,6 +51,10 @@ function Settings() {
     padding: 35px 0;
   `;
   const [tabId, setTabId] = useState(1);
+  useEffect(function () {
+    document.title = "Profile Settings";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   const tabs = [
     {
       name: "Personal info",

@@ -13,6 +13,7 @@ import { device } from "../mediaSizes";
 import { useDarkmode } from "../context/DarkmodeContext";
 import Undefined from "../ui/Undefined";
 import Error from "../ui/Error";
+import { useEffect } from "react";
 
 function FinalOrder() {
   const OrderNav = styled.div`
@@ -121,6 +122,15 @@ function FinalOrder() {
 
   const { isLoading, order, error } = useGetOrder();
   const { isDarkmode } = useDarkmode();
+  useEffect(
+    function () {
+      document.title = isLoading
+        ? "Foodie Haven"
+        : `Order #${order.at(0).orderId}`;
+      return () => (document.title = "Foodie Haven");
+    },
+    [order, isLoading]
+  );
   if (isLoading) return <Spinner />;
   if (error) return <Error error={error} />;
   if (!order.length) return <Notfound>Order not found</Notfound>;

@@ -16,7 +16,6 @@ export async function getRecipeData(id) {
   return data;
 }
 export async function getSimilarRecipeData(id) {
-  console.log(id);
   const res = await fetch(`${BASE_URL}/${id}/similar?apiKey=${API_KEY}`);
   if (!res.ok) throw new Error("Unable to get recipe details");
   const data = await res.json();

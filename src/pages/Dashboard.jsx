@@ -11,6 +11,7 @@ import DashboardTrendingRecipe from "../features/dashboard/trendrecipies/Dashboa
 
 import DashboardSlide from "../features/dashboard/DashboardSlide";
 import Discount from "../features/dashboard/discount/Discount";
+import { useEffect } from "react";
 
 function Dashboard() {
   const StyledDashboard = styled.div``;
@@ -41,7 +42,10 @@ function Dashboard() {
       gap: 50px;
     }
   `;
-
+  useEffect(function () {
+    document.title = "Dashboard";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   return (
     <StyledDashboard>
       <Header>

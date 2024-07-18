@@ -4,6 +4,7 @@ import CartTotal from "../features/cart/CartTotal";
 import CartCoupon from "../features/cart/CartCoupon";
 import { device } from "../mediaSizes";
 import Line from "../ui/Line";
+import { useEffect } from "react";
 
 function Cart() {
   const StyledCart = styled.div`
@@ -38,6 +39,10 @@ function Cart() {
       flex-direction: row;
     }
   `;
+  useEffect(function () {
+    document.title = "Cart";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   return (
     <StyledCart>
       <Head>

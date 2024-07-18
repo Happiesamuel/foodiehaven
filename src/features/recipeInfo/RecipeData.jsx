@@ -23,6 +23,7 @@ import { useDeleteBookmark } from "../bookmark/useDeleteBookmark";
 import toast from "react-hot-toast";
 import { useAddBookmark } from "../bookmark/useAddBookmark";
 import Undefined from "../../ui/Undefined";
+import { useEffect } from "react";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
@@ -121,6 +122,16 @@ function RecipeData() {
   const { bookmark, isLoading: isLoadingBookmark } = useBookmark();
   const { deleteBookmark } = useDeleteBookmark();
   const { addBookmark } = useAddBookmark();
+  useEffect(
+    function () {
+      document.title =
+        isLoading || isLoadingSimilarRecipe || isLoadingBookmark
+          ? "Foodie Haven"
+          : `${recipe.title}`;
+      return () => (document.title = "Foodie Haven");
+    },
+    [recipe, isLoading, isLoadingSimilarRecipe, isLoadingBookmark]
+  );
 
   if (isLoading || isLoadingSimilarRecipe || isLoadingBookmark)
     return <Spinner />;

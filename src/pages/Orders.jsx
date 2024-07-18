@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { device } from "../mediaSizes";
 import Line from "../ui/Line";
 import OrdersLayout from "../features/orders/OrdersLayout";
+import { useEffect } from "react";
 
 function Orders() {
   const StyledOrders = styled.div`
@@ -25,7 +26,10 @@ function Orders() {
       -webkit-text-fill-color: transparent;
     }
   `;
-
+  useEffect(function () {
+    document.title = "Track Your Orders";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   return (
     <StyledOrders>
       <Head>

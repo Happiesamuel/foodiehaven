@@ -8,6 +8,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const StyledForm = styled.form`
@@ -24,6 +25,12 @@ function LoginForm() {
       color: #fff;
     }
   `;
+  const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  `;
+  const navigate = useNavigate();
   const [email, setEmail] = useState("sam@test.com");
   const [password, setPassword] = useState("123456789");
   const { status, login } = useLogin();
@@ -33,6 +40,10 @@ function LoginForm() {
     const data = { password, email };
     login(data);
   }
+  useEffect(function () {
+    document.title = "Login";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   useEffect(() => {
     AOS.init();
   }, []);
@@ -61,9 +72,19 @@ function LoginForm() {
         <p>Forgotten password?</p>
       </PasswordCheck>
 
-      <Button disabled={status === "pending"} type="primary" size="medium">
-        {status === "pending" ? <SpinnerMini /> : "Login"}
-      </Button>
+      <ButtonContainer>
+        <Button
+          disabled={status === "pending"}
+          onClick={() => navigate("/")}
+          type="danger"
+          size="medium"
+        >
+          Back
+        </Button>
+        <Button disabled={status === "pending"} type="primary" size="medium">
+          {status === "pending" ? <SpinnerMini /> : "Login"}
+        </Button>
+      </ButtonContainer>
     </StyledForm>
   );
 }

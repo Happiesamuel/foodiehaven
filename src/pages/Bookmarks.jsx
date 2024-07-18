@@ -7,9 +7,14 @@ import Spinner from "../ui/Spinner";
 import { GoBookmarkSlash } from "react-icons/go";
 import Empty from "../ui/Empty";
 import Undefined from "../ui/Undefined";
+import { useEffect } from "react";
 
 function Bookmarks() {
   const { bookmark, error, isLoading } = useBookmark();
+  useEffect(function () {
+    document.title = "Bookmark";
+    return () => (document.title = "Foodie Haven");
+  }, []);
   if (isLoading) return <Spinner />;
   if (error) return <Error error={error} />;
   if (bookmark === undefined) return <Undefined />;
