@@ -12,6 +12,7 @@ import OrderPayments from "../features/order/OrderPayments";
 import { device } from "../mediaSizes";
 import { useDarkmode } from "../context/DarkmodeContext";
 import Undefined from "../ui/Undefined";
+import Error from "../ui/Error";
 
 function FinalOrder() {
   const OrderNav = styled.div`
@@ -107,12 +108,24 @@ function FinalOrder() {
       }
     }
   `;
+  const Notfound = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: #979595;
+    font-weight: bold;
+    font-size: 18px;
+  `;
   const navigate = useNavigate();
 
-  const { isLoading, order } = useGetOrder();
+  const { isLoading, order, error } = useGetOrder();
   const { isDarkmode } = useDarkmode();
-  if (order === undefined) return <Undefined />;
   if (isLoading) return <Spinner />;
+  if (error) return <Error error={error} />;
+  if (!order.length) return <Notfound>Order not found</Notfound>;
+
+  if (order === undefined) return <Undefined />;
   const { orderId, created_at, cart, address, phone } = order.at(0);
   const date = new Date(created_at);
   const months = [

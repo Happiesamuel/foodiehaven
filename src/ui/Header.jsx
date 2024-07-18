@@ -4,6 +4,7 @@ import User from "./User";
 import { useMenu } from "../context/MenuContext";
 import Modal from "../context/Modal";
 import { device } from "../mediaSizes";
+import ProtectedRoute from "./ProtectedRoute";
 
 function Header() {
   const StyledHeader = styled.header`
@@ -34,7 +35,12 @@ function Header() {
       <Modal>
         <Head>Foodie Haven</Head>
         <HeaderSearch />
-        {width > 768 && <User />}
+        {width > 768 && (
+          <ProtectedRoute>
+            {" "}
+            <User />
+          </ProtectedRoute>
+        )}
       </Modal>
     </StyledHeader>
   );

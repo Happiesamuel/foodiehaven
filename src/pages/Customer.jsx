@@ -24,9 +24,9 @@ function Customer() {
   }, []);
 
   return (
-    <StyledCustomer data-aos="fade-up">
+    <StyledCustomer>
       <Navbar />
-      <Container>
+      <Container data-aos="fade-up">
         <P>our customer says</P>
         <Head>Customers says</Head>
         <P type="black">

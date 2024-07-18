@@ -24,7 +24,7 @@ function SimilarDetails({ result }) {
       color: var(--color-ash-text);
     }
     & a {
-      color: var(--color-deep-text);
+      color: #fff;
     }
   `;
   const Title = styled.div`

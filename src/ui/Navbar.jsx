@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Logo from "./Logo";
-import LogoImg from "../assets/images/logos.png";
+import LogoImg from "../assets/images/food2.png";
 import { Button } from "./Button";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { device } from "../mediaSizes";
@@ -25,12 +25,12 @@ function Navbar() {
       padding: 15px 50px;
     }
     @media ${device.laptop} {
-      grid-template-columns: 1.6fr 0.8fr 0.7fr;
+      grid-template-columns: 1.3fr 0.3fr 0.7fr;
       padding: 15px 50px;
     }
     @media ${device.desktop} {
-      grid-template-columns: 1.5fr 1fr 0.6fr;
-      padding: 15px 100px;
+      grid-template-columns: 1fr 0.5fr 0.4fr;
+      padding: 20px 100px;
     }
 
     ${({ fixed }) =>

@@ -6,6 +6,7 @@ import SpinnerMini from "./SpinnerMini";
 import Modal from "../context/Modal";
 import ConfirmDelete from "./ConfirmDelete";
 import { useLogout } from "../features/authentication/useLogout";
+
 function User() {
   const StyledUser = styled.div`
     display: flex;
@@ -25,8 +26,10 @@ function User() {
   `;
   const { user, isLoading } = useUser();
   const { logout } = useLogout();
+
   if (isLoading) return <SpinnerMini />;
-  const { username, avatar } = user.user_metadata || user.user.user_metadata;
+  if (!user) return;
+  const { username, avatar } = user?.user_metadata || user.user.user_metadata;
   return (
     <StyledUser>
       <img src={!avatar ? img : avatar} />

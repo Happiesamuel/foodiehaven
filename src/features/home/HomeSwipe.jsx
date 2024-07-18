@@ -8,7 +8,7 @@ import HomeContent3 from "./HomeContent3";
 
 function HomeSwipe() {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -17,26 +17,6 @@ function HomeSwipe() {
     rtl: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    appendDots: (dots) => (
-      <div
-        style={{
-          backgroundColor: "transparent",
-          padding: "0px",
-        }}
-      >
-        <ul style={{ margin: "0px" }}> {dots} </ul>
-      </div>
-    ),
-    customPaging: () => (
-      <div
-        style={{
-          width: "30px",
-          color: "white",
-        }}
-      >
-        .
-      </div>
-    ),
   };
 
   return (

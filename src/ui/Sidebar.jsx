@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
+import LogoImg from "../assets/images/food2.png";
 import { FaBookmark, FaShoppingCart } from "react-icons/fa";
 import { MdDashboard, MdLibraryBooks } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { useSearch } from "../context/SearchResultContext";
+import { device } from "../mediaSizes";
 
 function Sidebar() {
   const StyledSidebar = styled.aside`
@@ -49,14 +50,7 @@ function Sidebar() {
       }
     }
   `;
-  const Head = styled.h3`
-    font-family: "Akaya Kanadaka", system-ui;
-    font-weight: 900;
-    font-style: normal;
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-  `;
+
   const HeadWrap = styled.div`
     border-radius: 100%;
     background: var(--color-foodie-logo);
@@ -70,13 +64,18 @@ function Sidebar() {
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
+    & img {
+      @media ${device.tablet} {
+        width: 80px;
+      }
+    }
   `;
   const { setSearchData } = useSearch();
   return (
     <StyledSidebar>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <HeadWrap>
-          <Head>Foodie Haven</Head>
+          <img src={LogoImg} />
         </HeadWrap>
       </div>
       <Ul>

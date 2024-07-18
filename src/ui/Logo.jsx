@@ -5,7 +5,7 @@ function Logo({ img }) {
   const StyledImg = styled.img`
     width: 40px;
     @media ${device.tablet} {
-      width: 60px;
+      width: 50px;
     }
     cursor: pointer;
   `;

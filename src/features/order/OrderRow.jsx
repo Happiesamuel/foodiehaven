@@ -78,7 +78,7 @@ function OrderRow({ cart }) {
     width: 80px;
     height: 60px;
     background: linear-gradient(to bottom right, #d1a84a, #039235);
-    border-radius: 10px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,8 +88,8 @@ function OrderRow({ cart }) {
     }
 
     & img {
-      width: 80%;
-      height: 80%;
+      width: 90%;
+      height: 90%;
       border-radius: 10px;
     }
   `;

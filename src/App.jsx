@@ -26,6 +26,8 @@ import PageNotFound from "./pages/PageNotFound";
 import Orders from "./pages/Orders";
 import { useEffect, useState } from "react";
 import Preloader from "./ui/Preloader";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import Contact from "./pages/Contact";
 
 function App() {
   const queryClient = new QueryClient({
@@ -55,13 +57,21 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="about" element={<About />} />
                     <Route path="customer" element={<Customer />} />
+                    <Route path="contact" element={<Contact />} />
+
                     <Route index path="*" element={<PageNotFound />} />
 
                     <Route element={<Auth />}>
                       <Route path="login" element={<Login />} />
                       <Route path="signup" element={<Signup />} />
                     </Route>
-                    <Route element={<AppLayout />}>
+                    <Route
+                      element={
+                        <ProtectedRoute>
+                          <AppLayout />
+                        </ProtectedRoute>
+                      }
+                    >
                       <Route path="dashboard" element={<Dashboard />} />
                       <Route path="bookmark" element={<Bookmarks />} />
                       <Route path="cart" element={<Cart />} />
