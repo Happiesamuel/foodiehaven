@@ -8,7 +8,9 @@ function useSignup() {
   const { mutate: signup, status } = useMutation({
     mutationFn: (data) => SignupApi(data),
     onSuccess: () => {
-      toast.success("You have successfully created an account");
+      toast.success(
+        "Email confirmation sent to email...Check your email to process your signup!"
+      );
       navigate("/login", { replace: true });
     },
     onError: () => {

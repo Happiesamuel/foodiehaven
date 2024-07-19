@@ -18,6 +18,12 @@ const Event = lazy(() => import("./pages/Event"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Login = lazy(() => import("./features/authLayout/Login"));
 const Signup = lazy(() => import("./features/authLayout/Signup"));
+const ForgottenPasswordEmail = lazy(() =>
+  import("./features/authLayout/ForgottenPasswordEmail")
+);
+const PasswordUpdate = lazy(() =>
+  import("./features/authLayout/PasswordUpdate")
+);
 const Auth = lazy(() => import("./pages/Auth"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const AppLayout = lazy(() => import("./ui/AppLayout"));
@@ -61,6 +67,14 @@ function App() {
                       <Route element={<Auth />}>
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
+                        <Route
+                          path="passwordrecovery"
+                          element={<ForgottenPasswordEmail />}
+                        />
+                        <Route
+                          path="passwordupdate"
+                          element={<PasswordUpdate />}
+                        />
                       </Route>
                       <Route
                         element={

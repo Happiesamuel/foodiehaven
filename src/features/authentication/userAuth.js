@@ -32,6 +32,13 @@ export async function SignupApi(signupData) {
   return data;
 }
 
+export async function emailRecovery(obj) {
+  const { email } = obj;
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 export async function updateUser(userObj) {
   let userData;
   if (Object.keys(userObj).at(0) !== "avatar") {
@@ -39,10 +46,12 @@ export async function updateUser(userObj) {
       userData = { data: { username: Object.values(userObj).at(0) } };
     if (Object.keys(userObj).at(0) === "email")
       userData = { email: Object.values(userObj).at(0) };
+    if (Object.keys(userObj).length >= 2) userData = userObj;
     if (Object.keys(userObj).at(0) === "password")
       userData = { password: Object.values(userObj).at(0) };
     const { data, error } = await supabase.auth.updateUser(userData);
     if (error) throw new Error(error.message);
+
     return data?.user;
   } else {
     const fileName = `avatar-${Math.random()}`;

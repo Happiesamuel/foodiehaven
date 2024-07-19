@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Input from "./Input";
 import { Button } from "../../ui/Button";
-import { useState } from "react";
 import useLogin from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 
@@ -9,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function LoginForm() {
   const StyledForm = styled.form`
@@ -31,13 +31,11 @@ function LoginForm() {
     justify-content: space-evenly;
   `;
   const navigate = useNavigate();
-  const [email, setEmail] = useState("sam@test.com");
-  const [password, setPassword] = useState("123456789");
+  const { register, formState, handleSubmit } = useForm();
+  const { errors } = formState;
+  const { email, password } = errors;
   const { status, login } = useLogin();
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!password || !email) return;
-    const data = { password, email };
+  function onSubmit(data) {
     login(data);
   }
   useEffect(function () {
@@ -47,29 +45,50 @@ function LoginForm() {
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
-    <StyledForm onSubmit={handleSubmit} data-aos="zoom-in">
+    <StyledForm onSubmit={handleSubmit(onSubmit)} data-aos="zoom-in">
       <div>
         <Input
           label="Email"
           type="email"
-          value={email}
+          error={email?.message}
           disabled={status === "pending"}
-          onChange={(e) => setEmail(e.target.value)}
+          input={{
+            ...register("email", {
+              required: "You haven't entered your email!",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Please provide a valid email address",
+              },
+            }),
+          }}
         />
       </div>
       <div>
         <Input
-          onChange={(e) => setPassword(e.target.value)}
           label="Password"
           type="password"
-          value={password}
-          disabled={status === "pending"}
+          error={password?.message}
+          input={{
+            ...register("password", {
+              min: {
+                value: 6,
+                message: "Password needs a minimum of 6 characters",
+              },
+              required: "You haven't entered your password!",
+            }),
+          }}
         />
       </div>
       <PasswordCheck>
         <p></p>
-        <p>Forgotten password?</p>
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/passwordrecovery")}
+        >
+          Forgotten password?
+        </p>
       </PasswordCheck>
 
       <ButtonContainer>
