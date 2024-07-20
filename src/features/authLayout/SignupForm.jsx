@@ -122,7 +122,7 @@ function SignupForm() {
           Back
         </Button>
         <Button disabled={isSignup} type="primary" size="medium">
-          {status === "pending" ? <SpinnerMini /> : "Sign up"}
+          {status === "pending" ? <SpinnerMini color="#cc971b" /> : "Sign up"}
         </Button>
       </ButtonContainer>
     </StyledForm>

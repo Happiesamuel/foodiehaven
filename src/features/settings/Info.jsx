@@ -118,7 +118,6 @@ function Info() {
       },
     });
   }
-
   return (
     <StyledInfo>
       <ImageProfile>

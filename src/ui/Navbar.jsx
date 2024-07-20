@@ -21,6 +21,7 @@ function Navbar() {
     text-transform: uppercase;
     padding: 15px 10px;
     position: relative;
+    z-index: 1000;
     @media ${device.tablet} {
       padding: 15px 50px;
     }
@@ -60,7 +61,7 @@ function Navbar() {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 10000;
 
     visibility: hidden;
     opacity: 0;
@@ -117,7 +118,6 @@ function Navbar() {
   const { setDarkmode, isDarkmode } = useDarkmode();
   const { user, isLoading } = useUser();
   const navigate = useNavigate();
-  console.log(user);
   return (
     <StyledNav
       fixed={bcg}

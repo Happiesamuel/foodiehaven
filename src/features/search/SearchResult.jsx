@@ -10,15 +10,24 @@ import { useBookmark } from "../bookmark/useBookmark";
 import { useState } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
 function SearchResult({ result }) {
-  const Image = styled.img`
-    width: 130px;
-    height: 130px;
-    border-radius: 100%;
+  const ImageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100px;
     position: absolute;
-    left: 25%;
+    width: 100%;
     top: -50px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    & img {
+      width: 100px;
+      border-radius: 100%;
+      height: 100%;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
   `;
+
   const Context = styled.div`
     padding: 100px 10px 20px 10px;
     display: flex;
@@ -74,7 +83,9 @@ function SearchResult({ result }) {
   }
   return (
     <StyledRecipeLayout>
-      <Image src={image} />
+      <ImageContainer>
+        <img src={image} />
+      </ImageContainer>
       <Context>
         <Title>{title}</Title>
         <Description>{description}</Description>
@@ -94,7 +105,7 @@ function SearchResult({ result }) {
           }
         >
           {isLoading ? (
-            <SpinnerMini />
+            <SpinnerMini color="#04b75b" />
           ) : !bookmarking ? (
             " Bookmark"
           ) : (

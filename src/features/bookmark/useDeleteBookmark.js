@@ -4,7 +4,11 @@ import toast from "react-hot-toast";
 
 export function useDeleteBookmark() {
   const queryClient = useQueryClient();
-  const { mutate: deleteBookmark, isLoading: isDeleting } = useMutation({
+  const {
+    mutate: deleteBookmark,
+    isLoading: isDeleting,
+    status,
+  } = useMutation({
     mutationFn: (id) => deleteBookmarkApi(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["bookmark"] });
@@ -13,5 +17,5 @@ export function useDeleteBookmark() {
       toast.error(err.message);
     },
   });
-  return { deleteBookmark, isDeleting };
+  return { deleteBookmark, isDeleting, status };
 }

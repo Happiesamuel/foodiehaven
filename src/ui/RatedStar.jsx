@@ -9,7 +9,7 @@ function RatedStar({ rating }) {
     padding: 5px;
     & span {
       color: var(--color-ash-text);
-
+      font-size: 12px;
       padding-left: 5px;
       font-weight: 500;
     }

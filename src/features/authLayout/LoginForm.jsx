@@ -16,15 +16,15 @@ function LoginForm() {
     flex-direction: column;
     gap: 30px;
   `;
-  const PasswordCheck = styled.div`
-    display: flex;
-    justify-content: space-between;
-    & p {
-      font-style: italic;
-      font-size: 12px;
-      color: #fff;
-    }
-  `;
+  // const PasswordCheck = styled.div`
+  //   display: flex;
+  //   justify-content: space-between;
+  //   & p {
+  //     font-style: italic;
+  //     font-size: 12px;
+  //     color: #fff;
+  //   }
+  // `;
   const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
@@ -81,7 +81,7 @@ function LoginForm() {
           }}
         />
       </div>
-      <PasswordCheck>
+      {/* <PasswordCheck>
         <p></p>
         <p
           style={{ cursor: "pointer" }}
@@ -89,7 +89,7 @@ function LoginForm() {
         >
           Forgotten password?
         </p>
-      </PasswordCheck>
+      </PasswordCheck> */}
 
       <ButtonContainer>
         <Button
@@ -101,7 +101,7 @@ function LoginForm() {
           Back
         </Button>
         <Button disabled={status === "pending"} type="primary" size="medium">
-          {status === "pending" ? <SpinnerMini /> : "Login"}
+          {status === "pending" ? <SpinnerMini color="#cc971b" /> : "Login"}
         </Button>
       </ButtonContainer>
     </StyledForm>

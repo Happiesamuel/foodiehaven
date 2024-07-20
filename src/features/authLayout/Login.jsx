@@ -18,8 +18,8 @@ function Login() {
     font-size: 14px;
     color: #fff;
     & a {
-      color: #fff;
-      font-weight: 900;
+      font-weight: bold;
+      color: #cc971b;
     }
   `;
   return (
@@ -50,8 +50,8 @@ function Login() {
       </div>
       <LoginForm />
       <Sign>
-        <span>{"Don't have an account? Sign up"} </span>
-        <Link to="/signup">here </Link>
+        <span>{"Don't have an account? "} </span>
+        <Link to="/signup">Sign up here </Link>
       </Sign>
     </StyledLogin>
   );

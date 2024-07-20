@@ -25,11 +25,12 @@ function User() {
     }
   `;
   const { user, isLoading } = useUser();
-  const { logout } = useLogout();
+  const { logout, status } = useLogout();
 
   if (isLoading) return <SpinnerMini />;
   if (!user) return;
   const { username, avatar } = user?.user_metadata || user.user.user_metadata;
+
   return (
     <StyledUser>
       <img src={!avatar ? img : avatar} />
@@ -37,7 +38,11 @@ function User() {
 
       <Modal>
         <Modal.Open name="logout">
-          <IoLogOutOutline />
+          {status !== "pending" ? (
+            <IoLogOutOutline />
+          ) : (
+            <SpinnerMini color="#cc971b" />
+          )}
         </Modal.Open>
         <Modal.Window opens="logout">
           <ConfirmDelete

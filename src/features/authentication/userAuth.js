@@ -56,7 +56,6 @@ export async function updateUser(userObj) {
   } else {
     const fileName = `avatar-${Math.random()}`;
     userData = userObj;
-    console.log(userData.avatar);
     const { error } = await supabase.storage
       .from("avatar")
       .upload(fileName, userData.avatar);
@@ -68,7 +67,7 @@ export async function updateUser(userObj) {
       },
     });
     if (error2) throw new Error(error2.message);
-    return data;
+    return data?.user;
   }
 }
 export async function getCurrentUser() {

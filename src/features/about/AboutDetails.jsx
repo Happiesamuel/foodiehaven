@@ -104,7 +104,6 @@ function AboutDetails() {
     currentButton === "All"
       ? recipies
       : recipies.filter((recipe) => recipe.mealType.includes(currentButton));
-  console.log(error);
 
   return (
     <>

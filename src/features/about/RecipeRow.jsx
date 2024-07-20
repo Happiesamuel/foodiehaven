@@ -18,19 +18,27 @@ function RecipeRow({ recipe }) {
     prepTimeMinutes,
     difficulty,
   } = recipe;
-  //   console.log(recipe);
 
-  const Image = styled.img`
-    width: 130px;
-    height: 130px;
-    border-radius: 100%;
+  const ImageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100px;
     position: absolute;
-    left: 30%;
+    width: 100%;
     top: -50px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    & img {
+      width: 100px;
+      border-radius: 100%;
+      height: 100%;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
   `;
+
   const Context = styled.div`
-    padding: 100px 10px 20px 10px;
+    padding: 60px 10px 10px 10px;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -45,7 +53,7 @@ function RecipeRow({ recipe }) {
     }
   `;
   const Name = styled.h3`
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: var(--color-deep-text);
   `;
@@ -54,12 +62,14 @@ function RecipeRow({ recipe }) {
     display: inline;
     font-style: italic;
     color: var(--color-ash-text);
+    font-size: 14px;
   `;
   const Servings = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
     color: #008e44;
+    font-size: 12px;
   `;
   const AllPrep = styled.div`
     display: flex;
@@ -77,8 +87,9 @@ function RecipeRow({ recipe }) {
 
   return (
     <StyledRecipeLayout data-aos="fade-up">
-      <Image src={image} />
-
+      <ImageContainer>
+        <img src={image} />
+      </ImageContainer>
       <Context>
         <FoodName>
           <Name>{name}</Name>

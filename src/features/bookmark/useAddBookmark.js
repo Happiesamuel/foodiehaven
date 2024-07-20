@@ -4,11 +4,15 @@ import { addBookmark as addBookmarkApi } from "../../service/apiBookmark";
 
 export function useAddBookmark() {
   const queryClient = useQueryClient();
-  const { mutate: addBookmark, isLoading: isCreating } = useMutation({
+  const {
+    mutate: addBookmark,
+    isLoading: isCreating,
+    status,
+  } = useMutation({
     mutationFn: (bookmark) => addBookmarkApi(bookmark),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["bookmark"] });
     },
   });
-  return { addBookmark, isCreating };
+  return { addBookmark, isCreating, status };
 }

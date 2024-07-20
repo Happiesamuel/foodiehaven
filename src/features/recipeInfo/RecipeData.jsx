@@ -17,13 +17,14 @@ import {
   FaRegClock,
 } from "react-icons/fa";
 import { Button } from "../../ui/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useBookmark } from "../bookmark/useBookmark";
 import { useDeleteBookmark } from "../bookmark/useDeleteBookmark";
 import toast from "react-hot-toast";
 import { useAddBookmark } from "../bookmark/useAddBookmark";
 import Undefined from "../../ui/Undefined";
 import { useEffect } from "react";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
@@ -116,12 +117,11 @@ function RecipeData() {
       }
     }
   `;
-  const navigate = useNavigate();
   const { recipe, isLoading } = useCheckInRecipe();
   const { isLoadingSimilarRecipe, similarRecipe } = useCheckInSimilarRecipe();
   const { bookmark, isLoading: isLoadingBookmark } = useBookmark();
-  const { deleteBookmark } = useDeleteBookmark();
-  const { addBookmark } = useAddBookmark();
+  const { deleteBookmark, status: deletingStatus } = useDeleteBookmark();
+  const { addBookmark, status: addingStatus } = useAddBookmark();
   useEffect(
     function () {
       document.title =
@@ -151,14 +151,13 @@ function RecipeData() {
   } = recipe;
 
   const titleSplit = title.split(" ");
-  const titleArr = Array.from(
-    { length: Math.ceil(titleSplit.length / 4) },
-    (v, i) => i + 1
-  ).map((x) => [
-    titleSplit
-      .slice((x - 1) * 4, Math.ceil(titleSplit.length / 2) * x)
-      .join(" "),
-  ]);
+  const arr = Math.floor(titleSplit.length / 2);
+  const titleArr = Array.from({ length: 4 }).map((x, i) => {
+    const a = titleSplit.slice(i * arr, arr * (i + 1));
+    if (a.length === 0) return null;
+    else return a.join(" ");
+  });
+  const titles = titleArr.filter((x) => x !== null);
 
   const isBookmarked = bookmark.some((book) => book.bookmarkId === id);
   const summarizedRecipe = summary.replace(/(<([^>]+)>)/gi, "");
@@ -182,7 +181,6 @@ function RecipeData() {
     deleteBookmark(id, {
       onSuccess: () => {
         toast.success(`${title} is removed from your bookmarks`);
-        navigate(-1, { replace: true });
       },
     });
   }
@@ -190,8 +188,10 @@ function RecipeData() {
     <StyledRecipeData>
       <Image src={image} />
       <TitleContent>
-        {titleArr.map((first) =>
-          first.map((x, i) => <Title key={i}>{x}</Title>)
+        {titleSplit.length <= 5 ? (
+          <Title>{title}</Title>
+        ) : (
+          titles.map((title, i) => <Title key={i}>{title}</Title>)
         )}
       </TitleContent>
       <Summary>{summarizedRecipe}</Summary>
@@ -210,7 +210,9 @@ function RecipeData() {
         </Servings>
 
         <Servings>
-          {isBookmarked ? (
+          {addingStatus === "pending" || deletingStatus === "pending" ? (
+            <SpinnerMini color="yellow" />
+          ) : isBookmarked ? (
             <FaBookmark
               style={{ cursor: "pointer" }}
               onClick={() => handleDeleteBookmark(id)}
