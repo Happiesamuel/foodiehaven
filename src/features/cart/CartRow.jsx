@@ -157,7 +157,7 @@ function CartRow({ cart }) {
     <StyledCartRow>
       <CartLabel>
         {isLoading || status === "pending" ? (
-          <SpinnerMini />
+          <SpinnerMini color="yellow" />
         ) : (
           <input
             type="checkbox"
