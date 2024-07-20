@@ -14,7 +14,7 @@ function Signup() {
     font-size: 14px;
     color: #fff;
     & a {
-      color: #fff;
+      color: #cc971b;
       font-weight: 900;
     }
   `;
@@ -51,8 +51,8 @@ function Signup() {
       </div>
       <SignupForm />
       <Sign>
-        <span>{"Already have an account? "} </span>
-        <Link to="/login">sign in </Link>
+        <span>{"Already have an account?"} </span>
+        <Link to="/login">Sign in here</Link>
       </Sign>
     </StyledSignup>
   );
