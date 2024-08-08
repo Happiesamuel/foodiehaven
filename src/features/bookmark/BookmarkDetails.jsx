@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useAddToCart } from "../cart/useAddToCart";
 import { useGetCart } from "../cart/useGetCart";
 import { useDeleteCart } from "../cart/useDeleteCart";
+import { useUser } from "../authentication/useUser";
 function BookmarkDetails({ bookmark }) {
   const StyledBookmarkDetails = styled.div`
     padding: 10px;
@@ -47,10 +48,14 @@ function BookmarkDetails({ bookmark }) {
   const { image, title, bookmarkId } = bookmark;
   const { deleteBookmark, isDeleting } = useDeleteBookmark();
   const { cart, isLoading } = useGetCart();
+  const { user } = useUser();
+
   const { addToCart, status } = useAddToCart();
   const { deleteCart } = useDeleteCart();
 
   if (isLoading) return null;
+  const { custom } = user?.user_metadata || user.user.user_metadata;
+
   const cartArr = cart.map((x) => x.cartId);
   function deleteBook(id) {
     deleteBookmark(id, {
@@ -65,6 +70,7 @@ function BookmarkDetails({ bookmark }) {
     // console.log(quantity);
     const newRecipe = {
       ...recipe,
+      custom,
       quantity,
       price: Math.random() * 75 + 1,
       newPrice: recipe.price,

@@ -1,14 +1,25 @@
 import supabase from "./supabase";
 
-export async function getCart() {
-  const { data, error } = await supabase.from("cart").select("*");
+export async function getCart(id) {
+  const { data, error } = await supabase
+    .from("cart")
+    .select("*")
+    .eq("custom", id);
   if (error) throw new Error("Failed to get your cart");
   return data;
 }
 
 export async function addToCart(recipe) {
-  const { image, title, bookmarkId, price, quantity, newPrice, checkedPrice } =
-    recipe;
+  const {
+    image,
+    title,
+    bookmarkId,
+    price,
+    quantity,
+    newPrice,
+    checkedPrice,
+    custom,
+  } = recipe;
   const newCart = {
     image,
     title,
@@ -17,6 +28,7 @@ export async function addToCart(recipe) {
     quantity,
     newPrice,
     checkedPrice,
+    custom,
   };
   // console.log(quantity);
   const { data, error } = await supabase

@@ -17,6 +17,14 @@ export async function logOut() {
 
 export async function SignupApi(signupData) {
   const { username, email, password } = signupData;
+  const fullName = username;
+  const customerDetail = { fullName, email };
+  const { data: custom, error: customErr } = await supabase
+    .from("customers")
+    .insert([customerDetail])
+    .select();
+  if (customErr) throw new Error(customErr.message);
+  console.log(custom.at(0).id, password);
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
@@ -24,11 +32,12 @@ export async function SignupApi(signupData) {
       data: {
         username,
         avatar: "",
+        custom: custom.at(0).id,
       },
     },
   });
+
   if (error) throw new Error(error.message);
-  console.log(data);
   return data;
 }
 

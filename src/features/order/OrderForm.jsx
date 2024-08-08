@@ -38,13 +38,14 @@ function OrderForm({ address }) {
   const { setOrderId } = useOrder();
   if (isLoadingCart || isLoading) return <Spinner />;
   const filteredCartId = cart.map((cart) => cart.cartId);
-
+  const { username: userBio, custom } =
+    user.user_metadata || user.user.user_metadata;
   function onSubmit(data) {
     if (data.cart.length === 2) {
       toast.error(`Your cart is Empty...Cannot place an empty order`);
       return;
     }
-    const orderObj = { ...data, orderId };
+    const orderObj = { ...data, orderId, custom };
     addOrder(orderObj, {
       onSuccess: () => {
         toast.success(`You've successfully ordered your food recipes`);
@@ -57,7 +58,7 @@ function OrderForm({ address }) {
       },
     });
   }
-  const { username: userBio } = user.user_metadata || user.user.user_metadata;
+
   const username = isLoading ? "Getting username..." : userBio;
 
   const filteredCart = cart.filter((cart) => cart.checkedPrice);

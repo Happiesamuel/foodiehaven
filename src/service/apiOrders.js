@@ -1,7 +1,10 @@
 import supabase from "./supabase";
 
-export async function getOrders() {
-  const { data, error } = await supabase.from("orders").select("*");
+export async function getOrders(id) {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*")
+    .eq("custom", id);
   if (error) throw new Error("Failed to get orders");
   return data;
 }

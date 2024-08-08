@@ -11,13 +11,14 @@ export async function getOrder(id) {
 }
 
 export async function addOrder(order) {
-  const { address, cart, firstname, orderId, phone } = order;
+  const { address, cart, firstname, orderId, phone, custom } = order;
   const newOrder = {
     address,
     cart,
     firstname,
     orderId,
     phone,
+    custom,
   };
 
   const { data, error } = await supabase

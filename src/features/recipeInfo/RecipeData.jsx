@@ -25,6 +25,7 @@ import { useAddBookmark } from "../bookmark/useAddBookmark";
 import Undefined from "../../ui/Undefined";
 import { useEffect } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useUser } from "../authentication/useUser";
 
 function RecipeData() {
   const StyledRecipeData = styled.div`
@@ -120,6 +121,7 @@ function RecipeData() {
   const { recipe, isLoading } = useCheckInRecipe();
   const { isLoadingSimilarRecipe, similarRecipe } = useCheckInSimilarRecipe();
   const { bookmark, isLoading: isLoadingBookmark } = useBookmark();
+  const { user } = useUser();
   const { deleteBookmark, status: deletingStatus } = useDeleteBookmark();
   const { addBookmark, status: addingStatus } = useAddBookmark();
   useEffect(
@@ -149,7 +151,7 @@ function RecipeData() {
     summary,
     id,
   } = recipe;
-
+  const { custom } = user?.user_metadata || user.user.user_metadata;
   const titleSplit = title.split(" ");
   const arr = Math.floor(titleSplit.length / 2);
   const titleArr = Array.from({ length: 4 }).map((x, i) => {
@@ -164,6 +166,7 @@ function RecipeData() {
   function handleAddBookmark(recipe) {
     const newRecipe = {
       ...recipe,
+      custom,
       price: Math.random() * 75 + 1,
     };
 

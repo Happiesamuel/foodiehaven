@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useBookmark } from "../bookmark/useBookmark";
 import { useState } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useUser } from "../authentication/useUser";
 function SearchResult({ result }) {
   const ImageContainer = styled.div`
     display: flex;
@@ -61,12 +62,13 @@ function SearchResult({ result }) {
   const { setSearchData } = useSearch();
   const { isCreating, addBookmark } = useAddBookmark();
   const { bookmark, isLoading } = useBookmark();
+  const { user } = useUser();
   const [bookmarking, setBookmarking] = useState(
     bookmark ? bookmark.map((x) => x.bookmarkId).includes(id) : false
   );
-
+  const { custom } = user?.user_metadata || user.user.user_metadata;
   function handleBookmark({ image, title, description, price, id }) {
-    const createBookmark = { image, title, description, price, id };
+    const createBookmark = { image, title, description, price, id, custom };
     const booked = bookmark.map((x) => x.bookmarkId);
     if (!booked.includes(id)) {
       setBookmarking(true);
