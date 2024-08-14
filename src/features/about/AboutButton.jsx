@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { device } from "../../mediaSizes";
 import { useDarkmode } from "../../context/DarkmodeContext";
 
 function AboutButton({ button, onClick, getId }) {
@@ -18,12 +17,7 @@ function AboutButton({ button, onClick, getId }) {
     cursor: pointer;
     padding: 10px;
     transition: all 0.5s;
-    display: inline;
 
-    margin-left: 20px;
-    @media ${device.tablet} {
-      display: block;
-    }
     & svg {
       position: relative;
       top: 2px;
