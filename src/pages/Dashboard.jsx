@@ -31,16 +31,21 @@ function Dashboard() {
     }
   `;
   const Overall = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     margin: 30px 0;
     @media ${device.tablet} {
-      gap: 40px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+    /* display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
+    
+  
     @media ${device.laptop} {
       gap: 50px;
-    }
+    } */
   `;
   useEffect(function () {
     document.title = "Dashboard";

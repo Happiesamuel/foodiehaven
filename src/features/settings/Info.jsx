@@ -53,9 +53,15 @@ function Info() {
     & form {
       margin: 0 30px;
       display: flex;
+      flex-direction: column;
       justify-content: space-evenly;
-      align-items: center;
       gap: 20px;
+      @media ${device.tablet} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        align-items: center;
+      }
     }
   `;
   const FileInput = styled.input.attrs({ type: "file" })`

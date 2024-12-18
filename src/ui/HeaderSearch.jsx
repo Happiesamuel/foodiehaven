@@ -18,7 +18,7 @@ function HeaderSearch() {
     background-color: var(--color-background-input);
     color: var(--color-svg-link);
     transition: all 0.5s;
-    width: 120px;
+    width: 150px;
     @media ${device.tablet} {
       width: 180px;
     }

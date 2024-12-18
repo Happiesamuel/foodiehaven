@@ -9,13 +9,16 @@ function SidebarMenu() {
   const StyledSidebar = styled.aside`
     grid-area: sidebar;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     background: var(--color-sidebar);
   `;
   const Ul = styled.ul`
     display: flex;
-    flex-direction: column;
     line-height: 3;
     text-align: center;
     gap: 2px;
@@ -23,20 +26,25 @@ function SidebarMenu() {
   const Li = styled.li`
     & a {
       padding: 15px 15px;
+      margin-top: 5px;
       color: var(--color-text);
       display: flex;
       gap: 10px;
       align-items: center;
       transition: all 0.5s;
       font-weight: bold;
+      margin-bottom: 8px;
       & svg {
+        font-size: 20px;
+
         color: var(--color-svg-link);
       }
       &.active {
         background: var(--color-svg-link);
-
+        border-radius: 5px;
         & svg {
           color: #fff;
+          font-size: 18px;
         }
       }
       &:not(.active):hover {
@@ -44,35 +52,41 @@ function SidebarMenu() {
       }
     }
   `;
-
+  const sidebars = [
+    {
+      route: "/dashboard",
+      title: "Dashboard",
+      svg: <MdDashboard />,
+    },
+    {
+      route: "/bookmark",
+      title: "Bookmarks",
+      svg: <FaBookmark />,
+    },
+    {
+      route: "/cart",
+      title: "Cart",
+      svg: <FaShoppingCart />,
+    },
+    {
+      route: "/orders",
+      title: "Orders",
+      svg: <MdLibraryBooks />,
+    },
+    {
+      route: "/settings",
+      title: "Settings",
+      svg: <IoSettings />,
+    },
+  ];
   return (
     <StyledSidebar>
       <Ul>
-        <Li>
-          <NavLink to="/dashboard">
-            <MdDashboard />
-          </NavLink>
-        </Li>
-        <Li>
-          <NavLink to="/bookmark">
-            <FaBookmark />
-          </NavLink>
-        </Li>
-        <Li>
-          <NavLink to="cart">
-            <FaShoppingCart />
-          </NavLink>
-        </Li>
-        <Li>
-          <NavLink to="/orders">
-            <MdLibraryBooks />
-          </NavLink>
-        </Li>
-        <Li>
-          <NavLink to="/settings">
-            <IoSettings />
-          </NavLink>
-        </Li>
+        {sidebars.map((sidebar) => (
+          <Li key={sidebar.route}>
+            <NavLink to={sidebar.route}>{sidebar.svg}</NavLink>
+          </Li>
+        ))}
       </Ul>
     </StyledSidebar>
   );

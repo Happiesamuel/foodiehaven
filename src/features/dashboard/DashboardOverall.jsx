@@ -7,10 +7,11 @@ function DashboardOverall({ title, svg, value }) {
     padding: 10px 10px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    width: 165px;
+    /* width: 165px; */
+    width: 100%;
     & svg {
       color: var(--color-icon-svg);
-      font-size: 20px;
+      font-size: 40px;
       background: var(--color-background-svg);
       padding: 5px;
       border-radius: 100%;
@@ -33,14 +34,15 @@ function DashboardOverall({ title, svg, value }) {
       color: var(--color-ash-text);
     }
     & h6 {
-      font-size: 18px;
+      font-size: 28px;
       font-weight: 900;
       @media ${device.laptop} {
         font-size: 35px;
       }
     }
     & p {
-      font-size: 11px;
+      font-size: 15px;
+      padding-top: 5px;
       font-weight: 200;
       text-align: center;
       @media ${device.laptop} {

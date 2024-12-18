@@ -24,7 +24,7 @@ const StyledLayout = styled.div`
   }
   @media ${device.laptop} {
     margin-top: 0px;
-    column-gap: 100px;
+    column-gap: 20px;
     row-gap: 50px;
     grid-template-columns: auto auto auto;
   }

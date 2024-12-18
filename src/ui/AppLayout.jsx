@@ -15,13 +15,17 @@ function AppLayout() {
     ${({ width }) =>
       width < 768 &&
       css`
-        grid-template-columns: 3rem 1fr;
+        /* grid-template-columns: 3rem 1fr; */
+        grid-template-columns: 1fr;
       `}
     ${({ width }) =>
       width > 768 &&
       css`
-        grid-template-columns: 16rem 1fr;
+        grid-template-columns: 5rem 1fr;
       `}
+    @media (${device.laptop}) {
+      grid-template-columns: 16rem 1fr;
+    }
     grid-template-rows: auto 1fr;
     grid-template-areas:
       "header  header"

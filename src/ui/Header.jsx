@@ -11,10 +11,10 @@ function Header() {
     background: var(--color-header);
     color: #fff;
     grid-area: header;
-    height: 80px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 20px;
     align-items: center;
     gap: 10px;
     @media ${device.tablet} {
